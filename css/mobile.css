@@ -1,0 +1,84 @@
+/* Mobile CSS Overrides */
+@media only screen and (max-width: 768px) {
+    /* Navigation: Stack vertically */
+    nav {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    nav a {
+      margin: 0.5rem 0;
+      font-size: 1.2rem;
+    }
+    
+    /* Hero Section: Reduce height and adjust font sizes */
+    #hero {
+      height: 80vh;
+    }
+    .hero-content h1 {
+      font-size: 2.5rem;
+    }
+    .hero-content p {
+      font-size: 1rem;
+    }
+    .cta-button {
+      padding: 10px 20px;
+      font-size: 1rem;
+    }
+    
+    /* Portfolio Grid: Use 2 columns instead of 3 for better readability */
+    .portfolio-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    /* About Section: Reduce padding and font sizes */
+    #about {
+      padding: 60px 10px;
+    }
+    .about-container {
+      padding: 0 10px;
+    }
+    .section-title {
+      font-size: 2rem;
+    }
+    .bio-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      padding: 0 5px;
+    }
+    
+    /* CV Section: Adjust font sizes */
+    #cv {
+      padding-bottom: 40px;
+    }
+    .cv-container {
+      padding: 0 10px;
+    }
+    .cv-content h3 {
+      font-size: 1.8rem;
+    }
+    .cv-content h4 {
+      font-size: 1.2rem;
+    }
+    .cv-content p, .cv-content ul {
+      font-size: 1rem;
+    }
+    
+    /* Connect Section: Adjust font sizes and spacing */
+    #contact {
+      padding-bottom: 40px;
+    }
+    .connect-container {
+      padding: 0 10px;
+    }
+    .social-links a {
+      font-size: 1rem;
+    }
+    
+    /* Modal: Reduce modal content width */
+    .modal-content {
+      width: 90%;
+      max-width: 90%;
+      padding: 10px;
+    }
+  }
+  
