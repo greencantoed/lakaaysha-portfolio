@@ -2,559 +2,498 @@
    Global Reset, CSS Variables & Base Styles
 ===================================================== */
 :root {
-    /* Color Palette: Glossy Violet, Acid Green/Purple & Charcoal Grey */
-    --acid-green: #39FF14;
-    --acid-purple: #BF00FF;
-    --charcoal-grey: #222222;
-    --background: var(--charcoal-grey);
-    --text-color: #ffffff;
-    --transition-speed: 0.3s;
-    --font-family-base: 'Roboto', sans-serif;
-    --glossy-violet-start: #8a2be2;
-    --glossy-violet-end: #5d00b3;
-  }
-  
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  body {
-    font-family: var(--font-family-base);
-    color: var(--text-color);
-    background-color: var(--background);
-    line-height: 1.6;
-  }
-  
-  /* =====================================================
-     Header & Navigation
-  ===================================================== */
-  header {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.85);
-    z-index: 1000;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: center;
-    padding: 1rem;
-  }
-  
-  nav a {
-    margin: 0 1rem;
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color var(--transition-speed);
-  }
-  
-  nav a:hover {
-    color: var(--acid-green);
-  }
-  
-  /* =====================================================
-     Hero Section with Background Image & Glitch Effects
-  ===================================================== */
-  #hero {
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-  }
-  
-  .hero-bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-position: center;
-    z-index: -2;
-  }
-  
-  .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.4);
-    z-index: -1;
-  }
-  
-  .hero-content {
-    position: relative;
-    z-index: 1;
-    text-align: center;
-    top: 50%;
-    transform: translateY(-50%);
-    padding: 0 20px;
-  }
-  
-  .hero-content h1 {
-    font-size: 3.5rem;
-    margin-bottom: 10px;
-  }
-  
-  .hero-content p {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Glossy Violet Button with Velvety Shine */
-  .glossy-button,
-  .cta-button {
-    padding: 12px 24px;
-    background: linear-gradient(145deg, var(--glossy-violet-start), var(--glossy-violet-end));
-    color: var(--text-color);
-    text-decoration: none;
-    border-radius: 8px;
-    border: none;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-  }
-  
-  .glossy-button::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 50%);
-    transform: rotate(45deg);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  .glossy-button:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0,0,0,0.5);
-  }
-  
-  .glossy-button:hover::before {
-    opacity: 1;
-  }
-  
-  /* =====================================================
-     Section Base Styling & Scroll Animations
-  ===================================================== */
-  .section {
-    padding: 100px 20px;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-    position: relative;
-  }
-  
-  .section.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  
-  /* Subtle glitch decoration on the right side */
-  .section::after {
-    content: "";
-    position: absolute;
-    right: 0;
-    top: 10%;
-    width: 5px;
-    height: 80%;
-    background: linear-gradient(180deg, var(--acid-green), var(--acid-purple));
-    opacity: 0.4;
-    animation: glitch-line 3s infinite alternate;
-  }
-  
-  @keyframes glitch-line {
-    0% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-    100% { transform: translateY(0); }
-  }
-  
-  /* =====================================================
-     Portfolio Section & 3x3 Grid
-  ===================================================== */
-  #portfolio {
-    background: #1a1a1a;
-  }
-  
-  .portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    position: relative;
-  }
-  
-  /* Cube animation for shuffling */
-  .cube-animate {
-    transform: rotateY(90deg);
-    transition: transform 0.6s ease;
-  }
-  
-  .portfolio-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    transform: rotateY(0deg);
-    transition: transform var(--transition-speed);
-  }
-  
-  .portfolio-item:hover {
-    transform: scale(1.03);
-  }
-  
-  /* Shiny hover effect on portfolio items */
-  .portfolio-item::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
-    transform: skewX(-30deg);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-  }
-  
-  .portfolio-item:hover::after {
-    opacity: 1;
-    animation: shine 1s;
-  }
-  
-  @keyframes shine {
-    from { left: -100%; }
-    to { left: 100%; }
-  }
-  
-  .portfolio-item img {
-    width: 100%;
-    display: block;
-    border: 2px solid #333;
-    transition: transform var(--transition-speed);
-  }
-  
-  .portfolio-title {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.7);
-    padding: 10px;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  /* =====================================================
-     Modal & Slideshow Styles
-  ===================================================== */
-  .modal {
-    display: none;
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.95);
-    transition: opacity 0.3s ease;
-  }
-  
-  .modal-content {
-    margin: 5% auto;
-    max-width: 800px;
-    background: #2a2a2a;
-    padding: 20px;
-    position: relative;
-    color: var(--text-color);
-    border-radius: 5px;
-  }
-  
-  .modal-close {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 2rem;
-    cursor: pointer;
-    color: var(--text-color);
-  }
-  
-  .slideshow-container {
-    position: relative;
-    margin: 20px 0;
-  }
-  
-  .slideshow-container img {
-    width: 100%;
-    border-radius: 5px;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-  }
-  
-  .prev, .next {
-    cursor: pointer;
-    position: absolute;
-    top: 50%;
-    padding: 12px;
-    margin-top: -22px;
-    color: var(--text-color);
-    font-weight: bold;
-    font-size: 1.8rem;
-    transition: background var(--transition-speed);
-    border-radius: 3px;
-    user-select: none;
-    background: rgba(0,0,0,0.5);
-  }
-  
-  .prev:hover, .next:hover {
-    background: var(--acid-green);
-  }
-  
-  .prev {
-    left: 0;
-  }
-  
-  .next {
-    right: 0;
-  }
-  
-  /* =====================================================
-     About Section - Improved Formatting
-  ===================================================== */
-  #about {
-    background: #2a2a2a;
-    padding: 80px 20px;
-  }
-  
-  .about-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-  }
-  
-  .section-title {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  .about-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .director-portrait {
-    width: 200px;
-    height: auto;
-    border-radius: 50%;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-  }
-  
-  .bio-text {
-    max-width: 600px;
-    text-align: center;
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin: 0 auto;
-    color: #ddd;
-    padding: 0 10px;
-  }
-  
-  /* =====================================================
-     CV Section (Professional Overview)
-  ===================================================== */
-  #cv {
-    background: #1a1a1a;
-    padding-bottom: 60px;
-  }
-  
-  .cv-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: left;
-  }
-  
-  .cv-content h3 {
-    font-size: 2rem;
-    margin-bottom: 10px;
-  }
-  
-  .cv-content h4 {
-    font-size: 1.4rem;
-    text-transform: uppercase;
-    border-bottom: 1px solid #333;
-    padding-bottom: 5px;
-    margin-top: 20px;
-  }
-  
-  .cv-content p, .cv-content ul {
-    font-size: 1.1rem;
-    margin: 10px 0;
-  }
-  
-  .cv-content ul {
-    list-style: none;
-    padding-left: 0;
-  }
-  
-  .cv-content li {
-    padding: 5px 0;
-    border-bottom: 1px solid #333;
-  }
-  
-  /* =====================================================
-     Connect Section (Social Links & Email)
-  ===================================================== */
-  #contact {
-    background: #2a2a2a;
-    padding-bottom: 60px;
-  }
-  
-  .connect-container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 0 20px;
-    text-align: center;
-  }
-  
-  .social-links {
-    margin-top: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-  
-  .social-links a {
-    color: var(--acid-green);
-    text-decoration: none;
-    font-size: 1.2rem;
-    transition: transform var(--transition-speed);
-  }
-  
-  .social-links a:hover {
-    transform: scale(1.1);
-  }
-  
-  /* =====================================================
-     Footer
-  ===================================================== */
-  footer {
-    text-align: center;
-    padding: 20px;
-    background: var(--background);
-    color: var(--text-color);
-  }
-  
-  /* =====================================================
-     Responsive Media Queries
-  ===================================================== */
-  @media (max-width: 1024px) {
-    .portfolio-grid {
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    }
-  }
-  
-  @media (max-width: 768px) {
-    .hero-content h1 {
-      font-size: 2.5rem;
-    }
-    .hero-content p {
-      font-size: 1rem;
-    }
-  }
-  
-  /* =====================================================
-     Glitch Effects (For elements with the .glitch class)
-     Now rendered behind the white text.
-  ===================================================== */
-  .glitch {
-    position: relative;
-    font-weight: bold;
-    color: var(--text-color);
-    z-index: 1; /* Ensure text sits above pseudo-elements */
-  }
-  
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0.8;
-    z-index: -1; /* Render behind the main text */
-    clip: rect(0, 900px, 0, 0);
-  }
-  
-  .glitch::before {
-    animation: glitch-anim 2s infinite linear alternate-reverse;
-    color: var(--acid-green);
-  }
-  
-  .glitch::after {
-    animation: glitch-anim2 2s infinite linear alternate-reverse;
-    color: var(--acid-purple);
-  }
-  
-  @keyframes glitch-anim {
-    0%   { clip: rect(42px, 9999px, 44px, 0); transform: translate(0.5px, -0.5px); }
-    5%   { clip: rect(85px, 9999px, 120px, 0); transform: translate(-0.5px, 0.5px); }
-    10%  { clip: rect(20px, 9999px, 30px, 0); transform: translate(1px, -1px); }
-    15%  { clip: rect(70px, 9999px, 100px, 0); transform: translate(-1px, 1px); }
-    20%  { clip: rect(40px, 9999px, 50px, 0); transform: translate(0.5px, 0.5px); }
-    25%  { clip: rect(90px, 9999px, 110px, 0); transform: translate(-0.5px, -0.5px); }
-    30%  { clip: rect(30px, 9999px, 60px, 0); transform: translate(1px, 0); }
-    100% { clip: rect(42px, 9999px, 44px, 0); transform: translate(0); }
-  }
-  
-  @keyframes glitch-anim2 {
-    0%   { clip: rect(20px, 9999px, 30px, 0); transform: translate(-0.5px, 0.5px); }
-    5%   { clip: rect(60px, 9999px, 70px, 0); transform: translate(0.5px, -0.5px); }
-    10%  { clip: rect(10px, 9999px, 20px, 0); transform: translate(-1px, 1px); }
-    15%  { clip: rect(80px, 9999px, 100px, 0); transform: translate(1px, -1px); }
-    20%  { clip: rect(50px, 9999px, 60px, 0); transform: translate(-0.5px, -0.5px); }
-    25%  { clip: rect(100px, 9999px, 120px, 0); transform: translate(0.5px, 0.5px); }
-    30%  { clip: rect(30px, 9999px, 40px, 0); transform: translate(-1px, 0); }
-    100% { clip: rect(20px, 9999px, 30px, 0); transform: translate(0); }
-  }
-  
-  /* =====================================================
-     Fade-in Effects for Modal Image and Modal Opening
-  ===================================================== */
-  .fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-  
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .modal-fade-in {
-    animation: modalFadeIn 0.5s ease-in-out;
-  }
-  
-  @keyframes modalFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
+  --acid-green: #39FF14;
+  --acid-purple: #BF00FF;
+  --charcoal-grey: #222222;
+  --background: var(--charcoal-grey);
+  --text-color: #ffffff;
+  --transition-speed: 0.3s;
+  --font-family-base: 'Roboto', sans-serif;
+  --glossy-violet-start: #8a2be2;
+  --glossy-violet-end: #5d00b3;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-base);
+  color: var(--text-color);
+  background-color: var(--background);
+  line-height: 1.6;
+}
+
+/* =====================================================
+   Desktop Header & Navigation
+===================================================== */
+.desktop-header {
+  display: block;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 1000;
+}
+
+.desktop-header nav {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.desktop-header nav a {
+  margin: 0 1rem;
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: bold;
+  transition: color var(--transition-speed);
+}
+
+.desktop-header nav a:hover {
+  color: var(--acid-green);
+}
+
+/* =====================================================
+   Hero Section (Desktop)
+===================================================== */
+#hero {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -2;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: -1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 0 20px;
+}
+
+.hero-content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Glossy Violet Button */
+.cta-button {
+  padding: 12px 24px;
+  background: linear-gradient(145deg, var(--glossy-violet-start), var(--glossy-violet-end));
+  color: var(--text-color);
+  text-decoration: none;
+  border-radius: 8px;
+  border: none;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.cta-button::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 50%);
+  transform: rotate(45deg);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.cta-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+.cta-button:hover::before {
+  opacity: 1;
+}
+
+/* =====================================================
+   Portfolio Section (Desktop)
+===================================================== */
+#portfolio {
+  background: #1a1a1a;
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 0 20px;
+  position: relative;
+}
+
+.cube-animate {
+  transform: rotateY(90deg);
+  transition: transform 0.6s ease;
+}
+
+.portfolio-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform var(--transition-speed);
+}
+
+.portfolio-item:hover {
+  transform: scale(1.03);
+}
+
+.portfolio-item::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+  transform: skewX(-30deg);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.portfolio-item:hover::after {
+  opacity: 1;
+  animation: shine 1s;
+}
+
+@keyframes shine {
+  from { left: -100%; }
+  to { left: 100%; }
+}
+
+.portfolio-item img {
+  width: 100%;
+  display: block;
+  border: 2px solid #333;
+  transition: transform var(--transition-speed);
+}
+
+.portfolio-title {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0,0,0,0.7);
+  padding: 10px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+/* =====================================================
+   Modal & Slideshow (Desktop)
+===================================================== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.95);
+  transition: opacity 0.3s ease;
+}
+
+.modal-content {
+  margin: 5% auto;
+  max-width: 800px;
+  background: #2a2a2a;
+  padding: 20px;
+  position: relative;
+  color: var(--text-color);
+  border-radius: 5px;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 2rem;
+  cursor: pointer;
+  color: var(--text-color);
+}
+
+.slideshow-container {
+  position: relative;
+  margin: 20px 0;
+}
+
+.slideshow-container img {
+  width: 100%;
+  border-radius: 5px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  padding: 12px;
+  margin-top: -22px;
+  color: var(--text-color);
+  font-weight: bold;
+  font-size: 1.8rem;
+  transition: background var(--transition-speed);
+  border-radius: 3px;
+  user-select: none;
+  background: rgba(0,0,0,0.5);
+}
+
+.prev:hover, .next:hover {
+  background: var(--acid-green);
+}
+
+.prev {
+  left: 0;
+}
+
+.next {
+  right: 0;
+}
+
+/* =====================================================
+   About Section (Desktop)
+===================================================== */
+#about {
+  background: #2a2a2a;
+  padding: 80px 20px;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.director-portrait {
+  width: 200px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+}
+
+.bio-text {
+  max-width: 600px;
+  text-align: center;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  margin: 0 auto;
+  color: #ddd;
+  padding: 0 10px;
+}
+
+/* =====================================================
+   CV Section (Desktop)
+===================================================== */
+#cv {
+  background: #1a1a1a;
+  padding-bottom: 60px;
+}
+
+.cv-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.cv-content h3 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.cv-content h4 {
+  font-size: 1.4rem;
+  text-transform: uppercase;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+
+.cv-content p, .cv-content ul {
+  font-size: 1.1rem;
+  margin: 10px 0;
+}
+
+.cv-content ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.cv-content li {
+  padding: 5px 0;
+  border-bottom: 1px solid #333;
+}
+
+/* =====================================================
+   Connect Section (Desktop)
+===================================================== */
+#contact {
+  background: #2a2a2a;
+  padding-bottom: 60px;
+}
+
+.connect-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.social-links {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-links a {
+  color: var(--acid-green);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: transform var(--transition-speed);
+}
+
+.social-links a:hover {
+  transform: scale(1.1);
+}
+
+/* =====================================================
+   Desktop Footer
+===================================================== */
+.desktop-footer {
+  text-align: center;
+  padding: 20px;
+  background: var(--background);
+  color: var(--text-color);
+}
+
+/* =====================================================
+   Glitch Effects (Desktop, Rendered Behind Text)
+===================================================== */
+.glitch {
+  position: relative;
+  font-weight: bold;
+  color: var(--text-color);
+  z-index: 1;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.8;
+  z-index: -1;
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+  animation: glitch-anim 2s infinite linear alternate-reverse;
+  color: var(--acid-green);
+}
+
+.glitch::after {
+  animation: glitch-anim2 2s infinite linear alternate-reverse;
+  color: var(--acid-purple);
+}
+
+@keyframes glitch-anim {
+  0%   { clip: rect(42px, 9999px, 44px, 0); transform: translate(0.5px, -0.5px); }
+  5%   { clip: rect(85px, 9999px, 120px, 0); transform: translate(-0.5px, 0.5px); }
+  10%  { clip: rect(20px, 9999px, 30px, 0); transform: translate(1px, -1px); }
+  15%  { clip: rect(70px, 9999px, 100px, 0); transform: translate(-1px, 1px); }
+  20%  { clip: rect(40px, 9999px, 50px, 0); transform: translate(0.5px, 0.5px); }
+  25%  { clip: rect(90px, 9999px, 110px, 0); transform: translate(-0.5px, -0.5px); }
+  30%  { clip: rect(30px, 9999px, 60px, 0); transform: translate(1px, 0); }
+  100% { clip: rect(42px, 9999px, 44px, 0); transform: translate(0); }
+}
+
+@keyframes glitch-anim2 {
+  0%   { clip: rect(20px, 9999px, 30px, 0); transform: translate(-0.5px, 0.5px); }
+  5%   { clip: rect(60px, 9999px, 70px, 0); transform: translate(0.5px, -0.5px); }
+  10%  { clip: rect(10px, 9999px, 20px, 0); transform: translate(-1px, 1px); }
+  15%  { clip: rect(80px, 9999px, 100px, 0); transform: translate(1px, -1px); }
+  20%  { clip: rect(50px, 9999px, 60px, 0); transform: translate(-0.5px, -0.5px); }
+  25%  { clip: rect(100px, 9999px, 120px, 0); transform: translate(0.5px, 0.5px); }
+  30%  { clip: rect(30px, 9999px, 40px, 0); transform: translate(-1px, 0); }
+  100% { clip: rect(20px, 9999px, 30px, 0); transform: translate(0); }
+}
+
+/* =====================================================
+   Fade-in Effects for Modal
+===================================================== */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-fade-in {
+  animation: modalFadeIn 0.5s ease-in-out;
+}
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

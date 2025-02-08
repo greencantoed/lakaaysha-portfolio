@@ -37,12 +37,12 @@
   
   <!-- Link Desktop CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Link Mobile CSS (loaded only on devices 768px wide or less) -->
+  <!-- Link Mobile CSS (loaded for devices up to 768px) -->
   <link rel="stylesheet" media="(max-width: 768px)" href="css/mobile.css">
 </head>
 <body>
-  <!-- Header & Navigation with Glitch Effects -->
-  <header>
+  <!-- Desktop Header (for screens above 768px) -->
+  <header class="desktop-header">
     <nav>
       <a href="#hero" class="glitch" data-text="Home" aria-label="Home">Home</a>
       <a href="#portfolio" class="glitch" data-text="Portfolio" aria-label="Portfolio">Portfolio</a>
@@ -51,9 +51,26 @@
       <a href="#contact" class="glitch" data-text="Connect" aria-label="Connect">Connect</a>
     </nav>
   </header>
+  
+  <!-- Mobile Hamburger Menu (for small phones up to 480px) -->
+  <button id="mobile-hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div id="mobile-menu-overlay">
+    <nav>
+      <a href="#hero" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Home</a>
+      <a href="#portfolio" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Portfolio</a>
+      <a href="#about" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">About</a>
+      <a href="#cv" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">CV</a>
+      <a href="#contact" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Connect</a>
+    </nav>
+  </div>
 
+  <!-- Main Content -->
   <main>
-    <!-- Hero Section (Desktop uses background image) -->
+    <!-- Hero Section -->
     <section id="hero" class="section">
       <div class="hero-bg" style="background-image: url('images/webp/HRC (2).webp');"></div>
       <div class="hero-overlay"></div>
@@ -70,43 +87,51 @@
     <section id="portfolio" class="section">
       <h2 class="glitch" data-text="Portfolio">Portfolio</h2>
       <div class="portfolio-grid">
-        <!-- Portfolio items – each uses a data-project attribute -->
+        <!-- Portfolio Item 1 -->
         <div class="portfolio-item" data-project="1104 Breakfast Menu">
           <img src="images/webp/1104 BM (2).webp" alt="1104 Breakfast Menu">
           <div class="portfolio-title glitch" data-text="1104 Breakfast Menu">1104 Breakfast Menu</div>
         </div>
+        <!-- Portfolio Item 2 -->
         <div class="portfolio-item" data-project="REFLECTIONS ON DUTCH CAPITALISM">
           <img src="images/webp/RDC (6).webp" alt="REFLECTIONS ON DUTCH CAPITALISM">
           <div class="portfolio-title glitch" data-text="REFLECTIONS ON DUTCH CAPITALISM">REFLECTIONS ON DUTCH CAPITALISM</div>
         </div>
+        <!-- Portfolio Item 3 -->
         <div class="portfolio-item" data-project="THE HERONS ARE COMING">
           <img src="images/webp/HRC.webp" alt="THE HERONS ARE COMING">
           <div class="portfolio-title glitch" data-text="THE HERONS ARE COMING">THE HERONS ARE COMING</div>
         </div>
+        <!-- Portfolio Item 4 -->
         <div class="portfolio-item" data-project="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
           <img src="images/webp/Autonymous opinion on the matter of the void (1).png.webp" alt="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
           <div class="portfolio-title glitch" data-text="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
             AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID
           </div>
         </div>
+        <!-- Portfolio Item 5 -->
         <div class="portfolio-item" data-project="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
           <img src="images/webp/HVSNVSHVSN (1).webp" alt="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
           <div class="portfolio-title glitch" data-text="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
             HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)
           </div>
         </div>
+        <!-- Portfolio Item 6 -->
         <div class="portfolio-item" data-project="DOUBLE EXPOSURE">
           <img src="images/webp/DEFE (1).webp" alt="DOUBLE EXPOSURE">
           <div class="portfolio-title glitch" data-text="DOUBLE EXPOSURE">DOUBLE EXPOSURE</div>
         </div>
+        <!-- Portfolio Item 7 -->
         <div class="portfolio-item" data-project="THE DREAM">
           <img src="images/webp/THEDREAM (1).webp" alt="THE DREAM">
           <div class="portfolio-title glitch" data-text="THE DREAM">THE DREAM</div>
         </div>
+        <!-- Portfolio Item 8 -->
         <div class="portfolio-item" data-project="7 + 1">
           <img src="images/webp/7+1 (0).webp" alt="7 + 1">
           <div class="portfolio-title glitch" data-text="7 + 1">7 + 1</div>
         </div>
+        <!-- Portfolio Item 9 -->
         <div class="portfolio-item" data-project="DIE TÜREN SCHLIESSEN SICH">
           <img src="images/webp/TSs (1).webp" alt="DIE TÜREN SCHLIESSEN SICH">
           <div class="portfolio-title glitch" data-text="DIE TÜREN SCHLIESSEN SICH">DIE TÜREN SCHLIESSEN SICH</div>
@@ -114,7 +139,7 @@
       </div>
     </section>
 
-    <!-- About Section with Improved Formatting -->
+    <!-- About Section -->
     <section id="about" class="section">
       <div class="about-container">
         <h2 class="section-title glitch" data-text="About Me">About Me</h2>
@@ -129,7 +154,7 @@
       </div>
     </section>
 
-    <!-- CV Section (Professional Overview) -->
+    <!-- CV Section -->
     <section id="cv" class="section">
       <div class="cv-container">
         <h2 class="section-title glitch" data-text="CV">CV</h2>
@@ -168,12 +193,12 @@
       </div>
     </section>
 
-    <!-- Connect Section (Social Media & Email) -->
+    <!-- Connect Section -->
     <section id="contact" class="section">
       <div class="connect-container">
         <h2 class="section-title glitch" data-text="Connect">Connect</h2>
         <div class="social-links">
-          <p><a href="mailto:kaayardo@lakaaysha.com">kaayardo@lakaaysha.com</a></p>
+          <p>Email: <a href="mailto:kaayardo@lakaaysha.com">kaayardo@lakaaysha.com</a></p>
           <a href="https://twitter.com/yourhandle" target="_blank" aria-label="Twitter">Twitter</a>
           <a href="https://instagram.com/yourhandle" target="_blank" aria-label="Instagram">Instagram</a>
           <a href="https://vimeo.com/yourhandle" target="_blank" aria-label="Vimeo">Vimeo</a>
@@ -183,10 +208,36 @@
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer>
+  <!-- Desktop Footer -->
+  <footer class="desktop-footer">
     <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
   </footer>
+
+  <!-- Mobile Bottom Navigation (for devices between 481px–768px) -->
+  <nav id="bottom-nav">
+    <a href="#hero" aria-label="Home">Home</a>
+    <a href="#portfolio" aria-label="Portfolio">Portfolio</a>
+    <a href="#about" aria-label="About">About</a>
+    <a href="#cv" aria-label="CV">CV</a>
+    <a href="#contact" aria-label="Connect">Connect</a>
+  </nav>
+
+  <!-- Mobile Hamburger Menu (for small phones up to 480px) -->
+  <!-- The hamburger button and overlay are hidden on larger devices via mobile.css -->
+  <button id="mobile-hamburger">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div id="mobile-menu-overlay">
+    <nav>
+      <a href="#hero" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Home</a>
+      <a href="#portfolio" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Portfolio</a>
+      <a href="#about" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">About</a>
+      <a href="#cv" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">CV</a>
+      <a href="#contact" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Connect</a>
+    </nav>
+  </div>
 
   <!-- Modal for Project Slideshow -->
   <div id="modal" class="modal" aria-hidden="true">

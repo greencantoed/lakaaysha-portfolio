@@ -90,7 +90,7 @@ const projects = {
     }
   };
   
-  // Global variables to track the current project and slide index.
+  // Global variables to track current project and slide index.
   let currentProject = null;
   let currentSlideIndex = 0;
   
@@ -203,5 +203,14 @@ const projects = {
         }, 5000);
       }
     });
+  
+    // --- Mobile Hamburger Menu Toggle (for small phones up to 480px) ---
+    const mobileHamburger = document.getElementById('mobile-hamburger');
+    const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+    if (mobileHamburger && mobileMenuOverlay) {
+      mobileHamburger.addEventListener('click', () => {
+        mobileMenuOverlay.classList.toggle('open');
+      });
+    }
   });
   
