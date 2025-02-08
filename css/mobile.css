@@ -1,89 +1,74 @@
-/* Mobile CSS Overrides for devices with a max-width of 768px */
+/* =====================================================
+   Mobile CSS Overrides (Devices up to 768px)
+===================================================== */
 @media only screen and (max-width: 768px) {
-    /* -------------------------------
-       Navigation
-    ------------------------------- */
-    nav {
-      flex-direction: column;
+    /* Fixed Bottom Navigation for Medium Phones */
+    #bottom-nav {
+      display: flex;
+      justify-content: space-around;
       align-items: center;
-      gap: 1rem;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
       padding: 0.5rem 0;
+      z-index: 1001;
     }
-    nav a {
-      margin: 0.5rem 0;
-      font-size: 1.4rem;
+    #bottom-nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1rem;
+      padding: 0.5rem;
+      flex: 1;
+      text-align: center;
+    }
+    #bottom-nav a:hover {
+      color: var(--acid-green);
     }
     
-    /* -------------------------------
-       Hero Section
-    ------------------------------- */
+    /* Adjust Hero Section */
     #hero {
-      height: 75vh;
+      height: 80vh;
     }
     .hero-content h1 {
       font-size: 2.5rem;
-      margin-bottom: 0.5rem;
     }
     .hero-content p {
-      font-size: 1.1rem;
-      margin-bottom: 1rem;
+      font-size: 1rem;
     }
     .cta-button {
       padding: 10px 20px;
       font-size: 1rem;
     }
     
-    /* -------------------------------
-       Portfolio Grid
-    ------------------------------- */
+    /* Portfolio Grid: 2 Columns */
     .portfolio-grid {
       grid-template-columns: repeat(2, 1fr);
-      gap: 15px;
-      max-width: 100%;
-      margin: 20px auto;
-      padding: 0 10px;
     }
     
-    /* -------------------------------
-       About Section
-    ------------------------------- */
+    /* About Section Adjustments */
     #about {
-      padding: 60px 15px;
+      padding: 60px 10px;
     }
     .about-container {
-      padding: 0 15px;
-      max-width: 800px;
-      margin: 0 auto;
+      padding: 0 10px;
     }
     .section-title {
       font-size: 2rem;
-      margin-bottom: 15px;
-      text-align: center;
-    }
-    .about-content {
-      gap: 15px;
-      flex-direction: column;
-      align-items: center;
     }
     .bio-text {
       font-size: 1rem;
       line-height: 1.6;
-      max-width: 600px;
-      text-align: center;
-      padding: 0 10px;
+      padding: 0 5px;
     }
     
-    /* -------------------------------
-       CV Section
-    ------------------------------- */
+    /* CV Section Adjustments */
     #cv {
       padding-bottom: 40px;
     }
     .cv-container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 0 15px;
-      text-align: left;
+      padding: 0 10px;
     }
     .cv-content h3 {
       font-size: 1.8rem;
@@ -91,37 +76,88 @@
     .cv-content h4 {
       font-size: 1.2rem;
     }
-    .cv-content p,
-    .cv-content ul {
+    .cv-content p, .cv-content ul {
       font-size: 1rem;
     }
     
-    /* -------------------------------
-       Connect Section
-    ------------------------------- */
+    /* Connect Section Adjustments */
     #contact {
       padding-bottom: 40px;
     }
     .connect-container {
-      max-width: 600px;
-      margin: 0 auto;
-      padding: 0 15px;
-      text-align: center;
+      padding: 0 10px;
     }
-    .social-links {
-      gap: 15px;
+    .social-links a {
       font-size: 1rem;
-      flex-wrap: wrap;
-      justify-content: center;
     }
     
-    /* -------------------------------
-       Modal Adjustments
-    ------------------------------- */
+    /* Modal: Adjust modal content width for mobile */
     .modal-content {
-      width: 95%;
-      max-width: 95%;
+      width: 90%;
+      max-width: 90%;
       padding: 10px;
+    }
+  }
+  
+  /* =====================================================
+     Mobile CSS Overrides for Small Phones (up to 480px)
+  ===================================================== */
+  @media only screen and (max-width: 480px) {
+    /* Hide Bottom Nav for small phones */
+    #bottom-nav {
+      display: none;
+    }
+    
+    /* Show Hamburger Menu */
+    #mobile-hamburger {
+      display: block;
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      width: 30px;
+      height: 25px;
+      cursor: pointer;
+      z-index: 1100;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    #mobile-hamburger span {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background: var(--text-color);
+      margin: 4px 0;
+      transition: all 0.3s ease;
+    }
+    
+    /* Mobile Hamburger Menu Overlay (Accordion Style) */
+    #mobile-menu-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 30%;
+      background: rgba(0, 0, 0, 0.9);
+      z-index: 1050;
+      transition: max-height 0.3s ease;
+      overflow: hidden;
+    }
+    #mobile-menu-overlay.open {
+      display: block;
+    }
+    #mobile-menu-overlay nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+    }
+    #mobile-menu-overlay nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 1.2rem;
     }
   }
   

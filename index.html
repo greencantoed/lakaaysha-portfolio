@@ -9,7 +9,7 @@
   <meta name="keywords" content="film director, multimedia artist, filmmaking, film director portfolio, experimental visual storytelling, Amsterdam film director">
   <meta name="author" content="Lakaaysha van Ewijk">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.yourdomain.com/">
+  <link rel="canonical" href="https://www.lakaaysha.com/">
   
   <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Lakaaysha van Ewijk – Audiovisionary Filmmaker">
@@ -24,7 +24,7 @@
     "@type": "Person",
     "name": "Lakaaysha van Ewijk",
     "jobTitle": "Film Director",
-    "url": "https://www.yourdomain.com/",
+    "url": "https://www.lakaaysha.com/",
     "sameAs": [
       "https://twitter.com/yourhandle",
       "https://instagram.com/yourhandle",
@@ -37,11 +37,11 @@
   
   <!-- Link Desktop CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Link Mobile CSS (loaded for devices up to 768px) -->
+  <!-- Link Mobile CSS (for devices up to 768px) -->
   <link rel="stylesheet" media="(max-width: 768px)" href="css/mobile.css">
 </head>
 <body>
-  <!-- Desktop Header (for screens above 768px) -->
+  <!-- Desktop Header (visible on screens wider than 768px) -->
   <header class="desktop-header">
     <nav>
       <a href="#hero" class="glitch" data-text="Home" aria-label="Home">Home</a>
@@ -52,7 +52,17 @@
     </nav>
   </header>
   
-  <!-- Mobile Hamburger Menu (for small phones up to 480px) -->
+  <!-- Mobile Navigation: Two variants -->
+  <!-- For medium phones (481px–768px): Fixed bottom navigation -->
+  <nav id="bottom-nav">
+    <a href="#hero" aria-label="Home">Home</a>
+    <a href="#portfolio" aria-label="Portfolio">Portfolio</a>
+    <a href="#about" aria-label="About">About</a>
+    <a href="#cv" aria-label="CV">CV</a>
+    <a href="#contact" aria-label="Connect">Connect</a>
+  </nav>
+  
+  <!-- For small phones (up to 480px): Minimal hamburger menu -->
   <button id="mobile-hamburger">
     <span></span>
     <span></span>
@@ -60,20 +70,25 @@
   </button>
   <div id="mobile-menu-overlay">
     <nav>
-      <a href="#hero" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Home</a>
-      <a href="#portfolio" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Portfolio</a>
-      <a href="#about" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">About</a>
-      <a href="#cv" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">CV</a>
-      <a href="#contact" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Connect</a>
+      <a href="#hero" onclick="toggleMobileMenu(false)">Home</a>
+      <a href="#portfolio" onclick="toggleMobileMenu(false)">Portfolio</a>
+      <a href="#about" onclick="toggleMobileMenu(false)">About</a>
+      <a href="#cv" onclick="toggleMobileMenu(false)">CV</a>
+      <a href="#contact" onclick="toggleMobileMenu(false)">Connect</a>
     </nav>
   </div>
-
+  
   <!-- Main Content -->
   <main>
-    <!-- Hero Section -->
+    <!-- HERO SECTION with Cracked-Mirror Glitch Effect -->
     <section id="hero" class="section">
+      <!-- Base Background Image -->
       <div class="hero-bg" style="background-image: url('images/webp/HRC (2).webp');"></div>
+      <!-- Semi-transparent Overlay -->
       <div class="hero-overlay"></div>
+      <!-- Container for Cracked Shards (populated via JS) -->
+      <div id="hero-cracks"></div>
+      <!-- Hero Text Content -->
       <div class="hero-content">
         <h1 class="glitch" data-text="Lakaaysha van Ewijk">Lakaaysha van Ewijk</h1>
         <p class="glitch" data-text="Hybrid Narratives • Experimental Visuals • Audiovisionary Storytelling">
@@ -82,8 +97,8 @@
         <a href="#portfolio" class="cta-button glossy-button">Explore My Work</a>
       </div>
     </section>
-
-    <!-- Portfolio Section (3×3 Grid) -->
+    
+    <!-- PORTFOLIO SECTION -->
     <section id="portfolio" class="section">
       <h2 class="glitch" data-text="Portfolio">Portfolio</h2>
       <div class="portfolio-grid">
@@ -138,8 +153,8 @@
         </div>
       </div>
     </section>
-
-    <!-- About Section -->
+    
+    <!-- ABOUT SECTION -->
     <section id="about" class="section">
       <div class="about-container">
         <h2 class="section-title glitch" data-text="About Me">About Me</h2>
@@ -153,8 +168,8 @@
         </div>
       </div>
     </section>
-
-    <!-- CV Section -->
+    
+    <!-- CV SECTION -->
     <section id="cv" class="section">
       <div class="cv-container">
         <h2 class="section-title glitch" data-text="CV">CV</h2>
@@ -192,8 +207,8 @@
         </div>
       </div>
     </section>
-
-    <!-- Connect Section -->
+    
+    <!-- CONNECT SECTION -->
     <section id="contact" class="section">
       <div class="connect-container">
         <h2 class="section-title glitch" data-text="Connect">Connect</h2>
@@ -207,38 +222,12 @@
       </div>
     </section>
   </main>
-
+  
   <!-- Desktop Footer -->
   <footer class="desktop-footer">
     <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
   </footer>
-
-  <!-- Mobile Bottom Navigation (for devices between 481px–768px) -->
-  <nav id="bottom-nav">
-    <a href="#hero" aria-label="Home">Home</a>
-    <a href="#portfolio" aria-label="Portfolio">Portfolio</a>
-    <a href="#about" aria-label="About">About</a>
-    <a href="#cv" aria-label="CV">CV</a>
-    <a href="#contact" aria-label="Connect">Connect</a>
-  </nav>
-
-  <!-- Mobile Hamburger Menu (for small phones up to 480px) -->
-  <!-- The hamburger button and overlay are hidden on larger devices via mobile.css -->
-  <button id="mobile-hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <div id="mobile-menu-overlay">
-    <nav>
-      <a href="#hero" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Home</a>
-      <a href="#portfolio" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Portfolio</a>
-      <a href="#about" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">About</a>
-      <a href="#cv" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">CV</a>
-      <a href="#contact" onclick="document.getElementById('mobile-menu-overlay').classList.remove('open')">Connect</a>
-    </nav>
-  </div>
-
+  
   <!-- Modal for Project Slideshow -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content">
@@ -252,7 +241,7 @@
       <p id="modal-description">Project description will appear here.</p>
     </div>
   </div>
-
+  
   <!-- Link External JavaScript -->
   <script src="js/main.js"></script>
 </body>
