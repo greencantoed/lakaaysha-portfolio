@@ -45,5 +45,12 @@
   <footer class="desktop-footer">
     <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
   </footer>
+  
+  <!-- Inline script to force sections visible -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.section').forEach(section => section.classList.add('visible'));
+    });
+  </script>
 </body>
 </html>
