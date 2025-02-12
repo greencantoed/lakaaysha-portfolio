@@ -6,43 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lakaaysha van Ewijk – Audiovisionary Filmmaker</title>
   <meta name="description" content="Portfolio of Lakaaysha van Ewijk, a Dutch film director and multimedia artist known for hybrid narratives and experimental visual storytelling.">
-  <meta name="keywords" content="film director, multimedia artist, filmmaking, film director portfolio, experimental visual storytelling, Amsterdam film director">
-  <meta name="author" content="Lakaaysha van Ewijk">
-  <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://www.lakaaysha.com/">
-  
-  <!-- Open Graph Meta Tags -->
   <meta property="og:title" content="Lakaaysha van Ewijk – Audiovisionary Filmmaker">
   <meta property="og:description" content="Explore the innovative film projects and artistic vision of Lakaaysha van Ewijk.">
   <meta property="og:image" content="images/og-image.jpg">
   <meta property="og:type" content="website">
   
-  <!-- Structured Data for Film Director (JSON-LD) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Lakaaysha van Ewijk",
-    "jobTitle": "Film Director",
-    "url": "https://www.lakaaysha.com/",
-    "sameAs": [
-      "https://twitter.com/yourhandle",
-      "https://instagram.com/yourhandle",
-      "https://vimeo.com/yourhandle",
-      "https://tiktok.com/@yourhandle"
-    ],
-    "description": "Lakaaysha van Ewijk is a Dutch film director and multimedia artist known for her hybrid narratives and experimental visual storytelling."
-  }
-  </script>
-  
-  <!-- Link Desktop CSS -->
+  <!-- Link to CSS -->
   <link rel="stylesheet" href="css/styles.css">
-  <!-- Link Mobile CSS (for devices up to 768px) -->
-  <link rel="stylesheet" media="(max-width: 768px)" href="css/mobile.css">
 </head>
 <body>
-  <!-- Desktop Header (visible on screens wider than 768px) -->
-  <header class="desktop-header">
+  <!-- HEADER & NAVIGATION -->
+  <header>
     <nav>
       <a href="#hero" class="glitch" data-text="Home" aria-label="Home">Home</a>
       <a href="#portfolio" class="glitch" data-text="Portfolio" aria-label="Portfolio">Portfolio</a>
@@ -51,44 +25,17 @@
       <a href="#contact" class="glitch" data-text="Connect" aria-label="Connect">Connect</a>
     </nav>
   </header>
-  
-  <!-- Mobile Navigation: Two variants -->
-  <!-- For medium phones (481px–768px): Fixed bottom navigation -->
-  <nav id="bottom-nav">
-    <a href="#hero" aria-label="Home">Home</a>
-    <a href="#portfolio" aria-label="Portfolio">Portfolio</a>
-    <a href="#about" aria-label="About">About</a>
-    <a href="#cv" aria-label="CV">CV</a>
-    <a href="#contact" aria-label="Connect">Connect</a>
-  </nav>
-  
-  <!-- For small phones (up to 480px): Minimal hamburger menu -->
-  <button id="mobile-hamburger">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-  <div id="mobile-menu-overlay">
-    <nav>
-      <a href="#hero" onclick="toggleMobileMenu(false)">Home</a>
-      <a href="#portfolio" onclick="toggleMobileMenu(false)">Portfolio</a>
-      <a href="#about" onclick="toggleMobileMenu(false)">About</a>
-      <a href="#cv" onclick="toggleMobileMenu(false)">CV</a>
-      <a href="#contact" onclick="toggleMobileMenu(false)">Connect</a>
-    </nav>
-  </div>
-  
-  <!-- Main Content -->
+
   <main>
-    <!-- HERO SECTION with Cracked-Mirror Glitch Effect -->
+    <!-- HERO SECTION with Video Background, Overlay & Cracked-Mirror Effect -->
     <section id="hero" class="section">
-      <!-- Base Background Image -->
-      <div class="hero-bg" style="background-image: url('images/webp/HRC (2).webp');"></div>
-      <!-- Semi-transparent Overlay -->
+      <video autoplay loop muted playsinline id="hero-video">
+        <source src="videos/hero-video.mp4" type="video/mp4">
+        <img src="images/hero-fallback.jpg" alt="Cinematic hero background">
+      </video>
       <div class="hero-overlay"></div>
-      <!-- Container for Cracked Shards (populated via JS) -->
+      <!-- The cracked shards container – a 4x4 grid will be generated here -->
       <div id="hero-cracks"></div>
-      <!-- Hero Text Content -->
       <div class="hero-content">
         <h1 class="glitch" data-text="Lakaaysha van Ewijk">Lakaaysha van Ewijk</h1>
         <p class="glitch" data-text="Hybrid Narratives • Experimental Visuals • Audiovisionary Storytelling">
@@ -97,68 +44,65 @@
         <a href="#portfolio" class="cta-button glossy-button">Explore My Work</a>
       </div>
     </section>
-    
-    <!-- PORTFOLIO SECTION -->
+
+    <!-- PORTFOLIO SECTION (3×3 GRID) -->
     <section id="portfolio" class="section">
-      <h2 class="glitch" data-text="Portfolio">Portfolio</h2>
+      <h2 class="section-title glitch" data-text="Portfolio">Portfolio</h2>
       <div class="portfolio-grid">
-        <!-- Portfolio Item 1 -->
+        <!-- Each portfolio item uses a data-project attribute with its full project name -->
         <div class="portfolio-item" data-project="1104 Breakfast Menu">
           <img src="images/webp/1104 BM (2).webp" alt="1104 Breakfast Menu">
           <div class="portfolio-title glitch" data-text="1104 Breakfast Menu">1104 Breakfast Menu</div>
         </div>
-        <!-- Portfolio Item 2 -->
         <div class="portfolio-item" data-project="REFLECTIONS ON DUTCH CAPITALISM">
           <img src="images/webp/RDC (6).webp" alt="REFLECTIONS ON DUTCH CAPITALISM">
           <div class="portfolio-title glitch" data-text="REFLECTIONS ON DUTCH CAPITALISM">REFLECTIONS ON DUTCH CAPITALISM</div>
         </div>
-        <!-- Portfolio Item 3 -->
         <div class="portfolio-item" data-project="THE HERONS ARE COMING">
           <img src="images/webp/HRC.webp" alt="THE HERONS ARE COMING">
           <div class="portfolio-title glitch" data-text="THE HERONS ARE COMING">THE HERONS ARE COMING</div>
         </div>
-        <!-- Portfolio Item 4 -->
         <div class="portfolio-item" data-project="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
           <img src="images/webp/Autonymous opinion on the matter of the void (1).png.webp" alt="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
           <div class="portfolio-title glitch" data-text="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
             AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID
           </div>
         </div>
-        <!-- Portfolio Item 5 -->
         <div class="portfolio-item" data-project="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
           <img src="images/webp/HVSNVSHVSN (1).webp" alt="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
           <div class="portfolio-title glitch" data-text="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
             HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)
           </div>
         </div>
-        <!-- Portfolio Item 6 -->
         <div class="portfolio-item" data-project="DOUBLE EXPOSURE">
           <img src="images/webp/DEFE (1).webp" alt="DOUBLE EXPOSURE">
           <div class="portfolio-title glitch" data-text="DOUBLE EXPOSURE">DOUBLE EXPOSURE</div>
         </div>
-        <!-- Portfolio Item 7 -->
         <div class="portfolio-item" data-project="THE DREAM">
           <img src="images/webp/THEDREAM (1).webp" alt="THE DREAM">
           <div class="portfolio-title glitch" data-text="THE DREAM">THE DREAM</div>
         </div>
-        <!-- Portfolio Item 8 -->
         <div class="portfolio-item" data-project="7 + 1">
           <img src="images/webp/7+1 (0).webp" alt="7 + 1">
           <div class="portfolio-title glitch" data-text="7 + 1">7 + 1</div>
         </div>
-        <!-- Portfolio Item 9 -->
         <div class="portfolio-item" data-project="DIE TÜREN SCHLIESSEN SICH">
           <img src="images/webp/TSs (1).webp" alt="DIE TÜREN SCHLIESSEN SICH">
           <div class="portfolio-title glitch" data-text="DIE TÜREN SCHLIESSEN SICH">DIE TÜREN SCHLIESSEN SICH</div>
         </div>
+        <div class="portfolio-item" data-project="FAULTY BUT WORKING">
+          <img src="images/webp/Autonymous opinion on the matter of the void (1).png.webp" alt="FAULTY BUT WORKING">
+          <div class="portfolio-title glitch" data-text="FAULTY BUT WORKING">FAULTY BUT WORKING</div>
+        </div>
       </div>
     </section>
-    
+
     <!-- ABOUT SECTION -->
     <section id="about" class="section">
       <div class="about-container">
         <h2 class="section-title glitch" data-text="About Me">About Me</h2>
         <div class="about-content">
+          <!-- Now use your correct profile image -->
           <img src="images/mypic.jpeg" alt="Portrait of Lakaaysha van Ewijk" class="director-portrait" loading="lazy">
           <p class="bio-text">
             Born in 1998, Lakaaysha van Ewijk is a Dutch film director and multimedia artist of Ugandan-Surinamese heritage.
@@ -168,7 +112,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- CV SECTION -->
     <section id="cv" class="section">
       <div class="cv-container">
@@ -207,7 +151,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- CONNECT SECTION -->
     <section id="contact" class="section">
       <div class="connect-container">
@@ -222,13 +166,13 @@
       </div>
     </section>
   </main>
-  
-  <!-- Desktop Footer -->
+
+  <!-- DESKTOP FOOTER -->
   <footer class="desktop-footer">
     <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
   </footer>
-  
-  <!-- Modal for Project Slideshow -->
+
+  <!-- FULL-SCREEN MODAL (Hidden by Default) -->
   <div id="modal" class="modal" aria-hidden="true">
     <div class="modal-content">
       <span class="modal-close" aria-label="Close Modal">&times;</span>
@@ -241,7 +185,7 @@
       <p id="modal-description">Project description will appear here.</p>
     </div>
   </div>
-  
+
   <!-- Link External JavaScript -->
   <script src="js/main.js"></script>
 </body>

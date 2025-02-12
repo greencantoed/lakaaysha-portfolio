@@ -30,11 +30,29 @@ body {
   line-height: 1.6;
 }
 
+/* Hide modal by default (full-screen overlay) */
+.modal {
+  display: none !important;
+  position: fixed;
+  z-index: 3000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.95);
+  transition: opacity 0.3s ease;
+  /* Use flex to center the modal content */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* =====================================================
    Desktop Header & Navigation
 ===================================================== */
-.desktop-header {
-  display: block;
+.desktop-header,
+header {
   position: fixed;
   top: 0;
   width: 100%;
@@ -42,13 +60,13 @@ body {
   z-index: 1000;
 }
 
-.desktop-header nav {
+nav {
   display: flex;
   justify-content: center;
   padding: 1rem;
 }
 
-.desktop-header nav a {
+nav a {
   margin: 0 1rem;
   color: var(--text-color);
   text-decoration: none;
@@ -56,12 +74,12 @@ body {
   transition: color var(--transition-speed);
 }
 
-.desktop-header nav a:hover {
+nav a:hover {
   color: var(--acid-green);
 }
 
 /* =====================================================
-   HERO SECTION (Desktop)
+   Hero Section with Video Background, Overlay & Cracked-Mirror Effect
 ===================================================== */
 #hero {
   position: relative;
@@ -69,19 +87,17 @@ body {
   overflow: hidden;
 }
 
-/* Base Background Image */
-.hero-bg {
+#hero video {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -3;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  z-index: -2;
 }
 
-/* Semi-transparent Overlay */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -89,10 +105,10 @@ body {
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.4);
-  z-index: -2;
+  z-index: -1;
 }
 
-/* Container for Cracked Shards */
+/* The cracked shards container covers the entire hero */
 #hero-cracks {
   position: absolute;
   top: 0;
@@ -100,19 +116,17 @@ body {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
 }
 
-/* Each Shard (Cracked Fragment) */
+/* Each cracked shard */
 .hero-crack {
   position: absolute;
+  opacity: 0.9;
   background-size: cover;
   background-position: center;
-  /* The clip-path is set dynamically via JS */
-  opacity: 1;
 }
 
-/* Glitch effect class for shards */
 .hero-crack.glitching {
   animation: glitchAnim 0.5s ease-in-out;
 }
@@ -126,7 +140,6 @@ body {
   100% { opacity: 1; transform: translate(0,0); }
 }
 
-/* HERO Content */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -185,7 +198,43 @@ body {
 }
 
 /* =====================================================
-   Portfolio Section (Desktop)
+   Section Base Styling & Scroll Animations
+===================================================== */
+.section {
+  padding: 100px 20px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: relative;
+}
+
+.section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Right-side Glitch Decoration */
+.section::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 10%;
+  width: 5px;
+  height: 80%;
+  background: linear-gradient(180deg, var(--acid-green), var(--acid-purple));
+  opacity: 0.4;
+  animation: glitch-line 3s infinite alternate;
+}
+
+@keyframes glitch-line {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+/* =====================================================
+   Portfolio Section & 3×3 Grid
 ===================================================== */
 #portfolio {
   background: #1a1a1a;
@@ -258,7 +307,7 @@ body {
 }
 
 /* =====================================================
-   About Section (Desktop)
+   About Section
 ===================================================== */
 #about {
   background: #2a2a2a;
@@ -286,7 +335,6 @@ body {
 
 .director-portrait {
   width: 200px;
-  height: auto;
   border-radius: 50%;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
 }
@@ -302,7 +350,7 @@ body {
 }
 
 /* =====================================================
-   CV Section (Desktop)
+   CV Section
 ===================================================== */
 #cv {
   background: #1a1a1a;
@@ -345,7 +393,7 @@ body {
 }
 
 /* =====================================================
-   Connect Section (Desktop)
+   Connect Section
 ===================================================== */
 #contact {
   background: #2a2a2a;
@@ -389,7 +437,25 @@ body {
 }
 
 /* =====================================================
-   Glitch Effects for Text (Desktop)
+   Responsive Media Queries
+===================================================== */
+@media (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+  .hero-content p {
+    font-size: 1rem;
+  }
+}
+
+/* =====================================================
+   Glitch Effects
 ===================================================== */
 .glitch {
   position: relative;
@@ -442,7 +508,7 @@ body {
 }
 
 /* =====================================================
-   Fade-in Effects for Modal and Other Transitions
+   Fade-in Effects
 ===================================================== */
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
