@@ -25,15 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // ----- Auto-cycle Preview Images for Portfolio Items -----
   const autoCycleItems = document.querySelectorAll('.portfolio-item');
   autoCycleItems.forEach(item => {
-    // For simplicity, assume each item cycles among its preview images;
-    // In a full implementation, you’d pull the actual image list for each project.
     let cycleIndex = 0;
     const imgEl = item.querySelector('img');
     setInterval(() => {
-      cycleIndex = (cycleIndex + 1) % 5; // assuming 5 images per project for preview cycling
+      cycleIndex = (cycleIndex + 1) % 5; // assuming each project has 5 preview images for cycling
       imgEl.classList.add('fade-in');
-      // In this demo, the image remains the same since the project pages have the full gallery.
-      // You can expand this logic as needed.
       setTimeout(() => { imgEl.classList.remove('fade-in'); }, 500);
     }, 5000);
   });
