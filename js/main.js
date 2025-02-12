@@ -1,5 +1,5 @@
 // -----------------------------------------------------------------
-// PROJECT DATA STRUCTURE: Each project maps to its image array and description.
+// PROJECT DATA STRUCTURE: 9 films (removed "AUTONOMOUS OPINIONS..." duplicate).
 // All image file names are relative to "images/webp/".
 const projects = {
   "1104 Breakfast Menu": {
@@ -31,14 +31,6 @@ const projects = {
       "HRC (3).webp"
     ],
     description: "An evocative narrative capturing the mystique of nature and urban contrasts. [Placeholder text]"
-  },
-  "AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID": {
-    images: [
-      "Autonymous opinion on the matter of the void (1).png.webp",
-      "Autonymous opinion on the matter of the void (2).png.webp",
-      "Autonymous opinion on the matter of the void (3).png.webp"
-    ],
-    description: "A visual journey into existential voids and autonomous thought. [Placeholder text]"
   },
   "HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)": {
     images: [
@@ -87,6 +79,14 @@ const projects = {
       "TSs (4).webp"
     ],
     description: "A high-fashion film shot in Germany, capturing dynamic movement and style. [Placeholder text]"
+  },
+  "FAULTY BUT WORKING": {
+    images: [
+      "Autonymous opinion on the matter of the void (1).png.webp",
+      "Autonymous opinion on the matter of the void (2).png.webp",
+      "Autonymous opinion on the matter of the void (3).png.webp"
+    ],
+    description: "A film that exposes the unnecessary struggles black women face regarding their hair. [Placeholder text]"
   }
 };
 
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const prevBtn = document.getElementById('prevBtn');
   const nextBtn = document.getElementById('nextBtn');
 
-  // Attach click events to portfolio items.
+  // Attach click events to each portfolio item.
   const portfolioItems = document.querySelectorAll('.portfolio-item');
   portfolioItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -132,9 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   modalClose.addEventListener('click', closeModal);
   window.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      closeModal();
-    }
+    if (e.target === modal) closeModal();
   });
 
   function openModal(projectKey) {
@@ -245,7 +243,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "images/webp/TSs (4).webp"
   ];
 
-  // Schedule asynchronous updates for each shard
   function scheduleUpdate(shard) {
     const delay = 4000 + Math.random() * 3000;
     setTimeout(() => {
@@ -261,12 +258,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, delay);
   }
 
-  // Create a 4x4 grid of shards that cover the entire hero section
+  // Create a 4x4 grid of shards covering the hero section
   function createHeroCracks() {
     const hero = document.getElementById('hero');
     const container = document.getElementById('hero-cracks');
     if (!container) return;
-    container.innerHTML = ""; // Clear any existing shards
+    container.innerHTML = ""; // Clear existing shards
     const rows = 4, cols = 4;
     const containerWidth = hero.clientWidth;
     const containerHeight = hero.clientHeight;

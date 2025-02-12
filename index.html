@@ -27,14 +27,12 @@
   </header>
 
   <main>
-    <!-- HERO SECTION with Video Background, Overlay & Cracked-Mirror Effect -->
+    <!-- HERO SECTION (Splash Page) -->
     <section id="hero" class="section">
-      <video autoplay loop muted playsinline id="hero-video">
-        <source src="videos/hero-video.mp4" type="video/mp4">
-        <img src="images/hero-fallback.jpg" alt="Cinematic hero background">
-      </video>
+      <!-- Instead of a video, we use the image "HRC (2).webp" as the main background -->
+      <div class="hero-bg" style="background-image: url('images/webp/HRC (2).webp');"></div>
       <div class="hero-overlay"></div>
-      <!-- The cracked shards container – a 4x4 grid will be generated here -->
+      <!-- Cracked-Mirror Container (will be generated as a 4x4 grid) -->
       <div id="hero-cracks"></div>
       <div class="hero-content">
         <h1 class="glitch" data-text="Lakaaysha van Ewijk">Lakaaysha van Ewijk</h1>
@@ -45,11 +43,11 @@
       </div>
     </section>
 
-    <!-- PORTFOLIO SECTION (3×3 GRID) -->
+    <!-- PORTFOLIO SECTION (3x3 GRID) -->
     <section id="portfolio" class="section">
       <h2 class="section-title glitch" data-text="Portfolio">Portfolio</h2>
       <div class="portfolio-grid">
-        <!-- Each portfolio item uses a data-project attribute with its full project name -->
+        <!-- 9 portfolio items -->
         <div class="portfolio-item" data-project="1104 Breakfast Menu">
           <img src="images/webp/1104 BM (2).webp" alt="1104 Breakfast Menu">
           <div class="portfolio-title glitch" data-text="1104 Breakfast Menu">1104 Breakfast Menu</div>
@@ -61,12 +59,6 @@
         <div class="portfolio-item" data-project="THE HERONS ARE COMING">
           <img src="images/webp/HRC.webp" alt="THE HERONS ARE COMING">
           <div class="portfolio-title glitch" data-text="THE HERONS ARE COMING">THE HERONS ARE COMING</div>
-        </div>
-        <div class="portfolio-item" data-project="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
-          <img src="images/webp/Autonymous opinion on the matter of the void (1).png.webp" alt="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
-          <div class="portfolio-title glitch" data-text="AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID">
-            AUTONOMOUS OPINIONS OF THE MATTER OF THE VOID
-          </div>
         </div>
         <div class="portfolio-item" data-project="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
           <img src="images/webp/HVSNVSHVSN (1).webp" alt="HUMAN VS NATURE VS HUMAN VS NATURE (AND SO ON)">
@@ -102,7 +94,7 @@
       <div class="about-container">
         <h2 class="section-title glitch" data-text="About Me">About Me</h2>
         <div class="about-content">
-          <!-- Now use your correct profile image -->
+          <!-- Use the correct profile image -->
           <img src="images/mypic.jpeg" alt="Portrait of Lakaaysha van Ewijk" class="director-portrait" loading="lazy">
           <p class="bio-text">
             Born in 1998, Lakaaysha van Ewijk is a Dutch film director and multimedia artist of Ugandan-Surinamese heritage.
