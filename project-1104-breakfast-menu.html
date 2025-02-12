@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>1104 Breakfast Menu – Lakaaysha van Ewijk</title>
-  <meta name="description" content="1104 Breakfast Menu – A satirical exploration of breakfast culture and modern consumer rituals.">
+  <meta name="description" content="1104 Breakfast Menu – A girl writes a letter to her younger self to comfort her younger self.">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
@@ -23,21 +23,19 @@
     <!-- Project Header -->
     <section class="section">
       <h1 class="glitch" data-text="1104 Breakfast Menu">1104 Breakfast Menu</h1>
-      <p>A satirical exploration of breakfast culture and modern consumer rituals. [Placeholder text]</p>
+      <p>A girl writes a letter to her younger self to comfort her younger self.</p>
     </section>
-
     <!-- Project Gallery -->
     <section class="section">
       <h2 class="section-title glitch" data-text="Gallery">Gallery</h2>
       <div class="project-gallery">
-        <img src="images/webp/1104 BM (2).webp" alt="1104 Breakfast Menu – Screenshot 1">
-        <img src="images/webp/1104 BM (3).webp" alt="1104 Breakfast Menu – Screenshot 2">
-        <img src="images/webp/1104 BM (4).webp" alt="1104 Breakfast Menu – Screenshot 3">
-        <img src="images/webp/1104 BM (5).webp" alt="1104 Breakfast Menu – Screenshot 4">
-        <img src="images/webp/1104 BM (6).webp" alt="1104 Breakfast Menu – Screenshot 5">
+        <img src="images/webp/1104 BM (2).webp" alt="Screenshot 1">
+        <img src="images/webp/1104 BM (3).webp" alt="Screenshot 2">
+        <img src="images/webp/1104 BM (4).webp" alt="Screenshot 3">
+        <img src="images/webp/1104 BM (5).webp" alt="Screenshot 4">
+        <img src="images/webp/1104 BM (6).webp" alt="Screenshot 5">
       </div>
     </section>
-
     <!-- Back Button -->
     <section class="section">
       <a href="index.html" class="cta-button glossy-button">Back to Portfolio</a>
@@ -47,5 +45,12 @@
   <footer class="desktop-footer">
     <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
   </footer>
+
+  <!-- Inline script to force sections visible -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.section').forEach(section => section.classList.add('visible'));
+    });
+  </script>
 </body>
 </html>

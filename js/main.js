@@ -12,6 +12,15 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
   sections.forEach(section => observer.observe(section));
 
+  // Fallback: ensure all sections become visible after 500ms (in case observer doesn't fire)
+  setTimeout(() => {
+    sections.forEach(section => {
+      if (!section.classList.contains('visible')) {
+        section.classList.add('visible');
+      }
+    });
+  }, 500);
+
   // ----- Shuffle the Portfolio Grid -----
   const grid = document.querySelector('.portfolio-grid');
   if (grid) {
@@ -28,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let cycleIndex = 0;
     const imgEl = item.querySelector('img');
     setInterval(() => {
-      cycleIndex = (cycleIndex + 1) % 5; // assuming each project has 5 preview images for cycling
+      cycleIndex = (cycleIndex + 1) % 5; // assuming 5 preview images per project
       imgEl.classList.add('fade-in');
       setTimeout(() => { imgEl.classList.remove('fade-in'); }, 500);
     }, 5000);
