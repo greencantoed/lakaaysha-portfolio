@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <nav>
       <a href="index.html" class="glitch" data-text="Home" aria-label="Home">Home</a>
@@ -24,8 +23,20 @@
       <h1 class="glitch" data-text="DIE TÜREN SCHLIESSEN SICH">DIE TÜREN SCHLIESSEN SICH</h1>
       <p>A fashion film, a simulation of a conversation between a young prisoner and a fashion student.</p>
     </section>
+
     <section class="section">
       <h2 class="section-title glitch" data-text="Gallery">Gallery</h2>
+
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/watch?v=ZIWeb75hXqU"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
       <div class="project-gallery">
         <img src="images/webp/TSs (1).webp" alt="Screenshot 1">
         <img src="images/webp/TSs (2).webp" alt="Screenshot 2">
@@ -33,16 +44,17 @@
         <img src="images/webp/TSs (4).webp" alt="Screenshot 4">
       </div>
     </section>
+
     <section class="section">
       <a href="index.html" class="cta-button glossy-button">Back to Portfolio</a>
     </section>
   </main>
 
   <footer class="desktop-footer">
-    <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
+    <p class="glitch" data-text="© 2025 Lakaaysha van Ewijk. All rights reserved.">© 2025 Lakaaysha van Ewijk. All rights reserved.</p>
+    <p class="glitch" data-text="KVK: 94021147">KVK: 94021147</p>
   </footer>
-  
-  <!-- Inline script to force sections visible -->
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.section').forEach(section => section.classList.add('visible'));

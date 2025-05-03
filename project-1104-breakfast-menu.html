@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <nav>
       <a href="index.html" class="glitch" data-text="Home" aria-label="Home">Home</a>
@@ -20,14 +19,24 @@
   </header>
 
   <main>
-    <!-- Project Header -->
     <section class="section">
       <h1 class="glitch" data-text="1104 Breakfast Menu">1104 Breakfast Menu</h1>
       <p>A girl writes a letter to her younger self to comfort her younger self.</p>
     </section>
-    <!-- Project Gallery -->
+
     <section class="section">
       <h2 class="section-title glitch" data-text="Gallery">Gallery</h2>
+
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/WqaRTmaMpU8?si=UcEET_aBbT3ts80O"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
       <div class="project-gallery">
         <img src="images/webp/1104 BM (2).webp" alt="Screenshot 1">
         <img src="images/webp/1104 BM (3).webp" alt="Screenshot 2">
@@ -36,17 +45,17 @@
         <img src="images/webp/1104 BM (6).webp" alt="Screenshot 5">
       </div>
     </section>
-    <!-- Back Button -->
+
     <section class="section">
       <a href="index.html" class="cta-button glossy-button">Back to Portfolio</a>
     </section>
   </main>
 
   <footer class="desktop-footer">
-    <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
+    <p class="glitch" data-text="© 2025 Lakaaysha van Ewijk. All rights reserved.">© 2025 Lakaaysha van Ewijk. All rights reserved.</p>
+    <p class="glitch" data-text="KVK: 94021147">KVK: 94021147</p>
   </footer>
 
-  <!-- Inline script to force sections visible -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.section').forEach(section => section.classList.add('visible'));
