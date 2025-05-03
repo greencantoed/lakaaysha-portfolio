@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- HEADER -->
   <header>
     <nav>
       <a href="index.html" class="glitch" data-text="Home" aria-label="Home">Home</a>
@@ -24,8 +23,20 @@
       <h1 class="glitch" data-text="REFLECTIONS ON DUTCH CAPITALISM">REFLECTIONS ON DUTCH CAPITALISM</h1>
       <p>In a satirical take of the video essay, a young Italian expat criticises Dutch consumerist culture, which he cannot however escape from.</p>
     </section>
+
     <section class="section">
       <h2 class="section-title glitch" data-text="Gallery">Gallery</h2>
+
+      <div class="video-container">
+        <iframe
+          src="https://www.youtube.com/embed/Kl_y8TT99QY?si=wSeFVEjHojs2E_L8"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen>
+        </iframe>
+      </div>
       <div class="project-gallery">
         <img src="images/webp/RDC (6).webp" alt="Screenshot 1">
         <img src="images/webp/RDC (7).webp" alt="Screenshot 2">
@@ -36,6 +47,7 @@
         <img src="images/webp/RDC (13).webp" alt="Screenshot 7">
       </div>
     </section>
+
     <section class="section">
       <a href="index.html" class="cta-button glossy-button">Back to Portfolio</a>
     </section>
@@ -43,9 +55,9 @@
 
   <footer class="desktop-footer">
     <p class="glitch" data-text="&copy; 2025 Lakaaysha van Ewijk. All rights reserved.">&copy; 2025 Lakaaysha van Ewijk. All rights reserved.</p>
+    <p class="glitch" data-text="KVK: 94021147">KVK: 94021147</p>
   </footer>
-  
-  <!-- Inline script to force sections visible -->
+
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       document.querySelectorAll('.section').forEach(section => section.classList.add('visible'));

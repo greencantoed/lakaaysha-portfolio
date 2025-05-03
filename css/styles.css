@@ -32,7 +32,7 @@ body {
 
 /* Modal (full-screen overlay, centered) */
 .modal {
-  display: none !important;
+  display: none !important; /* Hide initially */
   position: fixed;
   z-index: 3000;
   top: 0;
@@ -94,7 +94,7 @@ nav a:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url('images/webp/HRC (2).webp');
+  background-image: url('../images/webp/HRC (2).webp'); /* Corrected path */
   background-size: cover;
   background-position: center;
   z-index: -3;
@@ -429,6 +429,57 @@ nav a:hover {
 }
 
 /* =====================================================
+   Project Page Specific Styles
+===================================================== */
+
+/* Gallery on project pages */
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
+  gap: 15px;
+  max-width: 1200px;
+  margin: 30px auto; /* Add some margin */
+}
+
+.project-gallery img {
+  width: 100%;
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  border: 1px solid #444; /* Slightly lighter border */
+  border-radius: 4px; /* Slightly rounded corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+}
+
+/* Styles for embedded video container */
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%; /* Ensure it doesn't overflow its container */
+  background: #000; /* Dark background while loading */
+  margin: 30px auto; /* Center and add space */
+  border: 1px solid #444; /* Match gallery image border */
+  border-radius: 4px; /* Match gallery image corners */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2); /* Subtle shadow */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0; /* Remove default iframe border */
+}
+
+
+/* =====================================================
    Desktop Footer
 ===================================================== */
 .desktop-footer {
@@ -453,6 +504,10 @@ nav a:hover {
   }
   .hero-content p {
     font-size: 1rem;
+  }
+  /* Adjust project gallery for smaller screens */
+  .project-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 
@@ -529,4 +584,7 @@ nav a:hover {
   from { opacity: 0; }
   to { opacity: 1; }
 }
-.section { opacity: 1 !important; transform: none !important; }
+
+/* Override for scroll animation if needed */
+/* .section { opacity: 1 !important; transform: none !important; } */
+
