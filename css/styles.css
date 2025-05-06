@@ -1,184 +1,135 @@
 /* =====================================================
-   LAKAAYSHA — "MEDITERRANEAN‑GLITCH" THEME  v1.0
-   Author: ChatGPT Creative‑Director Edition
-   Drop this file in place of your old styles.css.  No build step, no NPM — just copy–paste.
+   LAKAAYSHA — "TURBOCHARGED GLITCH" THEME v2.0
+   Combines original Acid Green/Purple roots with Mediterranean-Glitch and Jungle-Emerald accents.
    ===================================================== */
 
-/* =====================================================
-   0.  GOOGLE FONT IMPORTS (Space Grotesk + Inter)
-   ===================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Space+Grotesk:wght@400;600;700&display=swap');
+/* 1. IMPORTS */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Inter:wght@400;500;700&display=swap');
 
-/* =====================================================
-   1.  DESIGN TOKENS —  SUMMER‑IN‑THE‑MED COLORS  🍋🌊
-   ===================================================== */
+/* 2. DESIGN TOKENS */
 :root {
-  /* 01  –  Brand core */
-  --capri-cobalt:    #0057D9;   /* Mediterranean sea */
-  --limoncello:      #F9CB04;   /* Amalfi lemons      */
-  --bougainvillea:   #D02A6A;   /* Flower accents     */
-  --terracotta:      #D96C2F;   /* Clay roof tiles    */
-  --sea-salt:        #FAF7F1;   /* Sun‑bleached white */
-
-  /* 02  –  Greys & utility */
-  --charcoal:        #202020;
-  --slate:           #2e2e2e;
-  --smoke:           rgba(0,0,0,0.35);
-
-  /* 03  –  Typography */
-  --ff-display:      'Space Grotesk', sans-serif;
-  --ff-base:         'Inter', sans-serif;
-  --base-size:       16px;
-
-  /* 04  –  Motion */
-  --ease-out:        cubic-bezier(.19,1,.22,1);
-  --dur-short:       .3s;
-  --dur-long:        .8s;
-
-  /* 05  –  Z-index scale */
-  --z-nav:           1000;
-  --z-hero-bubbles:  -1;
-  --z-hero-overlay:  -2;
+  /* Originals */
+  --acid-green:       #39FF14;
+  --acid-purple:      #BF00FF;
+  /* Mediterranean-Glitch */
+  --capri-cobalt:     #0057D9;
+  --limoncello:       #F9CB04;
+  --terracotta:       #D96C2F;
+  --sea-salt:         #FAF7F1;
+  /* New Accent */
+  --jungle-emerald:   #028A0F;
+  /* Summery base palette */
+  --charcoal:         #FAF3E0;   /* Beach sand */
+  --slate:            #A0E7E5;   /* Sky blue */
+  --smoke:            rgba(250,243,224,0.35); /* Translucent sand */
+  /* Typography */
+  --ff-display:       'Space Grotesk', sans-serif;
+  --ff-base:          'Inter', sans-serif;
+  --base-size:        16px;
+  /* Motion Timing */
+  --ease-out:         cubic-bezier(.19,1,.22,1);
+  --dur-short:        .3s;
+  --dur-long:         .8s;
+  /* Z-Index */
+  --z-nav:            1000;
+  --z-hero-bubbles:   -1;
+  --z-hero-overlay:   -2;
 }
 
-/* =====================================================
-   2.  CSS RESET  (Josh Comeau‑lite)
-   ===================================================== */
+/* 3. RESET */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:100%}
-body{min-height:100vh;font-family:var(--ff-base);
-     background:var(--charcoal);color:var(--sea-salt);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{min-height:100vh;font-family:var(--ff-base);background:var(--charcoal);color:var(--sea-salt);line-height:1.6;-webkit-font-smoothing:antialiased}
 img,svg,video{display:block;max-width:100%;height:auto}
 button,input,select,textarea{font:inherit}
 a{color:inherit;text-decoration:none}
 
-/* =====================================================
-   3.  SITE‑WIDE UTILITIES
-   ===================================================== */
+/* 4. UTILITIES */
 .visually-hidden{position:absolute!important;clip:rect(1px,1px,1px,1px);width:1px;height:1px;margin:-1px;overflow:hidden;white-space:nowrap;border:0}
 .skip-link{position:absolute;top:-40px;left:0;background:var(--limoncello);color:#000;padding:.5rem 1rem;font-weight:700;z-index:var(--z-nav);transition:top .3s var(--ease-out)}
 .skip-link:focus{top:0}
 
-/* =====================================================
-   4.  NAVIGATION —  STICKY + BLUR
-   ===================================================== */
-header, .desktop-header{
-  position:sticky;top:0;width:100%;z-index:var(--z-nav);
-  backdrop-filter:blur(8px) saturate(150%);
-  background:rgba(250,247,241,0.75); /* translucent sea‑salt */
-  box-shadow:0 2px 6px rgba(0,0,0,0.15);
-}
+/* 5. NAVIGATION */
+header{position:sticky;top:0;width:100%;z-index:var(--z-nav);backdrop-filter:blur(8px) saturate(150%);background:rgba(250,243,224,0.8);box-shadow:0 2px 6px rgba(0,0,0,.15)}
 nav{display:flex;justify-content:center;gap:2rem;padding:1rem clamp(1rem,4vw,3rem)}
-nav a{font-family:var(--ff-display);font-weight:600;letter-spacing:.02em;position:relative;transition:color var(--dur-short) var(--ease-out)}
-nav a::after{content:"";position:absolute;inset-inline:0;bottom:-4px;height:2px;background:var(--capri-cobalt);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-short) var(--ease-out)}
-nav a:hover{color:var(--capri-cobalt)}
+nav a{
+  font-family:var(--ff-display);
+  font-weight:600;
+  letter-spacing:.02em;
+  position:relative;
+  transition:color var(--dur-short) var(--ease-out);
+  color: var(--capri-cobalt);
+}
+nav a::after{content:"";position:absolute;inset-inline:0;bottom:-4px;height:2px;background:var(--jungle-emerald);transform:scaleX(0);transform-origin:left;transition:transform var(--dur-short) var(--ease-out)}
+nav a:hover{color:var(--limoncello)}
 nav a:hover::after{transform:scaleX(1)}
 
-/* =====================================================
-   5.  HERO —  FULL‑BLEED + BUBBLE‑BURST ANIMATION
-   ===================================================== */
-#hero{position:relative;min-height:100vh;isolation:isolate;display:flex;align-items:center;justify-content:center;text-align:center;padding:0 1.5rem;overflow:hidden}
+/* 6. HERO SCOPE */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:var(--sea-salt) url('../images/webp/HRC (2).webp') center/cover no-repeat;filter:brightness(.55)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.25));z-index:var(--z-hero-overlay)}
+.hero-bubble{position:absolute;bottom:-10vh;width:clamp(40px,5vw,80px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.7),transparent 70%);mix-blend-mode:screen;animation:bubble 12s linear infinite;pointer-events:none;z-index:var(--z-hero-bubbles)}
+@keyframes bubble{0%{transform:translateY(0) translateX(0) scale(.8);opacity:.2}50%{transform:translateY(-50vh) translateX(4vw) scale(1);opacity:.6}100%{transform:translateY(-110vh) translateX(-2vw) scale(.9);opacity:0}}
+/* Shards */
+#hero-cracks{position:absolute;inset:0;pointer-events:none;z-index:var(--z-hero-bubbles)}
+.hero-crack{position:absolute;background-size:cover;background-position:center;filter:brightness(.85) contrast(1.15) saturate(1.4);transition:transform var(--dur-short) var(--ease-out),opacity var(--dur-short) var(--ease-out)}
+.hero-crack::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.15),transparent 70%);mix-blend-mode:overlay}
+@keyframes shard-pulse{0%{transform:scale(1) rotate(0)}50%{transform:scale(1.12) rotate(var(--rot,2deg))}100%{transform:scale(1) rotate(0)}}
+.hero-crack.glitching{animation:shard-pulse .6s ease-in-out}
 
-/* 5.1  Hero background montage (reuse existing .hero-bg) */
-.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.55)}
+.hero-content{position:relative;z-index:1;max-width:900px;color:var(--sea-salt)}
+.hero-content h1{font-family:var(--ff-display);font-size:clamp(2.5rem,6vw,5rem);text-transform:uppercase;letter-spacing:.02em;margin-bottom:.5rem}
+.hero-content p{font-size:clamp(1rem,2vw,1.25rem);color:rgba(255,255,255,.85);margin-bottom:1.75rem}
 
-/* 5.2  Soft overlay for readability */
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.25))}
-
-/* 5.3  Rising bubbles */
-.hero-bubble{position:absolute;bottom:-10vh;width:clamp(40px,5vw,80px);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.7),rgba(255,255,255,0) 70%);mix-blend-mode:screen;animation:bubble 12s linear infinite;pointer-events:none;z-index:var(--z-hero-bubbles)}
-.hero-bubble:nth-child(odd){animation-duration:14s;animation-delay:-4s}
-.hero-bubble:nth-child(even){animation-duration:11s;animation-delay:-2s}
-@keyframes bubble{
-  0%   {transform:translateY(0)   translateX(0)   scale(.8);opacity:.2}
-  50%  {transform:translateY(-50vh) translateX(4vw) scale(1);opacity:.6}
-  100% {transform:translateY(-110vh) translateX(-2vw) scale(.9);opacity:0}
-}
-
-/* 5.4  Hero copy */
-.hero-content{position:relative;z-index:1;color:var(--sea-salt);max-width:900px}
-.hero-content h1{font-family:var(--ff-display);font-size:clamp(2.5rem,6vw,5rem);font-weight:700;margin-bottom:.5rem;text-transform:uppercase;letter-spacing:.02em}
-.hero-content p{font-size:clamp(1rem,2vw,1.25rem);margin-bottom:1.75rem;color:rgba(255,255,255,.85)}
-
-/* 5.5  Primary CTA */
-.cta-button{display:inline-block;padding:.85rem 2.5rem;border-radius:9999px;font-weight:600;font-family:var(--ff-display);background:var(--capri-cobalt);color:#fff;box-shadow:0 6px 12px rgba(0,0,0,.25);transition:transform var(--dur-short) var(--ease-out),box-shadow var(--dur-short) var(--ease-out)}
+.cta-button{display:inline-block;padding:.85rem 2.5rem;border-radius:9999px;font-family:var(--ff-display);font-weight:600;background:var(--capri-cobalt);color:#fff;box-shadow:0 6px 12px rgba(0,0,0,.25);transition:transform var(--dur-short) var(--ease-out),box-shadow var(--dur-short) var(--ease-out);position:relative;overflow:hidden}
 .cta-button:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 8px 18px rgba(0,0,0,.35)}
 .cta-button:active{transform:translateY(0) scale(.98)}
+.cta-button:focus-visible{outline:3px solid var(--jungle-emerald);outline-offset:4px;box-shadow:0 0 12px var(--jungle-emerald)}
+.cta-button::after{content:"";position:absolute;top:50%;left:50%;width:0;height:0;background:var(--jungle-emerald);border-radius:50%;opacity:.4;transform:translate(-50%,-50%);transition:width .6s ease,height .6s ease,opacity .6s ease}
+.cta-button:active::after{width:200%;height:200%;opacity:0;transition:0s}
 
-/* =====================================================
-   6.  SECTION  BASE
-   ===================================================== */
-.section{padding:clamp(5rem,10vw,8rem) 1.5rem;position:relative;text-align:center;background:var(--slate);color:var(--sea-salt);overflow:hidden}
-.section:nth-of-type(even){background:var(--charcoal)}
-.section-title{font-family:var(--ff-display);font-size:clamp(2rem,5vw,3rem);margin-bottom:3rem;position:relative;display:inline-block}
-/* Decorative bloom under titles */
-.section-title::after{content:"";position:absolute;inset-inline:0;bottom:-10px;height:4px;background:linear-gradient(90deg,var(--limoncello),var(--capri-cobalt));border-radius:2px}
-
-/* Fade‑in on scroll (class toggled by JS) */
-.section{opacity:0;transform:translateY(40px);transition:opacity var(--dur-long) var(--ease-out),transform var(--dur-long) var(--ease-out)}
+/* 7. SECTIONS */
+.section{padding:clamp(5rem,10vw,8rem) 1.5rem;position:relative;text-align:center;background:var(--slate);overflow:hidden;color:var(--sea-salt);opacity:0;transform:translateY(40px);transition:opacity var(--dur-long) var(--ease-out),transform var(--dur-long) var(--ease-out)}
 .section.visible{opacity:1;transform:none}
+.section:nth-of-type(even){background:var(--charcoal)}
+.section-title{font-family:var(--ff-display);font-size:clamp(2rem,5vw,3rem);margin-bottom:3rem;display:inline-block;position:relative}
+.section-title::after{content:"";position:absolute;inset-inline:0;bottom:-10px;height:4px;background:linear-gradient(90deg,var(--jungle-emerald),var(--limoncello));border-radius:2px}
+.section::before{content:"";position:absolute;right:0;top:10%;width:5px;height:80%;background:linear-gradient(180deg,var(--acid-green),var(--acid-purple));opacity:.4;animation:glitch-line 3s infinite alternate}
+@keyframes glitch-line{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
 
-/* =====================================================
-   7.  PORTFOLIO  —  HORIZONTAL FILMSTRIP
-   ===================================================== */
-#portfolio{background:var(--charcoal);color:var(--sea-salt);overflow:hidden}
+/* 8. PORTFOLIO FILM-STRIP */
+#portfolio{background:var(--charcoal);overflow:hidden}
 .portfolio-strip{display:flex;gap:2rem;animation:scroll-x 40s linear infinite;width:max-content;padding-block:2rem}
 @keyframes scroll-x{to{transform:translateX(calc(-50% - 1rem))}}
-.portfolio-item{flex:0 0 320px;position:relative;cursor:pointer;isolation:isolate;border-radius:6px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,.3);transition:transform var(--dur-short) var(--ease-out)}
+.portfolio-item{flex:0 0 320px;position:relative;cursor:pointer;border-radius:6px;overflow:hidden;box-shadow:0 4px 8px rgba(0,0,0,.3);transition:transform var(--dur-short) var(--ease-out)}
 .portfolio-item:hover{transform:translateY(-6px) scale(1.03)}
 .portfolio-item img{width:100%;height:220px;object-fit:cover;filter:grayscale(.1) brightness(.85);transition:filter .4s var(--ease-out)}
 .portfolio-item:hover img{filter:none}
-/* Title ribbon */
+.portfolio-item::before{content:"";position:absolute;inset:0;background:rgba(2,138,15,0.2);opacity:0;transition:opacity var(--dur-short) var(--ease-out)}
+.portfolio-item:hover::before{opacity:1}
 .portfolio-title{position:absolute;bottom:0;width:100%;padding:.6rem;font-family:var(--ff-display);font-size:1rem;background:var(--smoke);backdrop-filter:blur(4px)}
 
-/* =====================================================
-   8.  ABOUT  /  CV  /  CONNECT
-   ===================================================== */
+/* 9. ABOUT & CONNECT */
 #about{background:var(--slate)}
-.about-container{max-width:900px;margin-inline:auto;display:grid;gap:3rem}
+.about-container{max-width:900px;margin:0 auto;display:grid;gap:3rem;padding:0 1.5rem}
 .about-content{font-size:1.125rem;line-height:1.8;color:rgba(255,255,255,.85)}
-.director-portrait{width:240px;justify-self:center;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.4)}
+.director-portrait{width:240px;border-radius:50%;box-shadow:0 4px 12px rgba(0,0,0,.4);justify-self:center}
+#contact{background:var(--charcoal)}
+.connect-container{max-width:800px;margin:0 auto;text-align:center;color:rgba(255,255,255,.85)}
+.social-links{display:flex;justify-content:center;gap:1.5rem;margin-top:2rem}
+.social-links a{font-size:1.125rem;font-weight:600;color:var(--jungle-emerald);transition:transform var(--dur-short) var(--ease-out)}
+.social-links a:hover{color:var(--limoncello)}
 
-#cv,#contact{background:var(--charcoal)}
-.cv-container,.connect-container{max-width:800px;margin-inline:auto;text-align:left;color:rgba(255,255,255,.85)}
+/* 10. CV Section */
+#cv{background:var(--charcoal)}
+.cv-container{max-width:800px;margin:0 auto;padding:0 1.5rem;text-align:left;color:rgba(255,255,255,.85)}
 .cv-container h3{font-family:var(--ff-display);font-size:1.75rem;margin-top:2rem;color:var(--limoncello)}
 .cv-container h4{font-size:1.125rem;margin-top:1.5rem;border-bottom:1px solid var(--slate);padding-bottom:.25rem;text-transform:uppercase;letter-spacing:.04em;color:var(--bougainvillea)}
 .cv-content li{padding:.4rem 0;border-bottom:1px solid var(--slate)}
 
-.social-links{display:flex;flex-wrap:wrap;gap:1.5rem;justify-content:center;margin-top:2rem}
-.social-links a{font-size:1.125rem;font-weight:600;color:var(--limoncello);transition:transform var(--dur-short) var(--ease-out)}
-.social-links a:hover{transform:scale(1.1)}
-
-/* =====================================================
-   9.  FOOTER
-   ===================================================== */
+/* 11. FOOTER */
 .desktop-footer{background:var(--slate);color:rgba(255,255,255,.6);text-align:center;padding:2rem;font-size:.9rem}
-.desktop-footer span{color:var(--bougainvillea)}
+.desktop-footer span{color:var(--terracotta)}
 
-/* =====================================================
-  10. GLITCH TEXT  (retain legacy class names)
-   ===================================================== */
-.glitch{position:relative;display:inline-block;font-family:var(--ff-display);color:var(--limoncello)}
-.glitch::before,.glitch::after{content:attr(data-text);position:absolute;inset:0;mix-blend-mode:screen;pointer-events:none}
-.glitch::before{color:var(--capri-cobalt);animation:gl1 2s infinite linear alternate-reverse}
-.glitch::after {color:var(--bougainvillea);animation:gl2 2s infinite linear alternate-reverse}
-@keyframes gl1{0%{clip-path:inset(0 0 83% 0)}5%{clip-path:inset(0 0 70% 0)}10%{clip-path:inset(28% 0 43% 0)}15%{clip-path:inset(52% 0 0 0)}20%{clip-path:inset(0 0 36% 0)}to{clip-path:inset(0 0 83% 0)}}
-@keyframes gl2{0%{clip-path:inset(59% 0 0 0)}5%{clip-path:inset(0 0 79% 0)}10%{clip-path:inset(0 0 18% 0)}15%{clip-path:inset(0 0 51% 0)}20%{clip-path:inset(34% 0 45% 0)}to{clip-path:inset(59% 0 0 0)}}
-
-/* =====================================================
-  11.  MEDIA QUERIES
-   ===================================================== */
-@media (max-width:1024px){
-  nav{gap:1.2rem}
-  .portfolio-strip{animation-duration:60s}
-  .portfolio-item{flex:0 0 260px}
-}
-@media (max-width:768px){
-  header, .desktop-header{backdrop-filter:blur(8px)}
-  .hero-content h1{font-size:clamp(2rem,8vw,3rem)}
-  .portfolio-strip{gap:1rem}
-}
-@media (prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-  .portfolio-strip{animation:none}
-}
+/* 12. MEDIA QUERIES */
+@media(max-width:1024px){nav{gap:1.2rem}.portfolio-strip{animation-duration:60s}.portfolio-item{flex:0 0 260px}}

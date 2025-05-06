@@ -22,6 +22,8 @@ function initHeroSpirals() {
   canvas.style.width = '100%';
   canvas.style.height = '100%';
   canvas.style.pointerEvents = 'none';
+  // Position canvas behind shards
+  canvas.style.zIndex = String(parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--z-hero-overlay')));
   hero.appendChild(canvas);
 
   const ctx = canvas.getContext('2d');
