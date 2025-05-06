@@ -1,3 +1,36 @@
+/* 5.5  Mediterranean‑Glitch Shards */
+#hero-cracks{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  isolation:isolate;
+  z-index:var(--z-hero-bubbles);
+}
+.hero-crack{
+  position:absolute;
+  background-size:cover;
+  background-position:center;
+  filter:brightness(.85) contrast(1.15) saturate(1.4);
+  transition:transform .4s var(--ease-out),opacity .4s var(--ease-out);
+  will-change:transform;
+}
+.hero-crack::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.15),transparent 70%);
+  mix-blend-mode:overlay;
+}
+.hero-crack.glitching{
+  animation:shard-pulse .6s ease-in-out;
+}
+@keyframes shard-pulse{
+  0%{transform:scale(1) rotate(0deg);}
+  50%{transform:scale(1.12) rotate(var(--rot,2deg));}
+  100%{transform:scale(1) rotate(0deg);}
+}
+
+/* 5.5  Primary CTA */
 document.addEventListener('DOMContentLoaded', () => {
   // ----- Scroll-triggered Animations -----
   const sections = document.querySelectorAll('.section');
@@ -21,14 +54,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, 500);
 
-  // ----- Shuffle the Portfolio Grid -----
-  const grid = document.querySelector('.portfolio-grid');
-  if (grid) {
-    const itemsArray = Array.from(grid.children);
-    itemsArray.sort(() => Math.random() - 0.5);
-    itemsArray.forEach(item => grid.appendChild(item));
-    itemsArray.forEach(item => item.classList.add('cube-animate'));
-    setTimeout(() => itemsArray.forEach(item => item.classList.remove('cube-animate')), 100);
+  // ----- Film‑strip Autoscroll Pause on Hover -----
+  const strip = document.querySelector('.portfolio-strip');
+  if (strip) {
+    // Duplicate contents to create a seamless loop.
+    strip.parentElement.appendChild(strip.cloneNode(true));
+
+    const controlPlayState = (state) => {
+      strip.style.animationPlayState = state;
+      if (strip.nextElementSibling) {
+        strip.nextElementSibling.style.animationPlayState = state;
+      }
+    };
+
+    strip.addEventListener('mouseenter', () => controlPlayState('paused'));
+    strip.addEventListener('mouseleave', () => controlPlayState('running'));
   }
 
   // ----- Auto-cycle Preview Images for Portfolio Items -----
@@ -89,6 +129,8 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   function scheduleUpdate(shard) {
+        const rot = (Math.random() * 8 - 4).toFixed(2); // random rotation between -4° and 4°
+        shard.style.setProperty('--rot', rot + 'deg');
     const delay = 4000 + Math.random() * 3000;
     setTimeout(() => {
       shard.classList.add('glitching');
@@ -144,6 +186,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   setTimeout(createHeroCracks, 1500);
+
+  // ----- Hero Bubble Fallback for JS‑only visitors -----
+  function createHeroBubbles() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    for (let i = 0; i < 12; i++) {
+      const b = document.createElement('div');
+      b.classList.add('hero-bubble');
+      hero.appendChild(b);
+    }
+  }
+  createHeroBubbles();
 
   // ----- Mobile Hamburger Menu Toggle (if applicable) -----
   const mobileHamburger = document.getElementById('mobile-hamburger');
