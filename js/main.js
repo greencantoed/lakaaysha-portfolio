@@ -1,40 +1,80 @@
-/* 5.5  Mediterranean‑Glitch Shards */
-#hero-cracks{
-  position:absolute;
-  inset:0;
-  pointer-events:none;
-  isolation:isolate;
-  z-index:var(--z-hero-bubbles);
-}
-.hero-crack{
-  position:absolute;
-  background-size:cover;
-  background-position:center;
-  filter:brightness(.85) contrast(1.15) saturate(1.4);
-  transition:transform .4s var(--ease-out),opacity .4s var(--ease-out);
-  will-change:transform;
-}
-.hero-crack::after{
-  content:'';
-  position:absolute;
-  inset:0;
-  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.15),transparent 70%);
-  mix-blend-mode:overlay;
-}
-.hero-crack.glitching{
-  animation:shard-pulse .6s ease-in-out;
-}
-@keyframes shard-pulse{
-  0%{transform:scale(1) rotate(0deg);}
-  50%{transform:scale(1.12) rotate(var(--rot,2deg));}
-  100%{transform:scale(1) rotate(0deg);}
+
+
+/**
+ * main.js — Mediterranean-Glitch UX behaviors
+ * Copy this file in place of your old main.js.
+ */
+
+// Utilities
+const select = (s) => document.querySelector(s);
+const selectAll = (s) => Array.from(document.querySelectorAll(s));
+
+// Hero spiral & sand particle animations
+function initHeroSpirals() {
+  const hero = select('#hero');
+  if (!hero) return;
+  // Create and insert canvas
+  const canvas = document.createElement('canvas');
+  canvas.id = 'hero-canvas';
+  canvas.style.position = 'absolute';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  hero.appendChild(canvas);
+
+  const ctx = canvas.getContext('2d');
+  let width, height;
+  function resize() {
+    width = canvas.width = hero.clientWidth;
+    height = canvas.height = hero.clientHeight;
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Particle setup
+  const particles = [];
+  const num = 150;
+  for (let i = 0; i < num; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    const radius = Math.random() * Math.min(width, height) * 0.5;
+    particles.push({
+      angle,
+      radius,
+      speed: 0.002 + Math.random() * 0.004,
+      drift: 0.1 + Math.random() * 0.2,
+      size: 1 + Math.random() * 3,
+      color: `rgba(255,255,255,${0.1 + Math.random() * 0.2})`
+    });
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      p.angle += p.speed;
+      p.radius += p.drift * 0.1;
+      if (p.radius > Math.max(width, height)) {
+        p.radius = Math.random() * Math.min(width, height) * 0.3;
+        p.angle = Math.random() * Math.PI * 2;
+      }
+      const x = width / 2 + p.radius * Math.cos(p.angle);
+      const y = height / 2 + p.radius * Math.sin(p.angle);
+      ctx.beginPath();
+      ctx.arc(x, y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+  animate();
 }
 
-/* 5.5  Primary CTA */
-document.addEventListener('DOMContentLoaded', () => {
-  // ----- Scroll-triggered Animations -----
-  const sections = document.querySelectorAll('.section');
-  const observerOptions = { threshold: 0.2 };
+// IntersectionObserver to reveal sections
+function initScrollReveal() {
+  const sections = selectAll('.section');
+  if (!sections.length) return;
+
   const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -42,177 +82,154 @@ document.addEventListener('DOMContentLoaded', () => {
         obs.unobserve(entry.target);
       }
     });
-  }, observerOptions);
-  sections.forEach(section => observer.observe(section));
+  }, { threshold: 0.2 });
 
-  // Fallback: ensure all sections become visible after 500ms (in case observer doesn't fire)
-  setTimeout(() => {
-    sections.forEach(section => {
-      if (!section.classList.contains('visible')) {
-        section.classList.add('visible');
-      }
-    });
-  }, 500);
+  sections.forEach(sec => observer.observe(sec));
+}
 
-  // ----- Film‑strip Autoscroll Pause on Hover -----
-  const strip = document.querySelector('.portfolio-strip');
-  if (strip) {
-    // Duplicate contents to create a seamless loop.
-    strip.parentElement.appendChild(strip.cloneNode(true));
+// Hero shards glitch effect
+function initHeroCracks() {
+  const hero = select('#hero');
+  const container = select('#hero-cracks');
+  if (!hero || !container) return;
 
-    const controlPlayState = (state) => {
-      strip.style.animationPlayState = state;
-      if (strip.nextElementSibling) {
-        strip.nextElementSibling.style.animationPlayState = state;
-      }
-    };
-
-    strip.addEventListener('mouseenter', () => controlPlayState('paused'));
-    strip.addEventListener('mouseleave', () => controlPlayState('running'));
-  }
-
-  // ----- Auto-cycle Preview Images for Portfolio Items -----
-  const autoCycleItems = document.querySelectorAll('.portfolio-item');
-  autoCycleItems.forEach(item => {
-    let cycleIndex = 0;
-    const imgEl = item.querySelector('img');
-    setInterval(() => {
-      cycleIndex = (cycleIndex + 1) % 5; // assuming 5 preview images per project
-      imgEl.classList.add('fade-in');
-      setTimeout(() => { imgEl.classList.remove('fade-in'); }, 500);
-    }, 5000);
-  });
-
-  // ----- Cracked-Mirror Glitch Effect for Hero Section -----
   const crackImages = [
-    "images/webp/7+1 (0).webp",
-    "images/webp/7+1 (1).webp",
-    "images/webp/7+1 (2).webp",
-    "images/webp/7+1 (3).webp",
-    "images/webp/7+1 (4).webp",
-    "images/webp/1104 BM (2).webp",
-    "images/webp/1104 BM (3).webp",
-    "images/webp/1104 BM (4).webp",
-    "images/webp/1104 BM (5).webp",
-    "images/webp/1104 BM (6).webp",
-    "images/webp/Autonymous opinion on the matter of the void (1).png.webp",
-    "images/webp/Autonymous opinion on the matter of the void (2).png.webp",
-    "images/webp/Autonymous opinion on the matter of the void (3).png.webp",
-    "images/webp/DEFE (1).webp",
-    "images/webp/DEFE (2).webp",
-    "images/webp/DEFE (3).webp",
-    "images/webp/DEFE (4).webp",
-    "images/webp/DEFE (5).webp",
-    "images/webp/HRC (2).webp",
-    "images/webp/HRC (3).webp",
-    "images/webp/HRC.webp",
-    "images/webp/HVSNVSHVSN (1).webp",
-    "images/webp/HVSNVSHVSN (2).webp",
-    "images/webp/HVSNVSHVSN (3).webp",
-    "images/webp/HVSNVSHVSN (4).webp",
-    "images/webp/RDC (6).webp",
-    "images/webp/RDC (7).webp",
-    "images/webp/RDC (8).webp",
-    "images/webp/RDC (9).webp",
-    "images/webp/RDC (10).webp",
-    "images/webp/RDC (12).webp",
-    "images/webp/RDC (13).webp",
-    "images/webp/THEDREAM (1).webp",
-    "images/webp/THEDREAM (2).webp",
-    "images/webp/THEDREAM (3).webp",
-    "images/webp/THEDREAM (4).webp",
-    "images/webp/THEDREAM.webp",
-    "images/webp/TSs (1).webp",
-    "images/webp/TSs (2).webp",
-    "images/webp/TSs (3).webp",
-    "images/webp/TSs (4).webp"
+    'images/webp/7+1 (0).webp',
+    'images/webp/7+1 (1).webp',
+    'images/webp/7+1 (2).webp',
+    'images/webp/7+1 (3).webp',
+    'images/webp/7+1 (4).webp',
+    'images/webp/1104 BM (2).webp',
+    'images/webp/1104 BM (3).webp',
+    'images/webp/1104 BM (4).webp',
+    'images/webp/1104 BM (5).webp',
+    'images/webp/1104 BM (6).webp',
+    'images/webp/Autonymous opinion on the matter of the void (1).png.webp',
+    'images/webp/Autonymous opinion on the matter of the void (2).png.webp',
+    'images/webp/Autonymous opinion on the matter of the void (3).png.webp',
+    'images/webp/DEFE (1).webp',
+    'images/webp/DEFE (2).webp',
+    'images/webp/DEFE (3).webp',
+    'images/webp/DEFE (4).webp',
+    'images/webp/DEFE (5).webp',
+    'images/webp/HRC (2).webp',
+    'images/webp/HRC (3).webp',
+    'images/webp/HRC.webp',
+    'images/webp/HVSNVSHVSN (1).webp',
+    'images/webp/HVSNVSHVSN (2).webp',
+    'images/webp/HVSNVSHVSN (3).webp',
+    'images/webp/HVSNVSHVSN (4).webp',
+    'images/webp/RDC (6).webp',
+    'images/webp/RDC (7).webp',
+    'images/webp/RDC (8).webp',
+    'images/webp/RDC (9).webp',
+    'images/webp/RDC (10).webp',
+    'images/webp/RDC (12).webp',
+    'images/webp/RDC (13).webp',
+    'images/webp/THEDREAM (1).webp',
+    'images/webp/THEDREAM (2).webp',
+    'images/webp/THEDREAM (3).webp',
+    'images/webp/THEDREAM (4).webp',
+    'images/webp/THEDREAM.webp',
+    'images/webp/TSs (1).webp',
+    'images/webp/TSs (2).webp',
+    'images/webp/TSs (3).webp',
+    'images/webp/TSs (4).webp'
   ];
 
-  function scheduleUpdate(shard) {
-        const rot = (Math.random() * 8 - 4).toFixed(2); // random rotation between -4° and 4°
-        shard.style.setProperty('--rot', rot + 'deg');
-    const delay = 4000 + Math.random() * 3000;
+  // Helper to schedule next glitch
+  function scheduleShardUpdate(shard) {
+    const rot = (Math.random() * 8 - 4).toFixed(2) + 'deg';
+    shard.style.setProperty('--rot', rot);
+    const delay = 3000 + Math.random() * 4000;
     setTimeout(() => {
       shard.classList.add('glitching');
       setTimeout(() => {
-        const newImg = crackImages[Math.floor(Math.random() * crackImages.length)];
-        shard.style.backgroundImage = `url('${newImg}')`;
-      }, 250);
+        // swap image mid-glitch
+        const img = crackImages[Math.floor(Math.random() * crackImages.length)];
+        shard.style.backgroundImage = `url('${img}')`;
+      }, 200);
+      // remove glitch and reschedule
       setTimeout(() => {
         shard.classList.remove('glitching');
-        scheduleUpdate(shard);
-      }, 500);
+        scheduleShardUpdate(shard);
+      }, 600);
     }, delay);
   }
 
-  function createHeroCracks() {
-    const hero = document.getElementById('hero');
-    const container = document.getElementById('hero-cracks');
-    if (!container) return;
-    container.innerHTML = "";
-    const rows = 4, cols = 4;
-    const containerWidth = hero.clientWidth;
-    const containerHeight = hero.clientHeight;
-    const shardWidth = containerWidth / cols;
-    const shardHeight = containerHeight / rows;
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
-        const shard = document.createElement('div');
-        shard.classList.add('hero-crack');
-        shard.style.width = shardWidth + "px";
-        shard.style.height = shardHeight + "px";
-        shard.style.left = (c * shardWidth) + "px";
-        shard.style.top = (r * shardHeight) + "px";
-        const offsetMax = 20;
-        const tlx = Math.random() * offsetMax;
-        const tly = Math.random() * offsetMax;
-        const trx = 100 - Math.random() * offsetMax;
-        const try_ = Math.random() * offsetMax;
-        const brx = 100 - Math.random() * offsetMax;
-        const bry = 100 - Math.random() * offsetMax;
-        const blx = Math.random() * offsetMax;
-        const bly = 100 - Math.random() * offsetMax;
-        const clipPath = `polygon(${tlx}% ${tly}%, ${trx}% ${try_}%, ${brx}% ${bry}%, ${blx}% ${bly}%)`;
-        shard.style.clipPath = clipPath;
-        const initialImg = crackImages[Math.floor(Math.random() * crackImages.length)];
-        shard.style.backgroundImage = `url('${initialImg}')`;
-        shard.style.backgroundSize = "cover";
-        shard.style.backgroundPosition = "center";
-        container.appendChild(shard);
-        const initialDelay = Math.random() * 5000;
-        setTimeout(() => scheduleUpdate(shard), initialDelay);
-      }
+  // Create a 4x4 grid of shards
+  container.innerHTML = '';
+  const rows = 4, cols = 4;
+  const w = hero.clientWidth / cols;
+  const h = hero.clientHeight / rows;
+
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const shard = document.createElement('div');
+      shard.classList.add('hero-crack');
+      shard.style.width = `${w}px`;
+      shard.style.height = `${h}px`;
+      shard.style.left = `${c * w}px`;
+      shard.style.top = `${r * h}px`;
+      // random polygon clip
+      const o = 20;
+      const tl = [Math.random() * o, Math.random() * o];
+      const tr = [100 - Math.random() * o, Math.random() * o];
+      const br = [100 - Math.random() * o, 100 - Math.random() * o];
+      const bl = [Math.random() * o, 100 - Math.random() * o];
+      shard.style.clipPath = `polygon(${tl[0]}% ${tl[1]}%, ${tr[0]}% ${tr[1]}%, ${br[0]}% ${br[1]}%, ${bl[0]}% ${bl[1]}%)`;
+      // initial image
+      shard.style.backgroundImage = `url('${crackImages[Math.floor(Math.random() * crackImages.length)]}')`;
+      container.appendChild(shard);
+      // schedule first glitch
+      scheduleShardUpdate(shard);
     }
   }
+}
 
-  setTimeout(createHeroCracks, 1500);
+// Hero bubbles for JS visitors
+function initHeroBubbles() {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const hero = select('#hero');
+  if (!hero) return;
+  for (let i = 0; i < 12; i++) {
+    const b = document.createElement('div');
+    b.className = 'hero-bubble';
+    hero.appendChild(b);
+  }
+}
 
-  // ----- Hero Bubble Fallback for JS‑only visitors -----
-  function createHeroBubbles() {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const hero = document.getElementById('hero');
-    if (!hero) return;
-    for (let i = 0; i < 12; i++) {
-      const b = document.createElement('div');
-      b.classList.add('hero-bubble');
-      hero.appendChild(b);
-    }
-  }
-  createHeroBubbles();
+// Film-strip autoscroll pause on hover
+function initFilmStrip() {
+  const strip = select('.portfolio-strip');
+  if (!strip) return;
+  // clone for seamless loop
+  strip.parentElement.appendChild(strip.cloneNode(true));
+  const toggle = (state) => {
+    strip.style.animationPlayState = state;
+    if (strip.nextElementSibling) strip.nextElementSibling.style.animationPlayState = state;
+  };
+  strip.addEventListener('mouseenter', () => toggle('paused'));
+  strip.addEventListener('mouseleave', () => toggle('running'));
+}
 
-  // ----- Mobile Hamburger Menu Toggle (if applicable) -----
-  const mobileHamburger = document.getElementById('mobile-hamburger');
-  const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
-  if (mobileHamburger && mobileMenuOverlay) {
-    mobileHamburger.addEventListener('click', () => {
-      mobileMenuOverlay.classList.toggle('open');
-    });
-  }
-  window.toggleMobileMenu = function(show) {
-    if (show) {
-      mobileMenuOverlay.classList.add('open');
-    } else {
-      mobileMenuOverlay.classList.remove('open');
-    }
-  }
+// Mobile hamburger toggle
+function initMobileMenu() {
+  const btn = select('#mobile-hamburger');
+  const overlay = select('#mobile-menu-overlay');
+  if (!btn || !overlay) return;
+  btn.addEventListener('click', () => overlay.classList.toggle('open'));
+  window.toggleMobileMenu = (show) => {
+    overlay.classList.toggle('open', !!show);
+  };
+}
+
+// Initialize everything on DOM ready
+document.addEventListener('DOMContentLoaded', () => {
+  initScrollReveal();
+  initHeroSpirals();
+  setTimeout(initHeroCracks, 500);   // delay to ensure layout metrics
+  initHeroBubbles();
+  initFilmStrip();
+  initMobileMenu();
 });
