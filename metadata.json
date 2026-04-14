@@ -1,0 +1,7 @@
+{
+  "name": "Lakaaysha Official",
+  "description": "A high-end personal portfolio website designed for Lakaaysha van Ewijk.",
+  "requestFramePermissions": [
+    "microphone"
+  ]
+}

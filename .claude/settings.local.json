@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(sort:*)",
+      "Bash(for file in human-vs-human/*.png)",
+      "Bash(do identify:*)",
+      "Bash(npx vite build:*)",
+      "Bash(curl:*)",
+      "Bash(sips:*)",
+      "Bash(npm run build:*)",
+      "mcp__Control_Chrome__get_current_tab",
+      "mcp__Control_Chrome__execute_javascript",
+      "Bash(python3 -c \"from PIL import Image; img = Image.open\\(''/Users/lakaayshavanewijk/Downloads/lakaaysha-official/public/images/human-vs-human/GEN C imahes/Questions_Banner_FINal-VERSION.png''\\); print\\(f''Width: {img.width}, Height: {img.height}''\\)\")",
+      "mcp__Claude_Preview__preview_start"
+    ]
+  }
+}

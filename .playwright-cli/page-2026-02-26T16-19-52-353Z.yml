@@ -1,0 +1,128 @@
+- main [ref=e3]:
+  - generic:
+    - generic: "2"
+  - generic [ref=e6]:
+    - generic [ref=e7]:
+      - generic [ref=e8]: Film Director
+      - generic [ref=e9]: •
+      - generic [ref=e10]: Visual Artist
+      - generic [ref=e11]: •
+      - generic [ref=e12]: Based in Amsterdam
+      - generic [ref=e13]: •
+      - generic [ref=e14]: Available for Commissions
+      - generic [ref=e15]: •
+    - generic [ref=e16]:
+      - generic [ref=e17]: Film Director
+      - generic [ref=e18]: •
+      - generic [ref=e19]: Visual Artist
+      - generic [ref=e20]: •
+      - generic [ref=e21]: Based in Amsterdam
+      - generic [ref=e22]: •
+      - generic [ref=e23]: Available for Commissions
+      - generic [ref=e24]: •
+    - generic [ref=e25]:
+      - generic [ref=e26]: Film Director
+      - generic [ref=e27]: •
+      - generic [ref=e28]: Visual Artist
+      - generic [ref=e29]: •
+      - generic [ref=e30]: Based in Amsterdam
+      - generic [ref=e31]: •
+      - generic [ref=e32]: Available for Commissions
+      - generic [ref=e33]: •
+    - generic [ref=e34]:
+      - generic [ref=e35]: Film Director
+      - generic [ref=e36]: •
+      - generic [ref=e37]: Visual Artist
+      - generic [ref=e38]: •
+      - generic [ref=e39]: Based in Amsterdam
+      - generic [ref=e40]: •
+      - generic [ref=e41]: Available for Commissions
+      - generic [ref=e42]: •
+  - link "Skip to content" [ref=e43]:
+    - /url: /#portfolio
+  - navigation [ref=e44]:
+    - link "LAKAAYSHA." [ref=e45]:
+      - /url: /
+    - generic [ref=e47]:
+      - link "Home" [ref=e48]:
+        - /url: /#home
+        - text: Home
+      - link "Works" [ref=e50]:
+        - /url: /#portfolio
+      - link "Archive" [ref=e51]:
+        - /url: /#archive
+      - link "Proof" [ref=e52]:
+        - /url: /#proof
+      - link "Contact" [ref=e53]:
+        - /url: /#contact
+  - generic [ref=e54]:
+    - paragraph [ref=e55]: Something went wrong
+    - heading "An unexpected error occurred." [level=1] [ref=e56]
+    - paragraph [ref=e57]: Try refreshing the page. If the problem persists, return to the home page.
+    - generic [ref=e58]:
+      - button "Refresh Page" [ref=e59]
+      - link "Back to Home" [ref=e60]:
+        - /url: /
+  - generic [ref=e62]:
+    - generic [ref=e63]:
+      - link "LAKAAYSHA." [ref=e64]:
+        - /url: /
+      - generic [ref=e65]:
+        - link "Home" [ref=e66]:
+          - /url: /#home
+        - link "Works" [ref=e67]:
+          - /url: /#portfolio
+        - link "Archive" [ref=e68]:
+          - /url: /#archive
+        - link "Proof" [ref=e69]:
+          - /url: /#proof
+        - link "Contact" [ref=e70]:
+          - /url: /#contact
+    - generic [ref=e71]:
+      - generic [ref=e73]: © 2026 Lakaaysha
+      - generic [ref=e74]: Film Director / Visual Artist
+  - generic [ref=e77]:
+    - generic [ref=e78]:
+      - generic [ref=e79]: LAKAAYSHA
+      - generic [ref=e80]: •
+      - generic [ref=e81]: Film Director
+      - generic [ref=e82]: •
+      - generic [ref=e83]: Visual Artist
+      - generic [ref=e84]: •
+      - generic [ref=e85]: Storytelling
+      - generic [ref=e86]: •
+      - generic [ref=e87]: Cinema
+      - generic [ref=e88]: •
+    - generic [ref=e89]:
+      - generic [ref=e90]: LAKAAYSHA
+      - generic [ref=e91]: •
+      - generic [ref=e92]: Film Director
+      - generic [ref=e93]: •
+      - generic [ref=e94]: Visual Artist
+      - generic [ref=e95]: •
+      - generic [ref=e96]: Storytelling
+      - generic [ref=e97]: •
+      - generic [ref=e98]: Cinema
+      - generic [ref=e99]: •
+    - generic [ref=e100]:
+      - generic [ref=e101]: LAKAAYSHA
+      - generic [ref=e102]: •
+      - generic [ref=e103]: Film Director
+      - generic [ref=e104]: •
+      - generic [ref=e105]: Visual Artist
+      - generic [ref=e106]: •
+      - generic [ref=e107]: Storytelling
+      - generic [ref=e108]: •
+      - generic [ref=e109]: Cinema
+      - generic [ref=e110]: •
+    - generic [ref=e111]:
+      - generic [ref=e112]: LAKAAYSHA
+      - generic [ref=e113]: •
+      - generic [ref=e114]: Film Director
+      - generic [ref=e115]: •
+      - generic [ref=e116]: Visual Artist
+      - generic [ref=e117]: •
+      - generic [ref=e118]: Storytelling
+      - generic [ref=e119]: •
+      - generic [ref=e120]: Cinema
+      - generic [ref=e121]: •

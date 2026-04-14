@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="64" viewBox="0 0 240 64" role="img" aria-labelledby="title">
+  <title>VPRO</title>
+  <rect width="240" height="64" rx="6" fill="#0a0d1a"/>
+  <text x="20" y="41" font-family="Montserrat, Arial, sans-serif" font-size="30" font-weight="700" fill="#eef1ff">VPRO</text>
+  <circle cx="199" cy="32" r="7" fill="#ff2f92"/>
+</svg>
