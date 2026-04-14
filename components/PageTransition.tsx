@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 export const PageTransition: React.FC = () => {
@@ -6,16 +6,25 @@ export const PageTransition: React.FC = () => {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [flash, setFlash] = useState(false);
 
+  // Film countdown numeral — stable per route, not regenerated every render.
+  const countdownNumeral = useMemo(
+    () => Math.ceil(Math.random() * 3),
+    [location.pathname, location.hash]
+  );
+
   useEffect(() => {
     // Flash effect on route change
     setFlash(true);
-    setTimeout(() => setFlash(false), 150);
-    
+    const flashTimer = setTimeout(() => setFlash(false), 150);
+
     // Full transition overlay
     setIsTransitioning(true);
     const timer = setTimeout(() => setIsTransitioning(false), 800);
-    
-    return () => clearTimeout(timer);
+
+    return () => {
+      clearTimeout(flashTimer);
+      clearTimeout(timer);
+    };
   }, [location.pathname, location.hash]);
 
   return (
@@ -50,7 +59,7 @@ export const PageTransition: React.FC = () => {
         isTransitioning ? 'opacity-100' : 'opacity-0'
       }`}>
         <div className="text-[20vw] font-serif text-jelly-accent/20 animate-pulse">
-          {Math.ceil(Math.random() * 3)}
+          {countdownNumeral}
         </div>
       </div>
     </>
