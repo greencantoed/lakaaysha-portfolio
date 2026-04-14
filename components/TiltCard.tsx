@@ -23,35 +23,55 @@ export const TiltCard: React.FC<TiltCardProps> = ({
     if (!card) return;
 
     const isTouch = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouch) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isTouch || reducedMotion) return;
 
-    const handleMouseMove = (e: MouseEvent) => {
+    let rafId = 0;
+    let pending: { x: number; y: number } | null = null;
+
+    const flush = () => {
+      rafId = 0;
+      if (!pending) return;
       const rect = card.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;
-      
-      const mouseX = e.clientX - centerX;
-      const mouseY = e.clientY - centerY;
-      
+
+      const mouseX = pending.x - centerX;
+      const mouseY = pending.y - centerY;
+
       const rotateX = (mouseY / (rect.height / 2)) * -tiltAmount;
       const rotateY = (mouseX / (rect.width / 2)) * tiltAmount;
-      
-      setTransform(`perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`);
-      
-      // Glare position
-      const glareX = ((e.clientX - rect.left) / rect.width) * 100;
-      const glareY = ((e.clientY - rect.top) / rect.height) * 100;
+
+      setTransform(
+        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`
+      );
+
+      const glareX = ((pending.x - rect.left) / rect.width) * 100;
+      const glareY = ((pending.y - rect.top) / rect.height) * 100;
       setGlarePosition({ x: glareX, y: glareY });
+      pending = null;
+    };
+
+    const handleMouseMove = (e: MouseEvent) => {
+      pending = { x: e.clientX, y: e.clientY };
+      if (!rafId) {
+        rafId = window.requestAnimationFrame(flush);
+      }
     };
 
     const handleMouseEnter = () => setIsHovered(true);
-    
+
     const handleMouseLeave = () => {
       setIsHovered(false);
       setTransform('perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)');
+      if (rafId) {
+        window.cancelAnimationFrame(rafId);
+        rafId = 0;
+      }
+      pending = null;
     };
 
-    card.addEventListener('mousemove', handleMouseMove);
+    card.addEventListener('mousemove', handleMouseMove, { passive: true });
     card.addEventListener('mouseenter', handleMouseEnter);
     card.addEventListener('mouseleave', handleMouseLeave);
 
@@ -59,6 +79,7 @@ export const TiltCard: React.FC<TiltCardProps> = ({
       card.removeEventListener('mousemove', handleMouseMove);
       card.removeEventListener('mouseenter', handleMouseEnter);
       card.removeEventListener('mouseleave', handleMouseLeave);
+      if (rafId) window.cancelAnimationFrame(rafId);
     };
   }, [tiltAmount]);
 

@@ -9,6 +9,10 @@ interface TextScrambleProps {
 
 const DEFAULT_CHARS = '!<>-_\\/[]{}—=+*^?#________';
 
+const prefersReducedMotion = (): boolean =>
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 export const TextScramble: React.FC<TextScrambleProps> = ({
   text,
   className = '',
@@ -16,17 +20,32 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
   scrambleChars = DEFAULT_CHARS,
 }) => {
   const [displayText, setDisplayText] = useState(text);
-  const [isScrambling, setIsScrambling] = useState(false);
+  const isScramblingRef = useRef(false);
   const frameRef = useRef<number>();
-  const queueRef = useRef<{ from: string; to: string; start: number; end: number; char?: string }[]>([]);
+  const queueRef = useRef<
+    { from: string; to: string; start: number; end: number; char?: string }[]
+  >([]);
+
+  // Keep displayText in sync if `text` prop ever changes while unmounting would
+  // have left stale glyphs. Also handles re-mounts during page transitions.
+  useEffect(() => {
+    setDisplayText(text);
+  }, [text]);
 
   const scramble = () => {
-    if (isScrambling) return;
-    setIsScrambling(true);
+    if (isScramblingRef.current) return;
+
+    // Reduced-motion: skip scramble entirely, snap to final text.
+    if (prefersReducedMotion()) {
+      setDisplayText(text);
+      return;
+    }
+
+    isScramblingRef.current = true;
 
     const length = text.length;
     queueRef.current = [];
-    
+
     for (let i = 0; i < length; i++) {
       queueRef.current.push({
         from: displayText[i] || '',
@@ -62,7 +81,7 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
       setDisplayText(output);
 
       if (complete === queueRef.current.length) {
-        setIsScrambling(false);
+        isScramblingRef.current = false;
       } else {
         frame++;
         frameRef.current = requestAnimationFrame(update);
@@ -72,9 +91,14 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
     update();
   };
 
+  // Unmount cleanup: cancel any in-flight scramble AND force final text so
+  // that a subsequent remount never renders mid-scramble residue (e.g. on
+  // page transitions navigating back to /).
   useEffect(() => {
     return () => {
       if (frameRef.current) cancelAnimationFrame(frameRef.current);
+      isScramblingRef.current = false;
+      queueRef.current = [];
     };
   }, []);
 
@@ -82,6 +106,7 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
     if (trigger === 'mount') {
       scramble();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [trigger]);
 
   const handleMouseEnter = () => {
@@ -91,8 +116,8 @@ export const TextScramble: React.FC<TextScrambleProps> = ({
   };
 
   return (
-    <span 
-      className={`scramble-text ${className}`} 
+    <span
+      className={`scramble-text ${className}`}
       onMouseEnter={handleMouseEnter}
     >
       {displayText}
