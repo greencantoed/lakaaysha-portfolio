@@ -261,68 +261,84 @@ a {
   outline-offset: 3px;
 }
 
+/* Double-layer cursor: glow halo + crisp dot, sharing a single rAF loop
+   in components/FilmCursor.tsx. Both hidden if .film-cursor-active is not on
+   <body> (i.e. touch, reduced-motion, or slow-frame fallback). */
 @media (hover: hover) and (pointer: fine) {
-  body.fire-cursor-active,
-  body.fire-cursor-active a,
-  body.fire-cursor-active button,
-  body.fire-cursor-active [role='button'] {
+  body.film-cursor-active,
+  body.film-cursor-active a,
+  body.film-cursor-active button,
+  body.film-cursor-active [role='button'],
+  body.film-cursor-active input,
+  body.film-cursor-active textarea,
+  body.film-cursor-active select,
+  body.film-cursor-active summary {
     cursor: none !important;
   }
 }
 
-.fire-cursor {
+.film-cursor-dot {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 9998;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
   pointer-events: none;
-  transform: translate3d(-100px, -100px, 0);
-  transform-origin: 50% 75%;
+  z-index: 9999;
   opacity: 0;
-  will-change: transform, opacity;
-  transition: opacity 0.2s ease;
-  filter: drop-shadow(0 0 20px rgba(255, 115, 38, 0.5))
-    drop-shadow(0 0 35px rgba(255, 57, 129, 0.25));
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
+  background: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 47, 146, 0.65);
+  transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
+              opacity 0.2s ease,
+              background 0.2s ease,
+              box-shadow 0.2s ease;
+  will-change: transform, opacity, width, height;
 }
 
-.fire-cursor-glow {
+.film-cursor-dot[data-hovering='true'] {
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 47, 146, 0.24);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 0 18px rgba(255, 47, 146, 0.45);
+}
+
+.film-cursor-glow {
   position: fixed;
   top: 0;
   left: 0;
-  width: 66px;
-  height: 66px;
+  width: 280px;
+  height: 280px;
   border-radius: 999px;
   pointer-events: none;
   z-index: 9997;
   opacity: 0;
-  transform: translate3d(-100px, -100px, 0) scale(1);
-  transition: opacity 0.2s ease;
+  transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
   background: radial-gradient(
-    circle at 35% 35%,
-    rgba(255, 246, 153, 0.48),
-    rgba(255, 146, 33, 0.24) 40%,
-    rgba(255, 54, 118, 0.06) 72%,
-    transparent 100%
+    circle,
+    rgba(255, 47, 146, 0.22) 0%,
+    rgba(255, 47, 146, 0.08) 38%,
+    transparent 72%
   );
   mix-blend-mode: screen;
-  filter: blur(1px);
+  filter: blur(2px);
+  transition: opacity 0.25s ease, width 0.3s ease, height 0.3s ease;
   will-change: transform, opacity;
 }
 
-.fire-cursor-ember {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  pointer-events: none;
-  z-index: 9996;
-  opacity: 0;
-  transform: translate3d(-100px, -100px, 0) scale(0.5);
-  background: radial-gradient(circle, #fff2be 0%, #ff8f1f 54%, #ff2f57 100%);
-  box-shadow: 0 0 12px rgba(255, 131, 40, 0.55);
-  will-change: transform, opacity;
+.film-cursor-glow[data-hovering='true'] {
+  width: 200px;
+  height: 200px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .film-cursor-dot,
+  .film-cursor-glow {
+    display: none !important;
+  }
 }
 
 /* Marquee animation */
@@ -544,10 +560,5 @@ a {
   }
   body::after {
     display: none;
-  }
-  .fire-cursor,
-  .fire-cursor-glow,
-  .fire-cursor-ember {
-    display: none !important;
   }
 }

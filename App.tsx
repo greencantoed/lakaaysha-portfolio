@@ -7,7 +7,7 @@ import { ArtPile } from './components/ArtPile';
 import { SelectiveProof } from './components/SelectiveProof';
 import { Contact } from './components/Contact';
 import { NotFound } from './components/NotFound';
-import { FireCursor } from './components/FireCursor';
+import { FilmCursor } from './components/FilmCursor';
 import { PageTransition } from './components/PageTransition';
 import { Marquee } from './components/Marquee';
 import { ErrorBoundary } from './components/ErrorBoundary';
@@ -270,7 +270,7 @@ function App() {
 
   return (
     <main className="min-h-screen selection:bg-jelly-accent selection:text-black relative pb-8">
-      <FireCursor />
+      <FilmCursor />
       <PageTransition />
       
       {/* Top marquee */}
