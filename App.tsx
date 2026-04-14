@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Link, Route, Routes, useLocation } from 'react-router-dom';
 import { Hero } from './components/Hero';
@@ -6,64 +6,15 @@ import { Portfolio } from './components/Portfolio';
 import { ArtPile } from './components/ArtPile';
 import { SelectiveProof } from './components/SelectiveProof';
 import { Contact } from './components/Contact';
-import { ProjectPage } from './components/ProjectPage';
 import { NotFound } from './components/NotFound';
 import { FireCursor } from './components/FireCursor';
-import { FilmCursor } from './components/FilmCursor';
 import { PageTransition } from './components/PageTransition';
 import { Marquee } from './components/Marquee';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
-const ENABLE_CUSTOM_CURSOR = true;
-
-// Mouse glow effect component
-const MouseGlow: React.FC = () => {
-  const glowRef = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-  const rafRef = useRef<number>();
-  const mousePos = useRef({ x: 0, y: 0 });
-
-  useEffect(() => {
-    // Only enable on non-touch devices
-    const isTouchDevice = window.matchMedia('(pointer: coarse)').matches;
-    if (isTouchDevice) return;
-
-    let timeout: NodeJS.Timeout;
-    
-    const handleMouseMove = (e: MouseEvent) => {
-      mousePos.current = { x: e.clientX, y: e.clientY };
-      setIsVisible(true);
-      
-      clearTimeout(timeout);
-      timeout = setTimeout(() => setIsVisible(false), 100);
-    };
-
-    const updatePosition = () => {
-      if (glowRef.current) {
-        glowRef.current.style.left = `${mousePos.current.x}px`;
-        glowRef.current.style.top = `${mousePos.current.y}px`;
-      }
-      rafRef.current = requestAnimationFrame(updatePosition);
-    };
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true });
-    rafRef.current = requestAnimationFrame(updatePosition);
-
-    return () => {
-      window.removeEventListener('mousemove', handleMouseMove);
-      clearTimeout(timeout);
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-    };
-  }, []);
-
-  return (
-    <div 
-      ref={glowRef}
-      className="mouse-glow"
-      style={{ opacity: isVisible ? 1 : 0 }}
-    />
-  );
-};
+const ProjectPage = lazy(() =>
+  import('./components/ProjectPage').then((m) => ({ default: m.ProjectPage }))
+);
 
 const NAV_ITEMS = [
   { label: 'Home', sectionId: 'home' },
@@ -319,8 +270,7 @@ function App() {
 
   return (
     <main className="min-h-screen selection:bg-jelly-accent selection:text-black relative pb-8">
-      <MouseGlow />
-      {ENABLE_CUSTOM_CURSOR ? <FilmCursor /> : null}
+      <FireCursor />
       <PageTransition />
       
       {/* Top marquee */}
@@ -341,11 +291,13 @@ function App() {
       <ScrollToTop />
 
       <ErrorBoundary>
-        <Routes>
-          <Route path="/" element={<OverviewPage />} />
-          <Route path="/projects/:projectId" element={<ProjectPage />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={null}>
+          <Routes>
+            <Route path="/" element={<OverviewPage />} />
+            <Route path="/projects/:projectId" element={<ProjectPage />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </ErrorBoundary>
 
       <SiteFooter />

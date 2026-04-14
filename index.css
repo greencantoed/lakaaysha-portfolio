@@ -14,20 +14,6 @@
   --glow: rgba(255, 47, 146, 0.15);
 }
 
-/* Cinematic mouse glow effect */
-.mouse-glow {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 47, 146, 0.08) 0%, transparent 70%);
-  pointer-events: none;
-  z-index: 1;
-  transform: translate(-50%, -50%);
-  transition: opacity 0.3s ease;
-  mix-blend-mode: screen;
-}
-
 html {
   scroll-behavior: smooth;
 }
