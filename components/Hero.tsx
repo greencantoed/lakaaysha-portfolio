@@ -14,7 +14,7 @@ export const Hero: React.FC = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
   const [videoFailed, setVideoFailed] = useState(false);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const velocity = useVelocity();
+  useVelocity();
 
   const heroMailto =
     'mailto:lakaaysha@gmail.com?subject=Commission%20Inquiry%20%E2%80%94%20Project%20Direction';
@@ -71,22 +71,14 @@ export const Hero: React.FC = () => {
       <div className="letterbox-bar top" />
       <div className="letterbox-bar bottom" />
       
-      {/* Velocity-based distortion overlay */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-20 opacity-30"
-        style={{
-          transform: `skewY(${velocity * 0.5}deg)`,
-          transition: 'transform 0.1s ease-out',
-        }}
+      {/* Velocity-based distortion overlay — driven by --scroll-velocity CSS var */}
+      <div
+        className="absolute inset-0 pointer-events-none z-20 opacity-30 hero-velocity-skew"
       />
-      
-      {/* Projector flicker effect */}
-      <div 
-        className="absolute inset-0 pointer-events-none z-15 mix-blend-overlay"
-        style={{
-          background: `rgba(255,255,255,${0.02 + Math.random() * 0.02})`,
-          animation: 'flicker 0.15s infinite',
-        }}
+
+      {/* Projector flicker effect — pure CSS keyframe, no render-time randomness */}
+      <div
+        className="absolute inset-0 pointer-events-none z-15 mix-blend-overlay hero-projector-flicker"
       />
       
       {/* Main media container with cinematic aspect */}

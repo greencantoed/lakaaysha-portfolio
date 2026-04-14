@@ -58,6 +58,30 @@ body::before {
   50% { opacity: 0.05; }
 }
 
+/* Scroll-velocity driven skew — reads from --scroll-velocity set by useVelocity */
+.hero-velocity-skew {
+  transform: skewY(calc(var(--scroll-velocity, 0) * 0.5deg));
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+}
+
+.project-velocity-skew {
+  transform: skewY(calc(var(--scroll-velocity, 0) * 0.2deg));
+  transition: transform 0.15s ease-out;
+  will-change: transform;
+}
+
+/* Projector flicker — CSS-only, deterministic, no render-time randomness */
+.hero-projector-flicker {
+  background: rgba(255, 255, 255, 0.03);
+  animation: projector-flicker 0.15s steps(2, end) infinite;
+}
+
+@keyframes projector-flicker {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
 @keyframes film-grain {
   0% {
     transform: translate3d(0, 0, 0);

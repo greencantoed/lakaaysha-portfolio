@@ -25,8 +25,8 @@ const Reveal: React.FC<{ children: React.ReactNode; delay?: number }> = ({ child
 };
 
 export const Portfolio: React.FC = () => {
-  const velocity = useVelocity();
-  
+  useVelocity();
+
   return (
     <div className="py-24 md:py-32 border-b border-jelly-line/30 relative overflow-hidden">
       {/* Background ambient element */}
@@ -56,13 +56,7 @@ export const Portfolio: React.FC = () => {
 
             return (
               <Reveal key={project.id} delay={index * 100}>
-                <article 
-                  className="group"
-                  style={{
-                    transform: `skewY(${velocity * 0.2}deg)`,
-                    transition: 'transform 0.15s ease-out',
-                  }}
-                >
+                <article className="group project-velocity-skew">
                   {/* Asymmetric layout: alternating sides */}
                   <div className={`grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center ${
                     isEven ? '' : 'lg:direction-rtl'
