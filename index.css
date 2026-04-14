@@ -12,6 +12,10 @@
   --accent: #ff2f92;
   --accent-2: #ff6fb3;
   --glow: rgba(255, 47, 146, 0.15);
+  /* Dedicated cursor hue — reddish vermillion, independent of site accent.
+     Change here to retune the cursor without touching the rest of the palette. */
+  --cursor-color: #e94131;
+  --cursor-glow-rgb: 233, 65, 49;
 }
 
 html {
@@ -288,8 +292,8 @@ a {
   z-index: 9999;
   opacity: 0;
   transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
-  background: var(--accent);
-  box-shadow: 0 0 10px rgba(255, 47, 146, 0.65);
+  background: var(--cursor-color);
+  box-shadow: 0 0 10px rgba(var(--cursor-glow-rgb), 0.65);
   transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1),
               height 0.22s cubic-bezier(0.22, 1, 0.36, 1),
               opacity 0.2s ease,
@@ -301,9 +305,9 @@ a {
 .film-cursor-dot[data-hovering='true'] {
   width: 36px;
   height: 36px;
-  background: rgba(255, 47, 146, 0.24);
+  background: rgba(var(--cursor-glow-rgb), 0.26);
   border: 1px solid rgba(255, 255, 255, 0.72);
-  box-shadow: 0 0 18px rgba(255, 47, 146, 0.45);
+  box-shadow: 0 0 18px rgba(var(--cursor-glow-rgb), 0.45);
 }
 
 .film-cursor-glow {
@@ -319,8 +323,8 @@ a {
   transform: translate3d(-100px, -100px, 0) translate(-50%, -50%);
   background: radial-gradient(
     circle,
-    rgba(255, 47, 146, 0.22) 0%,
-    rgba(255, 47, 146, 0.08) 38%,
+    rgba(var(--cursor-glow-rgb), 0.24) 0%,
+    rgba(var(--cursor-glow-rgb), 0.09) 38%,
     transparent 72%
   );
   mix-blend-mode: screen;
