@@ -31,13 +31,10 @@ export const Marquee: React.FC<MarqueeProps> = ({
         <span className="inline-flex items-center group-hover:[animation-play-state:paused]">
           {children}
         </span>
-        <span className="inline-flex items-center group-hover:[animation-play-state:paused]">
-          {children}
-        </span>
-        <span className="inline-flex items-center group-hover:[animation-play-state:paused]">
-          {children}
-        </span>
-        <span className="inline-flex items-center group-hover:[animation-play-state:paused]">
+        <span
+          className="inline-flex items-center group-hover:[animation-play-state:paused]"
+          aria-hidden="true"
+        >
           {children}
         </span>
       </div>
