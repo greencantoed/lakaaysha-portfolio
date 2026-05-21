@@ -12,7 +12,12 @@
       "mcp__Control_Chrome__get_current_tab",
       "mcp__Control_Chrome__execute_javascript",
       "Bash(python3 -c \"from PIL import Image; img = Image.open\\(''/Users/lakaayshavanewijk/Downloads/lakaaysha-official/public/images/human-vs-human/GEN C imahes/Questions_Banner_FINal-VERSION.png''\\); print\\(f''Width: {img.width}, Height: {img.height}''\\)\")",
-      "mcp__Claude_Preview__preview_start"
+      "mcp__Claude_Preview__preview_start",
+      "Read(//Users/qmt/Downloads/**)",
+      "Read(//Users/qmt/**)",
+      "Bash(gh auth *)",
+      "Bash(npx --yes netlify-cli@latest api getSite --data='{\"site_id\":\"7ebdd440-3969-4b9d-9754-c09f7de756ce\"}')",
+      "Bash(gh repo *)"
     ]
   }
 }
