@@ -51,12 +51,12 @@ export const ArtPile: React.FC = () => {
       <div className="absolute top-1/3 -left-1/4 w-[500px] h-[500px] rounded-full bg-jelly-accent/3 blur-[120px] pointer-events-none" />
       
       <div className="container mx-auto px-5 md:px-8 mb-16 relative z-10">
-        <div className="flex items-end justify-between border-b border-jelly-line/40 pb-4">
+        <div className="flex items-end justify-between border-b border-jelly-line/40 pb-5">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-jelly-muted block mb-2">
-              02 — Archive
+            <span className="tc-badge text-jelly-accent block mb-3">
+              TC 02 · Archive
             </span>
-            <h2 className="text-jelly-accent text-xs md:text-sm uppercase tracking-[0.25em] font-semibold">
+            <h2 className="credits-head text-jelly-text" style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)' }}>
               Visual Collection
             </h2>
           </div>

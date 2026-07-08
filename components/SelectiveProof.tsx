@@ -35,12 +35,12 @@ export const SelectiveProof: React.FC = () => {
         }`}
       >
         {/* Section header */}
-        <div className="mb-12 md:mb-16 flex items-end justify-between border-b border-jelly-line/40 pb-4">
+        <div className="mb-12 md:mb-16 flex items-end justify-between border-b border-jelly-line/40 pb-5">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-jelly-muted block mb-2">
-              03 — Recognition
+            <span className="tc-badge text-jelly-accent block mb-3">
+              TC 03 · Recognition
             </span>
-            <h2 className="text-jelly-accent text-xs md:text-sm uppercase tracking-[0.25em] font-semibold">
+            <h2 className="credits-head text-jelly-text" style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)' }}>
               <KineticText scrollSpeed={0.3}>Selective Proof</KineticText>
             </h2>
           </div>
@@ -69,6 +69,9 @@ export const SelectiveProof: React.FC = () => {
                           alt=""
                           className="h-6 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity"
                           loading="lazy"
+                          onError={(e) => {
+                            (e.currentTarget as HTMLImageElement).style.display = 'none';
+                          }}
                         />
                       ))}
                     </div>

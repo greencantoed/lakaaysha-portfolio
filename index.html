@@ -1,22 +1,28 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-world="screen">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LAKAAYSHA | Film Director & Visual Artist</title>
-    <meta name="description" content="Lakaaysha van Ewijk — Film Director & Visual Artist. Documentary, cinepoem, and experimental film." />
-    <meta property="og:title" content="LAKAAYSHA | Film Director & Visual Artist" />
-    <meta property="og:description" content="Lakaaysha van Ewijk — Film Director & Visual Artist. Documentary, cinepoem, and experimental film." />
+    <title>LAKAAYSHA | Film Director, Visual Artist & Author</title>
+    <meta name="description" content="Lakaaysha van Ewijk — Film Director, Visual Artist & Author. Documentary, cinepoem, experimental film — and novels: Queerantine, live on Wattpad." />
+    <meta property="og:title" content="LAKAAYSHA | Film Director, Visual Artist & Author" />
+    <meta property="og:description" content="One artist, two darkrooms: films on the screen, novels on the page. Queerantine — live on Wattpad." />
     <meta property="og:type" content="website" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LAKAAYSHA | Film Director & Visual Artist" />
-    <meta name="twitter:description" content="Lakaaysha van Ewijk — Film Director & Visual Artist. Documentary, cinepoem, and experimental film." />
+    <meta name="twitter:title" content="LAKAAYSHA | Film Director, Visual Artist & Author" />
+    <meta name="twitter:description" content="One artist, two darkrooms: films on the screen, novels on the page. Queerantine — live on Wattpad." />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Montserrat:wght@200;300;400;500;600&family=Archivo:wdth,wght@62..125,100..900&family=Anton&family=Permanent+Marker&family=Caveat:wght@500;700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Special+Elite&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/index.css">
   </head>
   <body>
+    <script>
+      // Pre-paint world detection: keeps /ink deep links from flashing black.
+      if (window.location.pathname.startsWith('/ink')) {
+        document.documentElement.dataset.world = 'page';
+      }
+    </script>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
   </body>

@@ -3,6 +3,7 @@ import { Instagram, Mail, ArrowUpRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { TextScramble } from './TextScramble';
 import { MagneticButton } from './MagneticButton';
+import { socials } from '../content/socials';
 
 export const Contact: React.FC = () => {
   const { ref, isInView } = useInView({ threshold: 0.15 });
@@ -28,12 +29,9 @@ export const Contact: React.FC = () => {
       >
         {/* Section header */}
         <div className="mb-12 md:mb-16">
-          <span className="text-[10px] uppercase tracking-[0.3em] text-jelly-muted block mb-2">
-            04 — Contact
+          <span className="tc-badge text-jelly-accent block mb-3">
+            TC 04 · Contact — Final Reel
           </span>
-          <h2 className="text-jelly-accent text-xs md:text-sm uppercase tracking-[0.25em] font-semibold">
-            Let's Create
-          </h2>
         </div>
 
         {/* Main content - asymmetric layout */}
@@ -77,16 +75,29 @@ export const Contact: React.FC = () => {
                 <p className="text-[11px] uppercase tracking-[0.2em] text-jelly-muted">
                   Follow
                 </p>
-                <a
-                  href="https://instagram.com/lakaaysha"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="group inline-flex items-center gap-3 text-jelly-text hover:text-jelly-accent transition-colors"
-                >
-                  <Instagram size={18} />
-                  <span className="text-sm uppercase tracking-[0.15em]">@lakaaysha</span>
-                  <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                </a>
+                <div className="flex flex-col gap-3">
+                  {socials.map((social) => (
+                    <a
+                      key={social.id}
+                      href={social.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="group inline-flex items-center gap-3 text-jelly-text hover:text-jelly-accent transition-colors"
+                    >
+                      {social.id === 'instagram' ? (
+                        <Instagram size={18} />
+                      ) : (
+                        <span className="tc-badge text-jelly-accent w-[18px] text-center">
+                          {social.id === 'tiktok' ? 'tt' : 'sb'}
+                        </span>
+                      )}
+                      <span className="text-sm uppercase tracking-[0.15em]">
+                        {social.label} — {social.handle}
+                      </span>
+                      <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                    </a>
+                  ))}
+                </div>
               </div>
 
               {/* Quick CTA */}

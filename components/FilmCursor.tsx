@@ -1,23 +1,49 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useWorld } from '../hooks/useWorld';
 
 /**
  * Double-layer cursor that reads as ONE unit:
- *   1. soft magenta glow halo (trails a couple px behind, same hue as the dot)
- *   2. crisp magenta dot (scales 3x on interactive hover)
+ *   1. soft glow halo (screen world only — the projector beam)
+ *   2. crisp vermillion dot (both worlds; scales up on interactive hover)
  *
- * Both layers share a single rAF loop, one position ref, and one visibility
- * state — so they can never drift out of sync. No mix-blend-difference (the
- * color-flipping was the source of the "two fighting cursors" feeling).
+ * In the PAGE world the dot becomes the red pen: the glow disappears
+ * (CSS) and a canvas layer draws a fading ink stroke behind the pointer —
+ * faster strokes run thinner, like a nib starved of ink.
+ *
+ * All layers share a single rAF loop, one position ref, and one visibility
+ * state — so they can never drift out of sync.
  *
  * Disabled on touch + prefers-reduced-motion. Slow-frame fallback restores
  * the native OS cursor if rAF starts missing deadlines.
  */
+
+const TRAIL_LIFE_MS = 950;
+
+interface TrailPoint {
+  x: number;
+  y: number;
+  t: number;
+}
+
 export const FilmCursor: React.FC = () => {
   const dotRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [enabled, setEnabled] = useState(false);
   const [performanceFallback, setPerformanceFallback] = useState(false);
+
+  const { world } = useWorld();
+  const worldRef = useRef(world);
+  useEffect(() => {
+    worldRef.current = world;
+    // Leaving the page world: blot the ink immediately.
+    const canvas = canvasRef.current;
+    if (world !== 'page' && canvas) {
+      const ctx = canvas.getContext('2d');
+      ctx?.clearRect(0, 0, canvas.width, canvas.height);
+    }
+  }, [world]);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -32,12 +58,33 @@ export const FilmCursor: React.FC = () => {
     return () => document.body.classList.remove('film-cursor-active');
   }, [enabled, performanceFallback]);
 
+  // Keep the trail canvas sized to the viewport (dpr-aware).
+  useEffect(() => {
+    if (!enabled || performanceFallback) return;
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const resize = () => {
+      const dpr = Math.min(2, window.devicePixelRatio || 1);
+      canvas.width = Math.round(window.innerWidth * dpr);
+      canvas.height = Math.round(window.innerHeight * dpr);
+      canvas.style.width = `${window.innerWidth}px`;
+      canvas.style.height = `${window.innerHeight}px`;
+      canvas.getContext('2d')?.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    resize();
+    window.addEventListener('resize', resize);
+    return () => window.removeEventListener('resize', resize);
+  }, [enabled, performanceFallback]);
+
   useEffect(() => {
     if (!enabled || performanceFallback) return;
 
     const target = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const dotPos = { x: target.x, y: target.y };
     const glowPos = { x: target.x, y: target.y };
+    const trail: TrailPoint[] = [];
 
     let rafId = 0;
     let visible = false;
@@ -68,6 +115,42 @@ export const FilmCursor: React.FC = () => {
       setIsHovering(interactive);
     };
 
+    const drawTrail = (now: number) => {
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext('2d');
+      if (!canvas || !ctx) return;
+
+      // Record the pen's actual (lerped) position — the ink follows the nib.
+      const last = trail[trail.length - 1];
+      if (!last || Math.hypot(dotPos.x - last.x, dotPos.y - last.y) > 1.5) {
+        trail.push({ x: dotPos.x, y: dotPos.y, t: now });
+      }
+      while (trail.length && now - trail[0].t > TRAIL_LIFE_MS) {
+        trail.shift();
+      }
+
+      ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+      if (!visible || trail.length < 2) return;
+
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      for (let i = 1; i < trail.length; i++) {
+        const a = trail[i - 1];
+        const b = trail[i];
+        const age = (now - b.t) / TRAIL_LIFE_MS;
+        const speed = Math.hypot(b.x - a.x, b.y - a.y);
+        const alpha = Math.max(0, 0.5 * (1 - age));
+        // marker starves as the hand speeds up
+        const width = Math.max(0.8, 3.6 - speed * 0.12);
+        ctx.strokeStyle = `rgba(196, 14, 96, ${alpha.toFixed(3)})`;
+        ctx.lineWidth = width;
+        ctx.beginPath();
+        ctx.moveTo(a.x, a.y);
+        ctx.lineTo(b.x, b.y);
+        ctx.stroke();
+      }
+    };
+
     const animate = (time: number) => {
       const delta = time - lastFrame;
       lastFrame = time;
@@ -85,8 +168,7 @@ export const FilmCursor: React.FC = () => {
       dotPos.x += (target.x - dotPos.x) * 0.22;
       dotPos.y += (target.y - dotPos.y) * 0.22;
 
-      // Glow: slightly looser lerp — feels like a halo breathing just behind
-      // the dot. The gap is small enough that they read as a single mark.
+      // Glow: slightly looser lerp — a halo breathing just behind the dot.
       glowPos.x += (target.x - glowPos.x) * 0.14;
       glowPos.y += (target.y - glowPos.y) * 0.14;
 
@@ -95,6 +177,12 @@ export const FilmCursor: React.FC = () => {
       }
       if (glowRef.current) {
         glowRef.current.style.transform = `translate3d(${glowPos.x}px, ${glowPos.y}px, 0) translate(-50%, -50%)`;
+      }
+
+      if (worldRef.current === 'page') {
+        drawTrail(time);
+      } else if (trail.length) {
+        trail.length = 0;
       }
 
       rafId = requestAnimationFrame(animate);
@@ -119,14 +207,16 @@ export const FilmCursor: React.FC = () => {
 
   return (
     <>
-      {/* Soft pink glow halo — trails behind the dot, same hue family so they read as one mark */}
+      {/* Ink trail — only inked in the page world */}
+      <canvas ref={canvasRef} aria-hidden="true" className="ink-trail-canvas" />
+      {/* Projector-beam halo — hidden on paper via CSS */}
       <div
         ref={glowRef}
         aria-hidden="true"
         className="film-cursor-glow"
         data-hovering={isHovering ? 'true' : 'false'}
       />
-      {/* Crisp magenta dot — scales 3x on interactive hover */}
+      {/* Crisp vermillion dot — REC light on film, red pen on paper */}
       <div
         ref={dotRef}
         aria-hidden="true"

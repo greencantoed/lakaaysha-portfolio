@@ -2,7 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   LIGHT / INK — one artist, two darkrooms.
+   <html data-world="screen"> : projector black, credits type.
+   <html data-world="page">   : white notebook, zine pink & red.
+   The thread runs through both — vermillion REC light on film,
+   hot pink marker on paper. The jelly and thread palettes read
+   the --w- RGB triplets, so shared chrome re-themes for free.
+   ============================================================ */
+
 :root {
+  /* SCREEN world (default) — RGB triplets consumed by Tailwind */
+  --w-bg: 4 4 9;
+  --w-surface: 10 13 26;
+  --w-surface2: 19 24 47;
+  --w-line: 42 49 84;
+  --w-text: 238 241 255;
+  --w-muted: 165 173 200;
+  --w-accent: 255 47 146;
+  --w-accent2: 255 111 179;
+  --w-thread: 233 65 49;
+  --w-thread-deep: 178 51 36;
+
+  /* Legacy hex mirrors (used directly below) */
   --bg: #040409;
   --surface: #0a0d1a;
   --surface-2: #13182f;
@@ -12,34 +34,76 @@
   --accent: #ff2f92;
   --accent-2: #ff6fb3;
   --glow: rgba(255, 47, 146, 0.15);
-  /* Dedicated cursor hue — reddish vermillion, independent of site accent.
-     Change here to retune the cursor without touching the rest of the palette. */
+
+  --thread: #e94131;
+  --thread-deep: #b23324;
   --cursor-color: #e94131;
   --cursor-glow-rgb: 233, 65, 49;
+
+  /* Atmosphere knobs the world flip retunes */
+  --bg-wash: radial-gradient(1200px 600px at 80% -20%, #1f2240 0%, transparent 60%);
+  --grain-opacity: 0.04;
+  --grain-blend: overlay;
+  --vignette: radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(4, 4, 9, 0.4) 100%);
+  --body-font: Montserrat, sans-serif;
+}
+
+html[data-world='page'] {
+  --w-bg: 255 253 250;
+  --w-surface: 255 255 255;
+  --w-surface2: 246 242 236;
+  --w-line: 203 197 186;
+  --w-text: 20 19 18;
+  --w-muted: 122 117 108;
+  --w-accent: 237 32 121;
+  --w-accent2: 224 35 24;
+  --w-thread: 237 32 121;
+  --w-thread-deep: 196 14 96;
+
+  --bg: #fffdfa;
+  --surface: #ffffff;
+  --surface-2: #f6f2ec;
+  --line: #cbc5ba;
+  --text: #141312;
+  --muted: #7a756c;
+  --accent: #ed2079;
+  --accent-2: #e02318;
+  --glow: rgba(237, 32, 121, 0.14);
+
+  --thread: #ed2079;
+  --thread-deep: #c40e60;
+  --cursor-color: #ed2079;
+  --cursor-glow-rgb: 237, 32, 121;
+
+  --bg-wash: none;
+  --grain-opacity: 0.05;
+  --grain-blend: multiply;
+  --vignette: none;
+  --body-font: Newsreader, Georgia, serif;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--bg);
 }
 
 body {
   margin: 0;
-  background: radial-gradient(1200px 600px at 80% -20%, #1f2240 0%, transparent 60%), var(--bg);
+  background: var(--bg-wash), var(--bg);
   color: var(--text);
-  font-family: Montserrat, sans-serif;
+  font-family: var(--body-font);
   overflow-x: hidden;
-  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* Film grain texture overlay - enhanced */
+/* Film grain on screen / paper tooth on page — same overlay, retuned */
 body::after {
   content: '';
   position: fixed;
   inset: -55%;
   z-index: 30;
   pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: overlay;
+  opacity: var(--grain-opacity);
+  mix-blend-mode: var(--grain-blend);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='5' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 400px 400px;
@@ -47,14 +111,23 @@ body::after {
   will-change: transform;
 }
 
-/* Subtle vignette overlay */
+/* Paper doesn't dance: freeze the grain so it reads as tooth, not static */
+html[data-world='page'] body::after {
+  animation: none;
+}
+
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   z-index: 29;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 0%, transparent 60%, rgba(4, 4, 9, 0.4) 100%);
+  background: var(--vignette);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
 }
 
 @keyframes flicker {
@@ -75,7 +148,6 @@ body::before {
   will-change: transform;
 }
 
-/* Projector flicker — CSS-only, deterministic, no render-time randomness */
 .hero-projector-flicker {
   background: rgba(255, 255, 255, 0.03);
   animation: projector-flicker 0.15s steps(2, end) infinite;
@@ -87,39 +159,17 @@ body::before {
 }
 
 @keyframes film-grain {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-  10% {
-    transform: translate3d(-5%, -7%, 0);
-  }
-  20% {
-    transform: translate3d(-13%, 8%, 0);
-  }
-  30% {
-    transform: translate3d(8%, -15%, 0);
-  }
-  40% {
-    transform: translate3d(-8%, 19%, 0);
-  }
-  50% {
-    transform: translate3d(12%, -11%, 0);
-  }
-  60% {
-    transform: translate3d(-6%, 16%, 0);
-  }
-  70% {
-    transform: translate3d(13%, 4%, 0);
-  }
-  80% {
-    transform: translate3d(4%, -12%, 0);
-  }
-  90% {
-    transform: translate3d(-11%, 7%, 0);
-  }
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
+  0% { transform: translate3d(0, 0, 0); }
+  10% { transform: translate3d(-5%, -7%, 0); }
+  20% { transform: translate3d(-13%, 8%, 0); }
+  30% { transform: translate3d(8%, -15%, 0); }
+  40% { transform: translate3d(-8%, 19%, 0); }
+  50% { transform: translate3d(12%, -11%, 0); }
+  60% { transform: translate3d(-6%, 16%, 0); }
+  70% { transform: translate3d(13%, 4%, 0); }
+  80% { transform: translate3d(4%, -12%, 0); }
+  90% { transform: translate3d(-11%, 7%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
 }
 
 .hero-media-intro {
@@ -134,7 +184,6 @@ body::before {
   transform: scale(1);
 }
 
-/* Cinematic letterbox bars */
 .letterbox-bar {
   position: absolute;
   left: 0;
@@ -167,16 +216,11 @@ body::before {
   transform: translateY(0);
 }
 
-/* Parallax depth layers */
-.parallax-slow {
-  will-change: transform;
-}
-
+.parallax-slow,
 .parallax-fast {
   will-change: transform;
 }
 
-/* Controlled chapter reveal animation - enhanced */
 .chapter-reveal,
 .fade-up {
   opacity: 0;
@@ -191,7 +235,6 @@ body::before {
   transform: translateY(0);
 }
 
-/* Stagger children animation */
 .stagger-children > * {
   opacity: 0;
   transform: translateY(20px);
@@ -265,9 +308,10 @@ a {
   outline-offset: 3px;
 }
 
-/* Double-layer cursor: glow halo + crisp dot, sharing a single rAF loop
-   in components/FilmCursor.tsx. Both hidden if .film-cursor-active is not on
-   <body> (i.e. touch, reduced-motion, or slow-frame fallback). */
+/* ============================================================
+   CURSOR — screen: vermillion dot + glow halo.
+   page: same dot turns hot pink (glow off, marker trail on).
+   ============================================================ */
 @media (hover: hover) and (pointer: fine) {
   body.film-cursor-active,
   body.film-cursor-active a,
@@ -310,6 +354,20 @@ a {
   box-shadow: 0 0 18px rgba(var(--cursor-glow-rgb), 0.45);
 }
 
+html[data-world='page'] .film-cursor-dot {
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 1px 4px rgba(20, 19, 18, 0.3);
+}
+
+html[data-world='page'] .film-cursor-dot[data-hovering='true'] {
+  width: 34px;
+  height: 34px;
+  background: rgba(var(--cursor-glow-rgb), 0.16);
+  border: 1.5px solid var(--thread);
+  box-shadow: none;
+}
+
 .film-cursor-glow {
   position: fixed;
   top: 0;
@@ -338,28 +396,37 @@ a {
   height: 200px;
 }
 
+/* Projector beam has no place on paper */
+html[data-world='page'] .film-cursor-glow {
+  display: none;
+}
+
+.ink-trail-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 9996;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .film-cursor-dot,
-  .film-cursor-glow {
+  .film-cursor-glow,
+  .ink-trail-canvas {
     display: none !important;
   }
 }
 
 /* Marquee animation */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .animate-marquee {
   animation: marquee linear infinite;
 }
 
-/* Aggressive scanlines */
 .scanlines::before {
   content: '';
   position: absolute;
@@ -375,7 +442,6 @@ a {
   z-index: 10;
 }
 
-/* Light leak effect */
 .light-leak {
   position: relative;
   overflow: hidden;
@@ -402,20 +468,15 @@ a {
 }
 
 @keyframes light-leak {
-  0%, 100% {
-    transform: translateX(-100%) rotate(45deg);
-  }
-  50% {
-    transform: translateX(100%) rotate(45deg);
-  }
+  0%, 100% { transform: translateX(-100%) rotate(45deg); }
+  50% { transform: translateX(100%) rotate(45deg); }
 }
 
-/* Dust and scratches overlay */
 .dust-scratches::before {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: 
+  background-image:
     radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0.5px, transparent 0.5px),
     radial-gradient(circle at 70% 60%, rgba(255,255,255,0.08) 0.3px, transparent 0.3px),
     radial-gradient(circle at 40% 80%, rgba(255,255,255,0.06) 0.4px, transparent 0.4px),
@@ -426,7 +487,6 @@ a {
   opacity: 0.6;
 }
 
-/* Chromatic aberration effect on hover */
 .chromatic-hover {
   position: relative;
 }
@@ -457,12 +517,10 @@ a {
   filter: hue-rotate(30deg);
 }
 
-/* Text scramble effect base */
 .scramble-text {
   display: inline-block;
 }
 
-/* Glitch effect for headers */
 .glitch-text {
   position: relative;
 }
@@ -510,12 +568,10 @@ a {
   100% { clip-path: inset(48% 0 37% 0); transform: translate(-1px, 1px); }
 }
 
-/* Magnetic hover effect */
 .magnetic {
   transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Flash transition effect */
 .flash-transition {
   position: relative;
   overflow: hidden;
@@ -536,7 +592,552 @@ a {
   transition: none;
 }
 
-/* Respect reduced motion preference */
+/* ============================================================
+   CREDITS TYPE — screen-world display voice (Archivo, wide+black)
+   ============================================================ */
+.credits-head {
+  font-family: Archivo, sans-serif;
+  font-variation-settings: 'wdth' 125, 'wght' 850;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.86;
+}
+
+.tc-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.rec-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--thread);
+  box-shadow: 0 0 8px rgba(var(--cursor-glow-rgb), 0.8);
+  animation: rec-pulse 1.6s ease-in-out infinite;
+}
+
+@keyframes rec-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+
+/* 35mm perforation strips (both worlds' bridges) */
+.film-perfs {
+  height: 14px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    currentColor 0 16px,
+    transparent 16px 30px
+  );
+  border-radius: 1px;
+  opacity: 0.9;
+}
+
+/* ============================================================
+   PAGE WORLD — the zine notebook. White paper, blue rules,
+   pink margin, red title ink, black halftone.
+   ============================================================ */
+
+/* Classic notebook rules: pale blue lines on white */
+.ruled-lines {
+  background-image: repeating-linear-gradient(
+    to bottom,
+    transparent 0 calc(2.1rem - 1px),
+    rgba(122, 159, 199, 0.28) calc(2.1rem - 1px) 2.1rem
+  );
+}
+
+/* Pink margin rule */
+.red-margin {
+  position: relative;
+}
+
+.red-margin::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: clamp(1.6rem, 6vw, 5.5rem);
+  width: 2px;
+  background: rgba(237, 32, 121, 0.5);
+  pointer-events: none;
+}
+
+/* Spiral binding: punched holes down the left edge */
+.spiral-rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 26px;
+  pointer-events: none;
+  background-image: radial-gradient(
+    circle at 13px 50%,
+    #e8e4dc 0 4.5px,
+    rgba(20, 19, 18, 0.14) 5px 5.5px,
+    transparent 6px
+  );
+  background-size: 26px 44px;
+  background-repeat: repeat-y;
+  filter: drop-shadow(1px 1px 0.5px rgba(20, 19, 18, 0.12));
+}
+
+/* Zine display type — Anton, tight, shouting */
+.zine-head {
+  font-family: Anton, Impact, sans-serif;
+  text-transform: uppercase;
+  line-height: 0.92;
+  letter-spacing: 0.005em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Slightly rough edge on big display type, like screen-printed ink */
+.zine-rough {
+  text-shadow:
+    1px 0 0 currentColor,
+    -0.5px 0.5px 0 currentColor;
+}
+
+/* Marker voice */
+.marker {
+  font-family: 'Permanent Marker', cursive;
+}
+
+.hand {
+  font-family: Caveat, cursive;
+}
+
+/* Typewriter voice (zines love a typewriter) */
+.tw-voice {
+  font-family: 'Special Elite', Courier, monospace;
+  letter-spacing: 0.02em;
+}
+
+.tw-caret::after {
+  content: '';
+  display: inline-block;
+  width: 0.56em;
+  height: 1.05em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: var(--thread);
+  animation: caret-blink 1.06s steps(1, end) infinite;
+}
+
+@keyframes caret-blink {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0; }
+}
+
+/* Rubber stamp — red ink, crooked, worn */
+.stamp {
+  font-family: 'Special Elite', Courier, monospace;
+  text-transform: uppercase;
+  color: #e02318;
+  border: 2.5px solid currentColor;
+  border-radius: 4px;
+  padding: 0.24em 0.6em;
+  letter-spacing: 0.18em;
+  transform: rotate(-4deg);
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'%3E%3Cfilter id='r'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.55' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.86 0.14'/%3E%3CfeComposite operator='in' in2='SourceGraphic'/%3E%3C/filter%3E%3Crect width='200' height='60' filter='url(%23r)'/%3E%3C/svg%3E");
+  mask-size: 200px 60px;
+}
+
+/* Letterpress/screenprint slam-in for display letters */
+.stamp-in {
+  display: inline-block;
+  opacity: 0;
+  transform: scale(1.5) rotate(var(--stamp-rot, -6deg)) translateY(-4px);
+  filter: blur(3px);
+  animation: stamp-in 0.52s cubic-bezier(0.16, 1.2, 0.3, 1) forwards;
+  animation-delay: var(--stamp-delay, 0ms);
+}
+
+@keyframes stamp-in {
+  60% {
+    opacity: 1;
+    transform: scale(0.985) rotate(0deg) translateY(0);
+    filter: blur(0);
+  }
+  78% { transform: scale(1.008); }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg) translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Redaction bars — the book still in edit keeps its secrets */
+.ink-redact {
+  display: inline-block;
+  height: 0.92em;
+  vertical-align: baseline;
+  background: #141312;
+  border-radius: 1px 3px 2px 2px;
+  transform: translateY(0.12em);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
+}
+
+.ink-redact:hover {
+  filter: blur(1.2px);
+  transform: translateY(0.12em) skewX(-7deg) scaleX(1.03);
+}
+
+/* Marker scribble underline (hot pink) */
+.proof-underline {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='9' viewBox='0 0 90 9'%3E%3Cpath d='M2 6 C 18 3, 33 7, 48 5 S 74 3, 88 5' fill='none' stroke='%23ed2079' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-position: 0 100%;
+  background-size: 90px 9px;
+  padding-bottom: 0.32em;
+}
+
+/* Halftone dot screen — lays over covers on hover */
+.halftone-hover {
+  position: relative;
+}
+
+.halftone-hover::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(20, 19, 18, 0.55) 1px, transparent 1.4px);
+  background-size: 6px 6px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+.halftone-hover:hover::after {
+  opacity: 0.5;
+}
+
+/* Washi tape strips holding things to the page */
+.tape {
+  position: absolute;
+  width: 108px;
+  height: 30px;
+  background: rgba(244, 227, 178, 0.6);
+  box-shadow: 0 1px 3px rgba(20, 19, 18, 0.18);
+  backdrop-filter: blur(0.5px);
+}
+
+/* Starburst sticker (reads count, etc.) */
+.starburst {
+  clip-path: polygon(
+    50% 0%, 59% 12%, 72% 5%, 74% 20%, 89% 18%, 84% 32%, 99% 37%, 87% 47%,
+    97% 59%, 82% 62%, 87% 77%, 72% 74%, 70% 89%, 58% 80%, 50% 94%, 42% 80%,
+    30% 89%, 28% 74%, 13% 77%, 18% 62%, 3% 59%, 13% 47%, 1% 37%, 16% 32%,
+    11% 18%, 26% 20%, 28% 5%, 41% 12%
+  );
+  background: #ed2079;
+  color: #fffdfa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transform: rotate(8deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.starburst:hover {
+  transform: rotate(-4deg) scale(1.06);
+}
+
+/* Round sticker */
+.sticker-round {
+  border-radius: 999px;
+  background: #141312;
+  color: #fffdfa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 3px 8px rgba(20, 19, 18, 0.25), inset 0 0 0 3px #fffdfa, inset 0 0 0 5px #141312;
+  transform: rotate(-6deg);
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.sticker-round:hover {
+  transform: rotate(2deg) scale(1.05);
+}
+
+/* Marker circle that draws itself around a word */
+.scribble-circle {
+  position: absolute;
+  inset: -0.28em -0.42em;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.scribble-circle path {
+  fill: none;
+  stroke: var(--thread);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.in-view .scribble-circle path,
+.scribble-circle.draw path {
+  animation: scribble-draw 0.9s cubic-bezier(0.5, 0, 0.4, 1) 0.5s forwards;
+}
+
+@keyframes scribble-draw {
+  to { stroke-dashoffset: 0; }
+}
+
+/* Dotted leaders (stats rows) */
+.toc-row {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+}
+
+.toc-leader {
+  flex: 1;
+  border-bottom: 2px dotted rgba(122, 117, 108, 0.5);
+  transform: translateY(-0.28em);
+  min-width: 2rem;
+}
+
+/* Torn paper edge — jagged deterministic clip */
+.deckle-bottom {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), 97.4% calc(100% - 4px), 94.6% calc(100% - 12px), 91.8% calc(100% - 2px), 88.9% calc(100% - 10px), 86.1% calc(100% - 5px), 83% calc(100% - 13px), 80.2% calc(100% - 3px), 77.1% calc(100% - 9px), 74% calc(100% - 1px), 71.2% calc(100% - 11px), 68.1% calc(100% - 4px), 65% calc(100% - 13px), 62.2% calc(100% - 6px), 59.1% calc(100% - 12px), 56% calc(100% - 2px), 53.2% calc(100% - 8px), 50.1% calc(100% - 14px), 47% calc(100% - 4px), 44.2% calc(100% - 10px), 41.1% calc(100% - 2px), 38% calc(100% - 12px), 35.2% calc(100% - 5px), 32.1% calc(100% - 13px), 29% calc(100% - 3px), 26.2% calc(100% - 9px), 23.1% calc(100% - 14px), 20% calc(100% - 6px), 17.2% calc(100% - 11px), 14.1% calc(100% - 2px), 11% calc(100% - 10px), 8.2% calc(100% - 4px), 5.1% calc(100% - 12px), 2.4% calc(100% - 5px), 0 calc(100% - 13px));
+}
+
+.deckle-top {
+  clip-path: polygon(0 14px, 2.6% 4px, 5.4% 12px, 8.2% 2px, 11.1% 10px, 13.9% 5px, 17% 13px, 19.8% 3px, 22.9% 9px, 26% 1px, 28.8% 11px, 31.9% 4px, 35% 13px, 37.8% 6px, 40.9% 12px, 44% 2px, 46.8% 8px, 49.9% 14px, 53% 4px, 55.8% 10px, 58.9% 2px, 62% 12px, 64.8% 5px, 67.9% 13px, 71% 3px, 73.8% 9px, 76.9% 14px, 80% 6px, 82.8% 11px, 85.9% 2px, 89% 10px, 91.8% 4px, 94.9% 12px, 97.6% 5px, 100% 13px, 100% 100%, 0 100%);
+}
+
+/* Paper card with the hard offset shadow zines love */
+.zine-card {
+  background: #ffffff;
+  border: 2.5px solid #141312;
+  box-shadow: 6px 6px 0 #141312;
+}
+
+.zine-card-pink {
+  background: #ed2079;
+  border: 2.5px solid #141312;
+  box-shadow: 6px 6px 0 #141312;
+}
+
+/* Classified redaction slate (film world, secret project) */
+.classified-bar {
+  display: inline-block;
+  height: 0.8em;
+  background: currentColor;
+  border-radius: 2px;
+  vertical-align: baseline;
+  transform: translateY(0.08em);
+}
+
+/* ============================================================
+   THE GATE — seam between worlds
+   ============================================================ */
+.gate-handle {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: min(46vh, 380px);
+  border: none;
+  padding: 0;
+  background: transparent;
+  touch-action: none;
+}
+
+.gate-handle[data-side='right'] { right: 0; }
+.gate-handle[data-side='left'] { left: 0; }
+
+.gate-handle .gate-spine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--thread);
+  box-shadow: 0 0 14px rgba(var(--cursor-glow-rgb), 0.55);
+  transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+}
+
+.gate-handle[data-side='right'] .gate-spine { right: 0; border-radius: 3px 0 0 3px; }
+.gate-handle[data-side='left'] .gate-spine { left: 0; border-radius: 0 3px 3px 0; }
+
+.gate-handle:hover .gate-spine,
+.gate-handle[data-dragging='true'] .gate-spine {
+  width: 8px;
+  box-shadow: 0 0 22px rgba(var(--cursor-glow-rgb), 0.85);
+}
+
+.gate-handle .gate-label {
+  position: absolute;
+  writing-mode: vertical-rl;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.25s ease, opacity 0.25s ease;
+  white-space: nowrap;
+}
+
+.gate-handle[data-side='right'] .gate-label { right: 12px; }
+.gate-handle[data-side='left'] .gate-label { left: 12px; transform: rotate(180deg); }
+
+.gate-handle:hover .gate-label {
+  color: var(--thread);
+}
+
+@keyframes gate-breathe {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+.gate-handle .gate-spine { animation: gate-breathe 3.2s ease-in-out infinite; }
+.gate-handle:hover .gate-spine,
+.gate-handle[data-dragging='true'] .gate-spine { animation: none; opacity: 1; }
+
+/* The curtain: the other world sliding in over this one */
+.world-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  visibility: hidden;
+  will-change: transform;
+}
+
+.world-curtain[data-active='true'] {
+  visibility: visible;
+}
+
+.world-curtain .curtain-inner {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.world-curtain[data-target='page'] .curtain-inner {
+  background: #fffdfa;
+  color: #141312;
+  box-shadow: -18px 0 40px rgba(0, 0, 0, 0.5);
+}
+
+.world-curtain[data-target='screen'] .curtain-inner {
+  background:
+    radial-gradient(1200px 600px at 80% -20%, #1f2240 0%, transparent 60%),
+    #040409;
+  color: #eef1ff;
+  box-shadow: 18px 0 40px rgba(30, 16, 8, 0.45);
+}
+
+.world-curtain .curtain-inner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--thread);
+}
+
+.world-curtain[data-target='page'] .curtain-inner::before { left: 0; }
+.world-curtain[data-target='screen'] .curtain-inner::before { right: 0; }
+
+.world-curtain.curtain-commit {
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.24, 1);
+}
+
+.world-curtain.curtain-cancel {
+  transition: transform 0.34s cubic-bezier(0.34, 1.3, 0.5, 1);
+}
+
+/* Hard-cut flash for the X key */
+.cut-flash {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  background: #fff;
+  opacity: 0;
+}
+
+.cut-flash[data-cutting='true'] {
+  animation: cut-flash 0.24s steps(2, end) forwards;
+}
+
+@keyframes cut-flash {
+  0% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+/* Mobile flip coin — split face of both worlds */
+.flip-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 52px;
+  z-index: 800;
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 2px solid var(--thread);
+  background: linear-gradient(100deg, #040409 0 49.5%, #fffdfa 50.5% 100%);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-fab:active {
+  transform: rotate(180deg) scale(0.94);
+}
+
+.flip-fab .flip-glyphs {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.flip-fab .flip-glyphs .g-screen {
+  color: #eef1ff;
+  font-family: Archivo, sans-serif;
+  font-weight: 800;
+}
+
+.flip-fab .flip-glyphs .g-page {
+  color: #ed2079;
+  font-family: 'Permanent Marker', cursive;
+}
+
+/* First-visit gate hint */
+@keyframes hint-nudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-7px); }
+}
+
+.gate-hint {
+  animation: hint-nudge 1.5s ease-in-out 3;
+}
+
+/* ============================================================
+   Reduced motion — both worlds settle instantly
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -561,6 +1162,19 @@ a {
     transform: none !important;
     transition: none !important;
     opacity: 1;
+  }
+  .stamp-in {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    animation: none;
+  }
+  .tw-caret::after {
+    animation: none;
+  }
+  .scribble-circle path {
+    stroke-dashoffset: 0;
+    animation: none;
   }
   body::after {
     display: none;
