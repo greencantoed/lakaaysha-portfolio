@@ -130,7 +130,7 @@ const SiteFooter: React.FC = () => {
             ))}
           </div>
           <p className="tw-voice text-[10px] uppercase tracking-[0.2em] text-jelly-muted/70">
-            &copy; {currentYear} lakaaysha — press X to change worlds · site made in one long take with Claude
+            &copy; {currentYear} lakaaysha — press X to change worlds
           </p>
         </div>
       </footer>
