@@ -5,27 +5,20 @@ const PORTRAIT = 'portrait' as const;
 
 export const projects: Project[] = [
   {
-    id: 'questions-thomas-hirschhorn',
-    title: 'Questions I Need To Ask Thomas Hirschhorn',
+    // Under wraps: no title, no imagery — partners only.
+    id: 'untitled-documentary',
+    title: 'Untitled Documentary',
     year: '2026',
     format: 'Documentary',
-    crew: 'Director & Writer: Lakaaysha van Ewijk\nResearch & Additional Screenplay: Edoardo Cumitini',
+    crew: 'Directed by Lakaaysha van Ewijk',
+    commissioner: 'NPO-fonds · VPRO · Memphis Film & Television',
     status: 'In Development',
     featured: true,
     inquiryTag: 'Documentary',
-    seoTitle: 'Questions I Need To Ask Thomas Hirschhorn | Lakaaysha van Ewijk',
+    seoTitle: 'Untitled Documentary — in development | Lakaaysha van Ewijk',
     seoDescription:
-      'Questions I Need To Ask Thomas Hirschhorn — a documentary by Lakaaysha van Ewijk, 2026.',
-    stills: [
-      {
-        id: 'questions-th-banner',
-        url: '/images/human-vs-human/GEN%20C%20imahes/Questions_Banner_FINal-VERSION.png',
-        alt: 'Banner for Questions I Need To Ask Thomas Hirschhorn.',
-        width: 6912,
-        height: 3456,
-        orientation: LANDSCAPE,
-      },
-    ],
+      'A documentary by Lakaaysha van Ewijk, in development with the NPO-fonds, VPRO and Memphis Film & Television.',
+    stills: [],
   },
   {
     id: 'gen-c',

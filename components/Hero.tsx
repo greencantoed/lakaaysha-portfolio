@@ -131,13 +131,14 @@ export const Hero: React.FC = () => {
         />
 
         <div className="max-w-5xl">
-          <p 
-            className={`hero-stagger text-[10px] md:text-xs uppercase tracking-[0.3em] text-jelly-muted mb-4 md:mb-6 ${
+          <p
+            className={`hero-stagger tc-badge flex items-center gap-3 text-jelly-muted mb-4 md:mb-6 ${
               isInView ? 'in-view' : ''
             }`}
             style={{ transitionDelay: '80ms' }}
           >
-            Director · Visual Artist
+            <span className="rec-dot inline-block" aria-hidden="true" />
+            REC · Director · Visual Artist
           </p>
 
           <h1

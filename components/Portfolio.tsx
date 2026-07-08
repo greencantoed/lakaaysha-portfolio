@@ -34,16 +34,16 @@ export const Portfolio: React.FC = () => {
       
       <div className="container mx-auto px-5 md:px-8 relative z-10">
         {/* Section header with editorial styling */}
-        <div className="mb-16 md:mb-24 flex items-end justify-between border-b border-jelly-line/40 pb-4">
+        <div className="mb-16 md:mb-24 flex items-end justify-between border-b border-jelly-line/40 pb-5">
           <div>
-            <span className="text-[10px] uppercase tracking-[0.3em] text-jelly-muted block mb-2">
-              01 — Portfolio
+            <span className="tc-badge text-jelly-accent block mb-3">
+              TC 01 · Portfolio
             </span>
-            <h2 className="text-jelly-accent text-xs md:text-sm uppercase tracking-[0.25em] font-semibold">
+            <h2 className="credits-head text-jelly-text" style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)' }}>
               Selected Works
             </h2>
           </div>
-          <span className="hidden md:block text-[10px] uppercase tracking-[0.2em] text-jelly-muted/60">
+          <span className="tc-badge hidden md:block text-jelly-muted/60">
             {String(selectedProjects.length).padStart(2, '0')} Projects
           </span>
         </div>
@@ -81,16 +81,40 @@ export const Portfolio: React.FC = () => {
                           </div>
                         </TiltCard>
                       ) : (
-                        <Link to={href} className="block relative">
+                        <Link to={href} className="block relative group/classified">
                           <div className="absolute -inset-3 border border-jelly-line/30 pointer-events-none" />
-                          <section className="border border-jelly-line/70 bg-jelly-surface-2 min-h-[35vh] md:min-h-[45vh] p-8 md:p-12 flex flex-col justify-end relative overflow-hidden">
-                            {/* Decorative elements */}
+                          {/* Classified slate: the film exists, the details don't — yet. */}
+                          <section className="border border-jelly-line/70 bg-jelly-surface-2 min-h-[35vh] md:min-h-[45vh] p-8 md:p-12 flex flex-col justify-between relative overflow-hidden scanlines">
                             <div className="absolute top-0 right-0 w-32 h-32 bg-jelly-accent/5 rounded-full blur-3xl" />
-                            <div className="space-y-6 relative z-10">
-                              <span className="block h-px w-20 bg-gradient-to-r from-jelly-accent/70 to-transparent" />
-                              <h3 className="font-serif text-4xl md:text-6xl text-jelly-text leading-[0.9] max-w-4xl [text-wrap:balance]">
-                                {project.title}
+
+                            <div className="flex items-center justify-between relative z-10">
+                              <span className="tc-badge text-jelly-accent flex items-center gap-3">
+                                <span className="rec-dot inline-block" />
+                                classified — in development
+                              </span>
+                              <span className="tc-badge text-jelly-muted/50 hidden md:block">
+                                do not duplicate
+                              </span>
+                            </div>
+
+                            <div className="space-y-5 relative z-10">
+                              <h3 className="credits-head text-jelly-text leading-[0.9] break-words" style={{ fontSize: 'clamp(1.9rem, 3.6vw, 3.6rem)' }}>
+                                Untitled
+                                <br />
+                                Documentary
                               </h3>
+                              {/* the withheld logline */}
+                              <p aria-label="Logline withheld" className="flex flex-wrap gap-x-2 gap-y-2 max-w-xl text-jelly-text/80">
+                                <span aria-hidden="true" className="classified-bar w-[34%] transition-all duration-300 group-hover/classified:w-[30%]" />
+                                <span aria-hidden="true" className="classified-bar w-[18%]" />
+                                <span aria-hidden="true" className="classified-bar w-[26%] transition-all duration-300 group-hover/classified:w-[31%]" />
+                                <span aria-hidden="true" className="classified-bar w-[22%]" />
+                                <span aria-hidden="true" className="classified-bar w-[38%]" />
+                                <span aria-hidden="true" className="classified-bar w-[14%]" />
+                              </p>
+                              <span className="tc-badge block text-jelly-muted">
+                                NPO-fonds · VPRO · Memphis Film &amp; Television
+                              </span>
                             </div>
                           </section>
                         </Link>
