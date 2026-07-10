@@ -68,7 +68,8 @@ export const TheBooks: React.FC = () => {
 
             <div className="lg:col-span-7 lg:pl-6">
               <p className="tw-voice text-[11px] md:text-xs uppercase tracking-[0.24em] text-zine-faint mb-3">
-                № 01 — {queerantine.format} · {queerantine.year} · ongoing
+                № 01 — {queerantine.format} · {queerantine.year}
+                {queerantine.state ? ` · ${queerantine.state}` : ''}
               </p>
               <h3 className="zine-head text-zine-pink" style={{ fontSize: 'clamp(2.6rem, 6vw, 5rem)' }}>
                 {queerantine.title}
@@ -91,7 +92,7 @@ export const TheBooks: React.FC = () => {
                   <StatRow label="reads" value={queerantine.stats.reads} />
                   <StatRow label="votes" value={queerantine.stats.votes} />
                   <StatRow label="parts" value={queerantine.stats.parts} />
-                  <StatRow label="drops" value={queerantine.stats.schedule} />
+                  <StatRow label="status" value={queerantine.stats.schedule} />
                 </dl>
               )}
 

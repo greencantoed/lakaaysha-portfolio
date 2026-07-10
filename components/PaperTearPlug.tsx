@@ -35,7 +35,7 @@ export const PaperTearPlug: React.FC = () => {
                 SHE ALSO <span className="text-[#e02318]">WRITES</span>
               </p>
               <p className="tw-voice mt-5 text-xs md:text-sm text-[#7a756c]">
-                a novel live on Wattpad + a second one in edit.
+                a complete novel on Wattpad + a second one in edit.
               </p>
             </div>
 
