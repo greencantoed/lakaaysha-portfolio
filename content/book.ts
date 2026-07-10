@@ -10,6 +10,8 @@ export interface Book {
   coverAlt: string;
   status: 'live' | 'in-edit';
   format: string;
+  /** short state shown after format/year, e.g. "complete" */
+  state?: string;
   year: string;
   blurb: string;
   tags: string[];
@@ -25,17 +27,18 @@ export const books: Book[] = [
     cover: '/images/books/queerantine-cover.jpg',
     coverAlt: 'Queerantine cover — two women mid-kiss, drawn in warm crayon.',
     status: 'live',
-    format: 'novel — serialized',
+    format: 'novel',
+    state: 'complete',
     year: '2026',
     blurb:
       'A sapphic lockdown romance in Amsterdam. Jill Wijntuin, spoken-word poet, hopelessly in love with her straight best friend — until her room floods and she ends up in her roommate’s bed.',
     tags: ['sapphic', 'amsterdam', 'slowburn', '18+'],
     url: 'https://www.wattpad.com/story/410398543-queerantine',
     stats: {
-      reads: '7.5K',
-      votes: '181',
-      parts: '27',
-      schedule: 'new chapters mon / wed / fri',
+      reads: '7.7K',
+      votes: '183',
+      parts: '29',
+      schedule: 'complete — 3h 58m start to finish',
     },
     stamp: 'read it free',
   },

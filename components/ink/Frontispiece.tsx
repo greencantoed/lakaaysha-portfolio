@@ -64,7 +64,7 @@ export const Frontispiece: React.FC = () => {
 
         <div className="mt-8 md:mt-12 max-w-2xl">
           <Typewriter
-            text="two books. one live on Wattpad, one in edit."
+            text="two books. one complete on Wattpad, one in edit."
             className="text-sm md:text-lg text-zine-soft"
             startDelay={1500}
           />
@@ -110,7 +110,7 @@ export const Frontispiece: React.FC = () => {
         className="starburst absolute -right-5 bottom-40 md:right-auto md:left-16 md:bottom-16 w-[110px] h-[110px] md:w-[150px] md:h-[150px] z-10"
         aria-hidden="true"
       >
-        <span className="zine-head text-2xl md:text-3xl leading-none">7.5K</span>
+        <span className="zine-head text-2xl md:text-3xl leading-none">{queerantine.stats?.reads}</span>
         <span className="marker text-[10px] md:text-xs mt-1">reads &amp; counting</span>
       </div>
 
