@@ -1,0 +1,536 @@
+{
+  "source": "https://lakaaysha.com/",
+  "retrieved": "2026-09-10",
+  "films": [
+    {
+      "id": "untitled-documentary",
+      "title": "Untitled Documentary",
+      "year": "2026",
+      "format": "Documentary",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "commissioner": "NPO-fonds · VPRO · Memphis Film & Television",
+      "status": "In Development",
+      "featured": true,
+      "inquiryTag": "Documentary",
+      "seoTitle": "Untitled Documentary — in development | Lakaaysha van Ewijk",
+      "seoDescription": "A documentary by Lakaaysha van Ewijk, in development with the NPO-fonds, VPRO and Memphis Film & Television.",
+      "stills": []
+    },
+    {
+      "id": "gen-c",
+      "title": "Gen C",
+      "year": "2026",
+      "format": "Documentary",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "commissioner": "VPRO Dorst / SUB",
+      "featured": true,
+      "inquiryTag": "Documentary",
+      "seoTitle": "Gen C | Lakaaysha van Ewijk",
+      "seoDescription": "Gen C — a documentary by Lakaaysha van Ewijk, 2026.",
+      "stills": [
+        {
+          "id": "gen-c-1",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_1.png",
+          "alt": "A man sits in a barber chair beneath colourful wall art, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-2",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/Genc_2.png",
+          "alt": "Close-up of hands and bracelets with a red heart graphic, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-3",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_3.png",
+          "alt": "A woman in pink speaks from a chair, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-4",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_4.png",
+          "alt": "A woman in a white T-shirt speaks in a café, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-5",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_5.png",
+          "alt": "Close-up of a woman speaking into a microphone, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-6",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_6.png",
+          "alt": "A barber-chair portrait overlaid with the word WORLD, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-7",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_7.png",
+          "alt": "A seated woman in pink beneath the word REAL, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-8",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_8.png",
+          "alt": "People gathered around a table, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-9",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_9.png",
+          "alt": "A barber-chair portrait with the words MOTIVE BEYOND, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-10",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_10.png",
+          "alt": "A woman in red in a classroom with a projected slide, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-11",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_11.png",
+          "alt": "A woman in pink looking down, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        },
+        {
+          "id": "gen-c-12",
+          "url": "/images/human-vs-human/GEN%20C%20imahes/genC_12.png",
+          "alt": "A woman seated at a microphone, in Gen C.",
+          "width": 1080,
+          "height": 1920,
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "id": "7-plus-1",
+      "title": "7+1",
+      "year": "2024",
+      "format": "Cinepoem",
+      "crew": "Directed by Lakaaysha van Ewijk and Puck Füsers",
+      "commissioner": "Wintertuin / InScience / Nieuwe Gronden",
+      "featured": false,
+      "inquiryTag": "Cinepoem",
+      "seoTitle": "7+1 | Lakaaysha van Ewijk",
+      "seoDescription": "7+1 — a cinepoem by Lakaaysha van Ewijk, 2024.",
+      "stills": [
+        {
+          "id": "7p1-1",
+          "url": "/images/human-vs-human/7+1_still_1.webp",
+          "alt": "A figure in a fur coat spreads their arms beside open water in 7+1.",
+          "width": 3840,
+          "height": 2160,
+          "orientation": "landscape"
+        },
+        {
+          "id": "7p1-2",
+          "url": "/images/human-vs-human/7+1_still_2.webp",
+          "alt": "Hands hold a mirror reflecting a figure beside the water in 7+1.",
+          "width": 3840,
+          "height": 2160,
+          "orientation": "landscape"
+        },
+        {
+          "id": "7p1-3",
+          "url": "/images/human-vs-human/7+1_still_3.webp",
+          "alt": "A close view of the fur-coated figure looking over the water in 7+1.",
+          "width": 3840,
+          "height": 2160,
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "no-love-no-mountains",
+      "title": "No love, no mountains, living horizontally",
+      "year": "2022",
+      "format": "Experimental Film",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "featured": false,
+      "inquiryTag": "Experimental Film",
+      "seoTitle": "No love, no mountains, living horizontally | Lakaaysha van Ewijk",
+      "seoDescription": "No love, no mountains, living horizontally — an experimental film by Lakaaysha van Ewijk, 2022.",
+      "stills": [
+        {
+          "id": "nlnm-1",
+          "url": "/images/human-vs-human/no_mountains%201.png",
+          "alt": "Vertical still from No love, no mountains, living horizontally.",
+          "width": 1180,
+          "height": 2020,
+          "orientation": "portrait"
+        },
+        {
+          "id": "nlnm-2",
+          "url": "/images/human-vs-human/no_mountains%202.png",
+          "alt": "Vertical portrait frame from No love, no mountains.",
+          "width": 1180,
+          "height": 2020,
+          "orientation": "portrait"
+        },
+        {
+          "id": "nlnm-3",
+          "url": "/images/human-vs-human/no_mountains%203.png",
+          "alt": "Vertical still from No love, no mountains.",
+          "width": 1180,
+          "height": 2020,
+          "orientation": "portrait"
+        },
+        {
+          "id": "nlnm-4",
+          "url": "/images/human-vs-human/no_mountains%204.png",
+          "alt": "Vertical detail still from No love, no mountains.",
+          "width": 1180,
+          "height": 2020,
+          "orientation": "portrait"
+        }
+      ]
+    },
+    {
+      "id": "human-vs-human",
+      "title": "Human vs Human vs Human vs Human: and so on",
+      "year": "2022",
+      "format": "Experimental Documentary",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "featured": false,
+      "inquiryTag": "Experimental Documentary",
+      "seoTitle": "Human vs Human vs Human vs Human: and so on | Lakaaysha van Ewijk",
+      "seoDescription": "Human vs Human vs Human vs Human: and so on — an experimental documentary by Lakaaysha van Ewijk, 2022.",
+      "stills": [
+        {
+          "id": "hvh-1",
+          "url": "/images/human-vs-human/hvnvhvn_1.webp",
+          "alt": "Layered activist collage frame reading Please Take Action.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "hvh-2",
+          "url": "/images/human-vs-human/hvnvhvn_2.webp",
+          "alt": "Color-fractured protest typography from Human vs Human.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "hvh-3",
+          "url": "/images/human-vs-human/hvnvhvn_3.webp",
+          "alt": "High-contrast composite frame from Human vs Human.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "hvh-4",
+          "url": "/images/human-vs-human/hvnvhvn_4.png",
+          "alt": "Additional protest montage frame from Human vs Human.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "hvh-5",
+          "url": "/images/human-vs-human/hvnvhvn_5.png",
+          "alt": "Poster-styled sequence frame from Human vs Human.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "hvh-6",
+          "url": "/images/human-vs-human/hvnvhvn_6.png",
+          "alt": "Text-and-image composite still from Human vs Human.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "dutch-capitalism",
+      "title": "Reflections on Dutch Capitalism",
+      "year": "2021",
+      "format": "Essay Film",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "featured": false,
+      "inquiryTag": "Essay Film",
+      "seoTitle": "Reflections on Dutch Capitalism | Lakaaysha van Ewijk",
+      "seoDescription": "Reflections on Dutch Capitalism — an essay film by Lakaaysha van Ewijk, 2021.",
+      "stills": [
+        {
+          "id": "rdc-main",
+          "url": "/images/human-vs-human/Reflections_MAin.png",
+          "alt": "Main still from Reflections on Dutch Capitalism.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "rdc-1",
+          "url": "/images/human-vs-human/Reflections_1.png",
+          "alt": "Still from Reflections on Dutch Capitalism.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "rdc-2",
+          "url": "/images/human-vs-human/Reflections_2.png",
+          "alt": "Still from Reflections on Dutch Capitalism.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "rdc-3",
+          "url": "/images/human-vs-human/Reflections_3.png",
+          "alt": "Still from Reflections on Dutch Capitalism.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "rdc-4",
+          "url": "/images/human-vs-human/Reflections_4.png",
+          "alt": "Additional still from Reflections on Dutch Capitalism.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "herons-are-back",
+      "title": "The herons are back",
+      "year": "2021",
+      "format": "Short Film",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "featured": false,
+      "inquiryTag": "Short Film",
+      "seoTitle": "The herons are back | Lakaaysha van Ewijk",
+      "seoDescription": "The herons are back — a short film by Lakaaysha van Ewijk, 2021.",
+      "stills": [
+        {
+          "id": "heron-main",
+          "url": "/images/human-vs-human/Herons_main.jpg",
+          "alt": "Main still from The herons are back.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "heron-1",
+          "url": "/images/human-vs-human/Herons_1.png",
+          "alt": "Still from The herons are back.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "heron-2",
+          "url": "/images/human-vs-human/Herons_2.png",
+          "alt": "Still from The herons are back.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "heron-3",
+          "url": "/images/human-vs-human/Herons_3.png",
+          "alt": "Still from The herons are back.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "heron-4",
+          "url": "/images/human-vs-human/Herons_4.png",
+          "alt": "Additional still from The herons are back.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        }
+      ]
+    },
+    {
+      "id": "1104-breakfast-menu",
+      "title": "1104 Breakfast Menu",
+      "year": "2020",
+      "format": "Short Film",
+      "crew": "Directed by Lakaaysha van Ewijk",
+      "featured": false,
+      "inquiryTag": "Short Film",
+      "seoTitle": "1104 Breakfast Menu | Lakaaysha van Ewijk",
+      "seoDescription": "1104 Breakfast Menu — a short film by Lakaaysha van Ewijk, 2020.",
+      "stills": [
+        {
+          "id": "bm-3",
+          "url": "/images/human-vs-human/1104BM_3_2x.webp",
+          "alt": "Additional still from 1104 Breakfast Menu.",
+          "width": 2304,
+          "height": 1440,
+          "orientation": "landscape"
+        },
+        {
+          "id": "bm-4",
+          "url": "/images/human-vs-human/1104_1.png",
+          "alt": "Additional still from 1104 Breakfast Menu.",
+          "width": 1152,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "bm-5",
+          "url": "/images/human-vs-human/1104_2.png",
+          "alt": "Additional breakfast table still from 1104 Breakfast Menu.",
+          "width": 1152,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "bm-6",
+          "url": "/images/human-vs-human/1104_4.png",
+          "alt": "Additional frame from 1104 Breakfast Menu.",
+          "width": 1152,
+          "height": 720,
+          "orientation": "landscape"
+        },
+        {
+          "id": "bm-7",
+          "url": "/images/human-vs-human/1104_5.png",
+          "alt": "Additional close-up frame from 1104 Breakfast Menu.",
+          "width": 1280,
+          "height": 720,
+          "orientation": "landscape"
+        }
+      ]
+    }
+  ],
+  "press": [
+    {
+      "id": "press-vpro-sub-makers",
+      "label": "Maak kennis met de zes SUB-makers",
+      "kind": "press",
+      "project": "gen-c",
+      "logo": "/logos/vpro.svg",
+      "url": "https://www.vpro.nl/vpro-dorst/artikelen/maak-kennis-met-de-zes-sub-makers",
+      "note": "Gen C"
+    },
+    {
+      "id": "press-vpro-sub-release",
+      "label": "SUB: zes jonge makers onderzoeken vertical, Gen Z en subculturen",
+      "kind": "press",
+      "project": "gen-c",
+      "logo": "/logos/vpro.svg",
+      "url": "https://www.vpro.nl/vpro-dorst/artikelen/sub-zes-jonge-makers-onderzoeken-vertical-gen-z-en-subculturen",
+      "note": "Gen C"
+    },
+    {
+      "id": "press-broadcast-sub",
+      "label": "Broadcast Magazine coverage of SUB",
+      "kind": "press",
+      "project": "gen-c",
+      "logo": "/logos/broadcast-magazine.svg",
+      "url": "https://www.broadcastmagazine.nl/bmy/sub-zes-jonge-makers-onderzoeken-vertical-gen-z-en-subculturen/",
+      "note": "Gen C"
+    },
+    {
+      "id": "press-wintertuin-cinepoems",
+      "label": "Cinepoems production page",
+      "kind": "press",
+      "project": "7-plus-1",
+      "logo": "/logos/wintertuin.svg",
+      "coLogos": [
+        "/logos/inscience.svg"
+      ],
+      "url": "https://wintertuin.nl/productie/cinepoems/",
+      "note": "7+1"
+    },
+    {
+      "id": "press-nieuwe-gronden-2024",
+      "label": "Nieuwe Gronden 2024 programme page",
+      "kind": "press",
+      "project": "7-plus-1",
+      "logo": "/logos/wintertuin.svg",
+      "coLogos": [
+        "/logos/inscience.svg"
+      ],
+      "url": "https://wintertuin.nl/productie/nieuw-gronden/",
+      "note": "7+1"
+    },
+    {
+      "id": "press-npf-2024",
+      "label": "Nederlands Poëziefilm Festival 2024 programmaboekje",
+      "kind": "festival",
+      "project": "7-plus-1",
+      "logo": "/logos/npf.svg",
+      "url": "https://poeziefilmfestival.nl/wp-content/uploads/NPF-programmaboekje24-10.pdf",
+      "note": "7+1"
+    },
+    {
+      "id": "press-fabrica-co-ecologies",
+      "label": "Fabrica Co-ecologies residency announcement",
+      "kind": "press",
+      "project": "general",
+      "logo": "/logos/fabrica.svg",
+      "url": "https://www.fabrica.it/en/co-ecologies-beyond-the-anthropocene/"
+    },
+    {
+      "id": "press-fabrica-blooming",
+      "label": "Fabrica Blooming in Embers programme",
+      "kind": "press",
+      "project": "general",
+      "logo": "/logos/fabrica.svg",
+      "url": "https://www.fabrica.it/en/blooming-in-embers/"
+    }
+  ],
+  "social": [
+    {
+      "id": "instagram",
+      "label": "Instagram",
+      "handle": "@lakaaysha",
+      "url": "https://instagram.com/lakaaysha"
+    },
+    {
+      "id": "tiktok",
+      "label": "TikTok",
+      "handle": "@lakaaysha",
+      "url": "https://www.tiktok.com/@lakaaysha"
+    },
+    {
+      "id": "substack",
+      "label": "Substack",
+      "handle": "@lakaaysha",
+      "url": "https://substack.com/@lakaaysha"
+    }
+  ],
+  "email": "lakaaysha@gmail.com",
+  "hero": {
+    "video": "/images/human-vs-human/reel_v4_match_chaptered_silent_1080p24.mp4",
+    "poster": "/images/human-vs-human/7+1_still_1.webp"
+  }
+}

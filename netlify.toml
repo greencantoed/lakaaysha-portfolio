@@ -1,17 +1,17 @@
 [build]
-  command = "npm run build"
+  base = "portfolio"
+  command = "node prepare.mjs"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "20"
 
-# SPA fallback: send unknown routes to index.html so react-router can handle them
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
 
 [[headers]]
-  for = "/assets/*"
+  for = "/*.html"
   [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+    Cache-Control = "public, max-age=0, must-revalidate"

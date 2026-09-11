@@ -1,0 +1,12 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { spawnSync } from 'node:child_process';
+const root = new URL('./', import.meta.url);
+const manifest = JSON.parse(readFileSync(new URL('reel-source/parts.json', root), 'utf8'));
+const reel = Buffer.concat(manifest.map(part => readFileSync(new URL('reel-source/' + part.path, root))));
+if (createHash('sha256').update(reel).digest('hex') !== 'a0701d239a2fcde7dbe84a21440039c7b4aabda0b29f420eceb48fea0270527c') throw new Error('Showreel integrity check failed');
+writeFileSync(new URL('dist/media/hero-reel.mp4', root), reel);
+const check = spawnSync(process.execPath, ['--check', fileURLToPath(new URL('dist/app.js', root))], {stdio:'inherit'});
+if (check.status !== 0) process.exit(check.status || 1);
+console.log('Verified and prepared complete portfolio and showreel.');
