@@ -18,7 +18,7 @@ const WorldContext = createContext<WorldContextValue>({
 
 const WORLD_TITLES: Record<World, string> = {
   screen: 'LAKAAYSHA | Film Director & Visual Artist',
-  page: 'LAKAAYSHA | Author — Queerantine & more',
+  page: 'LAKAAYSHA | Author',
 };
 
 export const worldHome = (target: World) => (target === 'page' ? '/ink' : '/');

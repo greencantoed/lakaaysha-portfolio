@@ -15,7 +15,6 @@ import { PaperTearPlug } from './components/PaperTearPlug';
 import { WorldGate } from './components/WorldGate';
 import { WorldProvider, useWorld, type World } from './hooks/useWorld';
 import { socials } from './content/socials';
-import { books } from './content/book';
 
 const ProjectPage = lazy(() =>
   import('./components/ProjectPage').then((m) => ({ default: m.ProjectPage }))
@@ -41,8 +40,8 @@ const NAV_ITEMS: Record<World, WorldNavItem[]> = {
     { label: 'Contact', ordinal: '04', sectionId: 'contact' },
   ],
   page: [
-    { label: 'The Books', ordinal: '01', sectionId: 'books' },
-    { label: 'Write Back', ordinal: '02', sectionId: 'letters' },
+    { label: 'Writing', ordinal: '01', sectionId: 'frontispiece' },
+    { label: 'Contact', ordinal: '02', sectionId: 'letters' },
   ],
 };
 
@@ -263,7 +262,7 @@ const SiteNavigation: React.FC = () => {
   return (
     <>
       <a
-        href={world === 'page' ? '/ink#books' : '/#portfolio'}
+        href={world === 'page' ? '/ink#frontispiece' : '/#portfolio'}
         className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[200] focus:bg-jelly-accent focus:text-black focus:px-4 focus:py-2 focus:text-xs uppercase tracking-[0.14em]"
       >
         Skip to content
@@ -401,11 +400,11 @@ const WorldMarquees: React.FC = () => {
       <>
         <div className="fixed top-0 left-0 right-0 z-[90] py-1 bg-zine-pink hidden md:block">
           <Marquee speed={42} className="tw-voice text-[9px] uppercase tracking-[0.3em] text-zine-paper">
-            <span className="mx-8">Queerantine — {books[0].stats?.reads} reads</span>
+            <span className="mx-8">Lakaaysha van Ewijk</span>
             <span className="mx-8">★</span>
-            <span className="mx-8">Complete — all {books[0].stats?.parts} chapters free</span>
+            <span className="mx-8">Author</span>
             <span className="mx-8">★</span>
-            <span className="mx-8">A second novel in edit</span>
+            <span className="mx-8">Writing</span>
             <span className="mx-8">★</span>
             <span className="mx-8">Amsterdam</span>
             <span className="mx-8">★</span>
