@@ -6,3 +6,6 @@ dist/
 .netlify/
 .vite/
 *.log
+
+!portfolio/dist/
+!portfolio/dist/**
