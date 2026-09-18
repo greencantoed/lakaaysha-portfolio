@@ -10,7 +10,7 @@ Private preview: https://lakaaysha-worlds.kaayardo.chatgpt.site
 
 Extract the archive and open `dist/index.html`. All film images, fonts and the showreel are included. External press, social and email links open their existing destinations.
 
-The site contains the film home, eight project pages, a writing identity page and a not-found page. The writing page contains only the artist's name, role, location and ordinary contact/social links. All novel material and invitations have been removed from the pages, content records and public assets.
+The site contains the film home, eight project pages, a writing identity page and a not-found page. The writing page includes the artist's identity, contact/social links, and Queerantine's confirmed Wattys 2026 Wildcard shortlist recognition. The announcement links to the official Wattpad shortlist and the story; it also appears in the homepage press and recognition list. Edit this announcement in the `writingRecognition` record in `content.json`.
 
 ## Edit
 
