@@ -1,6 +1,16 @@
 {
   "source": "https://lakaaysha.com/",
   "retrieved": "2026-09-10",
+  "writingRecognition": {
+    "id": "queerantine",
+    "title": "Queerantine",
+    "award": "Wattys 2026",
+    "category": "Wildcard",
+    "status": "Shortlisted",
+    "announcement": "Queerantine has been shortlisted in the Wildcard category of the Wattys 2026.",
+    "shortlistUrl": "https://www.wattpad.com/list/1850818568-the-2026-wattys-shortlist-wildcard",
+    "storyUrl": "https://www.wattpad.com/story/410398543-queerantine-wattys-shortlist"
+  },
   "films": [
     {
       "id": "untitled-documentary",
